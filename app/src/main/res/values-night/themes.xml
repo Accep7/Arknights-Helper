@@ -1,0 +1,37 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.ArknightsHelper" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/toolbar</item>
+        <item name="colorPrimaryVariant">@color/status_bar</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/main_background</item>
+        <item name="android:buttonStyleToggle">@style/ToggleButtonDesign</item>
+        <item name="android:textAppearanceButton">@style/ToggleButtonDesign</item>
+        <item name="android:buttonStyle">@style/ResetButtonDesign</item>
+        <item name="toolbarStyle">@style/ToolbarDesign</item>
+    </style>
+
+    <style name="ToggleButtonDesign" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/button_text_color</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:backgroundTint">@drawable/btn_toggle</item>
+    </style>
+
+    <style name="ResetButtonDesign" parent="Widget.AppCompat.Button">
+        <item name="android:backgroundTint">@color/btn_reset</item>
+        <item name="android:textColor">@color/button_text_color</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="ToolbarDesign" parent="Widget.AppCompat.ActionBar">
+        <item name="titleTextColor">@color/white</item>
+    </style>
+</resources>
