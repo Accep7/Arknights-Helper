@@ -1,5 +1,6 @@
 package com.accep7.arknightshelper;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull OperatorHolder holder, int position) {
         holder.bind(operators.get(position));
+        if (operators.get(position).getOperator().getRarity() == 6) {
+            holder.itemView.setBackgroundResource(R.color.sixStar_background);
+        }
+        if (operators.get(position).getOperator().getRarity() == 5) {
+            holder.itemView.setBackgroundResource(R.color.fiveStar_background);
+        }
+        if (operators.get(position).getOperator().getRarity() == 4) {
+            holder.itemView.setBackgroundResource(R.color.fourStar_background);
+        }
+        if (operators.get(position).getOperator().getRarity() == 3) {
+            holder.itemView.setBackgroundResource(R.color.threeStar_background);
+        }
+        if (operators.get(position).getOperator().getRarity() == 2) {
+            holder.itemView.setBackgroundResource(R.color.twoStar_background);
+        }
+        if (operators.get(position).getOperator().getRarity() == 1) {
+            holder.itemView.setBackgroundResource(R.color.oneStar_background);
+        }
     }
 
     @Override
