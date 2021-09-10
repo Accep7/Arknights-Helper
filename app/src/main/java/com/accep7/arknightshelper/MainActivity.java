@@ -58,22 +58,28 @@ public class MainActivity extends AppCompatActivity {
         operatorAdapter.clearItems();
         for (Map.Entry<ToggleButton, OperatorPredicate> entry : buttonLockAndReset.entrySet()) {
             ToggleButton toggleButton = entry.getKey();
+            ToggleButton excludeTopOp = findViewById(R.id.qualification_topOp);
             if (toggleButton.isChecked()) {
                 OperatorPredicate filteringParameter = entry.getValue();
                 for (RecruitmentPool.RecruitableOperator operator : recruitableOperators) {
                     if (filteringParameter.matches(operator)) {
-                        int position = operatorAdapter.getPosition(operator);
-                        if (position != -1) {
-                            OperatorWrapper existingWrapper = operatorAdapter.getItem(position);
-                            OperatorWrapper newWrapper = new OperatorWrapper(existingWrapper.getOperator());
-                            newWrapper.getSelectedTagsList().addAll(existingWrapper.getSelectedTagsList());
-                            newWrapper.getSelectedTagsList().add(toggleButton.getText().toString());
-                            operatorAdapter.insert(newWrapper, 0);
-                        }
-                        OperatorWrapper operatorWrapper = new OperatorWrapper(operator);
-                        operatorWrapper.getSelectedTagsList().add(toggleButton.getText().toString());
-                        operatorAdapter.add(operatorWrapper);
+                        if (!excludeTopOp.isChecked() && operator.getQualification() != null && operator.getQualification().equals(RecruitmentPool.QUALIFICATION_TOP)) {
+                            continue;
+                        } else {
+                            int position = operatorAdapter.getPosition(operator);
+                            if (position != -1) {
+                                OperatorWrapper existingWrapper = operatorAdapter.getItem(position);
+                                OperatorWrapper newWrapper = new OperatorWrapper(existingWrapper.getOperator());
+                                newWrapper.getSelectedTagsList().addAll(existingWrapper.getSelectedTagsList());
+                                newWrapper.getSelectedTagsList().add(toggleButton.getText().toString());
+                                operatorAdapter.insert(newWrapper, 0);
+                            }
+                            OperatorWrapper operatorWrapper = new OperatorWrapper(operator);
+                            operatorWrapper.getSelectedTagsList().add(toggleButton.getText().toString());
+                            operatorAdapter.add(operatorWrapper);
+                                                    }
                     }
+                    operatorAdapter.operators.sort((o1, o2) -> o2.getOperator().getRarity() - o1.getOperator().getRarity());
                 }
             }
         }
