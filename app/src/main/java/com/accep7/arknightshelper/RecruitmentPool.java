@@ -51,6 +51,14 @@ class RecruitmentPool {
         final String affix2;
         final String affix3;
 
+        public int getRarity() {
+            return rarity;
+        }
+
+        public String getQualification() {
+            return qualification;
+        }
+
         RecruitableOperator(String operatorName, String attackType, String qualification, int rarity, String inGameClass, String affix1, String affix2, String affix3) {
             this.operatorName = operatorName;
             this.attackType = attackType;
@@ -96,7 +104,7 @@ class RecruitmentPool {
     }
 
     /* The RecruitmentPool ArrayList, that contains all of the current global server operators in recruitment pool.
-     * When in-game recruitment pool updates, simply add a new RecruitableOperator to this ArrayList and assign its in-game parameters */
+     * When in-game recruitment pool updates, simply add a new RecruitableOperator to this ArrayList and assign its in-game attributes */
     static List<RecruitableOperator> recruitableOperators = new ArrayList<>();
 
     static {
