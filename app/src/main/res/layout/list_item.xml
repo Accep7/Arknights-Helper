@@ -1,33 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
     <TextView
         android:id="@+id/selectedTag"
         android:layout_width="95dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/operatorName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:textSize="16sp"
-        app:layout_constraintLeft_toRightOf="@id/selectedTag"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/list_divider"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/list_item"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/divider_background"
-        app:layout_constraintBottom_toBottomOf="@id/selectedTag" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        app:cardBackgroundColor="@color/listItem_background">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/operatorNameHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/operatorName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/expandableOperatorDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/operatorName">
+
+
+                <TextView
+                    android:id="@+id/operatorDetails_Rarity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/operatorDetails_Class"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/operatorDetails_Class"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintLeft_toRightOf="@id/operatorDetails_Rarity"
+                    app:layout_constraintTop_toTopOf="@id/operatorDetails_Rarity" />
+
+                <TextView
+                    android:id="@+id/operatorDetails_Tags"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tags"
+                    android:textColor="@color/black"
+                    app:layout_constraintLeft_toLeftOf="@id/operatorDetails_Rarity"
+                    app:layout_constraintTop_toBottomOf="@id/operatorDetails_Rarity" />
+
+                <TextView
+                    android:id="@+id/operatorDetails_AttackType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    app:layout_constraintLeft_toLeftOf="@id/operatorDetails_Tags"
+                    app:layout_constraintRight_toLeftOf="@id/operatorDetails_Qualification"
+                    app:layout_constraintTop_toBottomOf="@id/operatorDetails_Tags" />
+
+                <TextView
+                    android:id="@+id/operatorDetails_Qualification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:textColor="@color/black"
+                    app:layout_constraintLeft_toRightOf="@id/operatorDetails_AttackType"
+                    app:layout_constraintTop_toBottomOf="@id/operatorDetails_Tags" />
+
+                <TextView
+                    android:id="@+id/operatorDetails_Affix1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    app:layout_constraintLeft_toLeftOf="@id/operatorDetails_AttackType"
+                    app:layout_constraintRight_toLeftOf="@id/operatorDetails_Affix2"
+                    app:layout_constraintTop_toBottomOf="@id/operatorDetails_Qualification" />
+
+                <TextView
+                    android:id="@+id/operatorDetails_Affix2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:textColor="@color/black"
+                    app:layout_constraintLeft_toRightOf="@id/operatorDetails_Affix1"
+                    app:layout_constraintRight_toLeftOf="@id/operatorDetails_Affix3"
+                    app:layout_constraintTop_toBottomOf="@id/operatorDetails_Qualification" />
+
+                <TextView
+                    android:id="@+id/operatorDetails_Affix3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:textColor="@color/black"
+                    app:layout_constraintLeft_toRightOf="@id/operatorDetails_Affix2"
+                    app:layout_constraintTop_toBottomOf="@id/operatorDetails_Qualification" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.appcompat.widget.LinearLayoutCompat>
