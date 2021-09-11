@@ -1,12 +1,14 @@
 package com.accep7.arknightshelper;
 
-import android.graphics.Color;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -26,23 +28,54 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull OperatorHolder holder, int position) {
         holder.bind(operators.get(position));
-        if (operators.get(position).getOperator().getRarity() == 6) {
-            holder.itemView.setBackgroundResource(R.color.sixStar_background);
+        RecruitmentPool.RecruitableOperator operator = operators.get(position).getOperator();
+
+        holder.operatorRarity.setText(holder.operatorRarity.getContext().getString(R.string.operatorDetails_Rarity, operator.rarity));
+        holder.operatorClass.setText(operator.inGameClass);
+        holder.operatorAttackType.setText(operator.attackType);
+        holder.operatorQualification.setText(operator.qualification);
+
+        if (operator.affix1 == null) {
+            holder.operatorAffix1.setVisibility(View.GONE);
+        } else {
+            holder.operatorAffix1.setText(operator.affix1);
+            holder.operatorAffix1.setVisibility(View.VISIBLE);
         }
-        if (operators.get(position).getOperator().getRarity() == 5) {
-            holder.itemView.setBackgroundResource(R.color.fiveStar_background);
+
+        if (operator.affix2 == null) {
+            holder.operatorAffix2.setVisibility(View.GONE);
+        } else {
+            holder.operatorAffix2.setText(operator.affix2);
+            holder.operatorAffix2.setVisibility(View.VISIBLE);
         }
-        if (operators.get(position).getOperator().getRarity() == 4) {
-            holder.itemView.setBackgroundResource(R.color.fourStar_background);
+
+        if (operator.affix3 == null) {
+            holder.operatorAffix3.setVisibility(View.GONE);
+        } else {
+            holder.operatorAffix3.setText(operator.affix3);
+            holder.operatorAffix3.setVisibility(View.VISIBLE);
         }
-        if (operators.get(position).getOperator().getRarity() == 3) {
-            holder.itemView.setBackgroundResource(R.color.threeStar_background);
+
+        boolean isExpanded = operators.get(position).getOperator().isExpanded();
+        holder.expandOperatorDetails.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+
+        if (operators.get(position).getOperator().rarity == 6) {
+            holder.listItem.setCardBackgroundColor(holder.listItem.getContext().getResources().getColor(R.color.sixStar_background, null));
         }
-        if (operators.get(position).getOperator().getRarity() == 2) {
-            holder.itemView.setBackgroundResource(R.color.twoStar_background);
+        if (operators.get(position).getOperator().rarity == 5) {
+            holder.listItem.setCardBackgroundColor(holder.listItem.getContext().getResources().getColor(R.color.fiveStar_background, null));
         }
-        if (operators.get(position).getOperator().getRarity() == 1) {
-            holder.itemView.setBackgroundResource(R.color.oneStar_background);
+        if (operators.get(position).getOperator().rarity == 4) {
+            holder.listItem.setCardBackgroundColor(holder.listItem.getContext().getResources().getColor(R.color.fourStar_background, null));
+        }
+        if (operators.get(position).getOperator().rarity == 3) {
+            holder.listItem.setCardBackgroundColor(holder.listItem.getContext().getResources().getColor(R.color.threeStar_background, null));
+        }
+        if (operators.get(position).getOperator().rarity == 2) {
+            holder.listItem.setCardBackgroundColor(holder.listItem.getContext().getResources().getColor(R.color.twoStar_background, null));
+        }
+        if (operators.get(position).getOperator().rarity == 1) {
+            holder.listItem.setCardBackgroundColor(holder.listItem.getContext().getResources().getColor(R.color.oneStar_background, null));
         }
     }
 
@@ -69,11 +102,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         notifyDataSetChanged();
     }
 
-    public void remove(OperatorWrapper item) {
+/*    public void remove(OperatorWrapper item) {
         int lastPos = operators.indexOf(item);
         operators.remove(item);
         notifyItemRemoved(lastPos);
-    }
+    }*/
 
     public void insert(OperatorWrapper newItem, int position) {
         operators.add(position, newItem);
@@ -84,14 +117,35 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         insert(newItem, operators.size());
     }
 
-    static class OperatorHolder extends RecyclerView.ViewHolder {
-        TextView selectedTag;
-        TextView operatorName;
+    class OperatorHolder extends RecyclerView.ViewHolder {
+        TextView selectedTag, operatorName;
+
+        ConstraintLayout expandOperatorDetails;
+        CardView listItem;
+        TextView operatorRarity, operatorClass, operatorAttackType, operatorQualification, operatorAffix1, operatorAffix2, operatorAffix3;
 
         public OperatorHolder(View itemView) {
             super(itemView);
+
             selectedTag = itemView.findViewById(R.id.selectedTag);
             operatorName = itemView.findViewById(R.id.operatorName);
+
+            expandOperatorDetails = itemView.findViewById(R.id.expandableOperatorDetails);
+            listItem = itemView.findViewById(R.id.list_item);
+
+            operatorRarity = itemView.findViewById(R.id.operatorDetails_Rarity);
+            operatorClass = itemView.findViewById(R.id.operatorDetails_Class);
+            operatorAttackType = itemView.findViewById(R.id.operatorDetails_AttackType);
+            operatorQualification = itemView.findViewById(R.id.operatorDetails_Qualification);
+            operatorAffix1 = itemView.findViewById(R.id.operatorDetails_Affix1);
+            operatorAffix2 = itemView.findViewById(R.id.operatorDetails_Affix2);
+            operatorAffix3 = itemView.findViewById(R.id.operatorDetails_Affix3);
+
+            operatorName.setOnClickListener(v -> {
+                OperatorWrapper operator = operators.get(getAdapterPosition());
+                operator.getOperator().setExpanded(!operator.getOperator().isExpanded());
+                notifyItemChanged(getAdapterPosition());
+            });
         }
 
         public void bind(OperatorWrapper wrapper) {
