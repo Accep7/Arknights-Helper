@@ -15,10 +15,10 @@
     <color name="toolbar">#8C8C8C</color>
     <color name="main_background">#EAEAEA</color>
     <color name="divider_background">#000000</color>
-    <color name="sixStar_background">#FF851B</color>
+    <color name="sixStar_background">#FF6600</color>
     <color name="fiveStar_background">#FFA500</color>
     <color name="fourStar_background">#DBB1DB</color>
-    <color name="threeStar_background">#00B2F6</color>
+    <color name="threeStar_background">#00B2E6</color>
     <color name="twoStar_background">#DCE537</color>
-    <color name="oneStar_background">#606060</color>
+    <color name="oneStar_background">#9F9F9F</color>
 </resources>
