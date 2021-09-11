@@ -39,22 +39,40 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:id="@+id/expand_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@drawable/outline_expand_circle_down_black_18"
+                app:layout_constraintBottom_toTopOf="@id/expandableOperatorDetails"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/black"
+                android:contentDescription="@string/expand_operator_details" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/expandableOperatorDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/operatorName">
 
+                <View
+                    android:id="@+id/detailsDivider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/operatorDetails_Rarity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     app:layout_constraintLeft_toLeftOf="parent"

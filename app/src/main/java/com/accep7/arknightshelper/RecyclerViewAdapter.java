@@ -1,9 +1,9 @@
 package com.accep7.arknightshelper;
 
-import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -58,6 +58,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         boolean isExpanded = operators.get(position).getOperator().isExpanded();
         holder.expandOperatorDetails.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+        holder.expandButton.animate().setDuration(200).rotation(isExpanded ? 180 : 0);
 
         if (operators.get(position).getOperator().rarity == 6) {
             holder.listItem.setCardBackgroundColor(holder.listItem.getContext().getResources().getColor(R.color.sixStar_background, null));
@@ -122,6 +123,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         ConstraintLayout expandOperatorDetails;
         CardView listItem;
+        ImageView expandButton;
         TextView operatorRarity, operatorClass, operatorAttackType, operatorQualification, operatorAffix1, operatorAffix2, operatorAffix3;
 
         public OperatorHolder(View itemView) {
@@ -130,6 +132,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             selectedTag = itemView.findViewById(R.id.selectedTag);
             operatorName = itemView.findViewById(R.id.operatorName);
 
+            expandButton = itemView.findViewById(R.id.expand_button);
             expandOperatorDetails = itemView.findViewById(R.id.expandableOperatorDetails);
             listItem = itemView.findViewById(R.id.list_item);
 
