@@ -9,6 +9,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,11 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private int selectedFilterCounter = 0;
 
     private Button resetSelectedFilters;
-    private View resetButtonDivider;
-    private View resultsHeading;
-    private View resultsDivider;
 
-    private RecyclerView resultsOutput;
+    private ConstraintLayout resultsLayout;
     private RecyclerViewAdapter operatorAdapter;
     private final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
@@ -41,16 +39,23 @@ public class MainActivity extends AppCompatActivity {
         tb.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 selectedFilterCounter++;
+                setSelectedFilterCounter();
                 showResults();
                 lockExcessFilters((ToggleButton) buttonView);
             } else {
                 selectedFilterCounter--;
+                setSelectedFilterCounter();
                 hideResults();
                 unlockExcessFilters();
             }
             filterRecruitmentPool();
         });
         buttonLockAndReset.put(tb, filteringParameter);
+    }
+
+    //Update tag counter on reset button
+    private void setSelectedFilterCounter() {
+        resetSelectedFilters.setText(resetSelectedFilters.getContext().getString(R.string.resetButton, selectedFilterCounter));
     }
 
     //Filtering the RecruitmentPool ArrayList, and passing filtered contents to the RecyclerView
@@ -63,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 OperatorPredicate filteringParameter = entry.getValue();
                 for (RecruitmentPool.RecruitableOperator operator : recruitableOperators) {
                     if (filteringParameter.matches(operator)) {
-                        if (!excludeTopOp.isChecked() && operator.getQualification() != null && operator.getQualification().equals(RecruitmentPool.QUALIFICATION_TOP)) {
+                        if (!excludeTopOp.isChecked() && operator.qualification != null && operator.qualification.equals(RecruitmentPool.QUALIFICATION_TOP)) {
                             continue;
                         } else {
                             int position = operatorAdapter.getPosition(operator);
@@ -77,31 +82,22 @@ public class MainActivity extends AppCompatActivity {
                             OperatorWrapper operatorWrapper = new OperatorWrapper(operator);
                             operatorWrapper.getSelectedTagsList().add(toggleButton.getText().toString());
                             operatorAdapter.add(operatorWrapper);
-                                                    }
+                        }
                     }
-                    operatorAdapter.operators.sort((o1, o2) -> o2.getOperator().getRarity() - o1.getOperator().getRarity());
+                    operatorAdapter.operators.sort((o1, o2) -> o2.getOperator().rarity - o1.getOperator().rarity);
+                    operator.setExpanded(false);
                 }
             }
         }
     }
 
-    //Shows the reset button and RecyclerView with filtered RecruitmentPool ArrayList when no buttons are active
     private void showResults() {
-        resetSelectedFilters.setVisibility(View.VISIBLE);
-        resetButtonDivider.setVisibility(View.VISIBLE);
-        resultsHeading.setVisibility(View.VISIBLE);
-        resultsOutput.setVisibility(View.VISIBLE);
-        resultsDivider.setVisibility(View.VISIBLE);
+        resultsLayout.setVisibility(View.VISIBLE);
     }
 
-    //Hides the reset button and RecyclerView when user unchecks last button
     private void hideResults() {
         if (selectedFilterCounter == 0) {
-            resetSelectedFilters.setVisibility(View.INVISIBLE);
-            resetButtonDivider.setVisibility(View.INVISIBLE);
-            resultsHeading.setVisibility(View.INVISIBLE);
-            resultsOutput.setVisibility(View.INVISIBLE);
-            resultsDivider.setVisibility(View.INVISIBLE);
+            resultsLayout.setVisibility(View.GONE);
         }
     }
 
@@ -146,11 +142,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //region Results views and Reset selection Button
-        resetSelectedFilters = findViewById(R.id.resetSelection);
+        resetSelectedFilters = findViewById(R.id.resetButton);
         resetSelectedFilters.setOnClickListener(v -> resetSelectedFilters());
-        resetButtonDivider = findViewById(R.id.line_5);
-        resultsHeading = findViewById(R.id.text_view_results);
-        resultsDivider = findViewById(R.id.line_6);
+        resultsLayout = findViewById(R.id.resultsLayout);
         //endregion
 
         //Qualification Filter Buttons
@@ -250,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
         //endregion
 
         //Initializing filtered output views
-        resultsOutput = findViewById(R.id.recyclerview_results);
+        RecyclerView resultsOutput = findViewById(R.id.recyclerview_results);
         operatorAdapter = new RecyclerViewAdapter();
         resultsOutput.setAdapter(operatorAdapter);
         resultsOutput.setLayoutManager(layoutManager);
