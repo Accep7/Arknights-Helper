@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 class RecruitmentPool {
-    //region Filtering parameters. Serve as predicates for buttons and as Operator properties
+    //region Filtering parameters. Serves as predicates for buttons and as Operator properties.
     protected final static String QUALIFICATION_STARTER = "Starter";
     protected final static String QUALIFICATION_SENIOR = "Senior Operator";
     protected final static String QUALIFICATION_TOP = "Top Operator";
@@ -50,13 +50,15 @@ class RecruitmentPool {
         final String affix1;
         final String affix2;
         final String affix3;
+        //Used for showing expandable operator details in list.
+        boolean expanded;
 
-        public int getRarity() {
-            return rarity;
+        public boolean isExpanded() {
+            return expanded;
         }
 
-        public String getQualification() {
-            return qualification;
+        public void setExpanded(boolean expanded) {
+            this.expanded = expanded;
         }
 
         RecruitableOperator(String operatorName, String attackType, String qualification, int rarity, String inGameClass, String affix1, String affix2, String affix3) {
@@ -68,6 +70,7 @@ class RecruitmentPool {
             this.affix1 = affix1;
             this.affix2 = affix2;
             this.affix3 = affix3;
+            this.expanded = false;
         }
 
         @Override
