@@ -25,9 +25,11 @@ public class MainActivity extends AppCompatActivity {
 
     private ConstraintLayout resultsLayout;
     private RecyclerViewAdapter operatorAdapter;
-    private final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+    private final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,
+            LinearLayoutManager.VERTICAL, false);
 
-    /* This hashmap is used to iterate over for purposes of filtering the RecruitmentPool ArrayList and locking excess buttons.
+    /* This hashmap is used to iterate over for purposes of filtering the RecruitmentPool ArrayList
+     * and locking excess buttons.
      * OperatorPredicate is used to assign each button to its corresponding filtering parameter.
      * E.g. "Melee" toggle button is paired with String type "ATTACK_TYPE_MELEE" predicate.
      * Pressing "Melee" button will output all of the operators with "ATTACK_TYPE_MELEE". */
@@ -68,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
                 OperatorPredicate filteringParameter = entry.getValue();
                 for (RecruitmentPool.RecruitableOperator operator : recruitableOperators) {
                     if (filteringParameter.matches(operator)) {
-                        if (!excludeTopOp.isChecked() && operator.qualification != null && operator.qualification.equals(RecruitmentPool.QUALIFICATION_TOP)) {
+                        if (!excludeTopOp.isChecked() && operator.qualification != null
+                                && operator.qualification.equals(RecruitmentPool.QUALIFICATION_TOP)) {
                             continue;
                         } else {
                             int position = operatorAdapter.getPosition(operator);
@@ -84,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
                             operatorAdapter.add(operatorWrapper);
                         }
                     }
-                    operatorAdapter.operators.sort((o1, o2) -> o2.getOperator().rarity - o1.getOperator().rarity);
+                    operatorAdapter.operators.sort((o1, o2) ->
+                            o2.getOperator().rarity - o1.getOperator().rarity);
                     operator.setExpanded(false);
                 }
             }
@@ -105,7 +109,9 @@ public class MainActivity extends AppCompatActivity {
      * all other unchecked buttons. setAlpha is used to visually differentiate locked buttons. */
     private void lockExcessFilters(ToggleButton toggleButton) {
         if (selectedFilterCounter == 5) {
-            Toast.makeText(toggleButton.getContext(), "You can only select a maximum of 5 tags. Other tags are locked now", Toast.LENGTH_LONG).show();
+            Toast.makeText(toggleButton.getContext(),
+                    "You can only select a maximum of 5 tags. Other tags are locked now",
+                    Toast.LENGTH_LONG).show();
             for (ToggleButton button : buttonLockAndReset.keySet()) {
                 if (!button.isChecked()) {
                     button.setEnabled(false);
@@ -127,7 +133,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //Big red Reset button that iterates over Map of buttons and returns checked buttons to their initial unchecked state
+    /* Big red Reset button that iterates over Map of buttons and returns checked buttons to their
+    * initial unchecked state */
     private void resetSelectedFilters() {
         for (ToggleButton toggleButton : buttonLockAndReset.keySet()) {
             if (toggleButton.isChecked()) {
@@ -148,23 +155,36 @@ public class MainActivity extends AppCompatActivity {
         //endregion
 
         //Qualification Filter Buttons
-        initToggleButton(R.id.qualification_starter, operator -> RecruitmentPool.QUALIFICATION_STARTER.equals(operator.qualification));
-        initToggleButton(R.id.qualification_seniorOp, operator -> RecruitmentPool.QUALIFICATION_SENIOR.equals(operator.qualification));
-        initToggleButton(R.id.qualification_topOp, operator -> RecruitmentPool.QUALIFICATION_TOP.equals(operator.qualification));
+        initToggleButton(R.id.qualification_starter, operator ->
+                RecruitmentPool.QUALIFICATION_STARTER.equals(operator.qualification));
+        initToggleButton(R.id.qualification_seniorOp, operator ->
+                RecruitmentPool.QUALIFICATION_SENIOR.equals(operator.qualification));
+        initToggleButton(R.id.qualification_topOp, operator ->
+                RecruitmentPool.QUALIFICATION_TOP.equals(operator.qualification));
 
         //Attack type Filter Buttons
-        initToggleButton(R.id.atk_type_melee, operator -> operator.attackType.equals(RecruitmentPool.ATTACK_TYPE_MELEE));
-        initToggleButton(R.id.atk_type_ranged, operator -> operator.attackType.equals(RecruitmentPool.ATTACK_TYPE_RANGED));
+        initToggleButton(R.id.atk_type_melee, operator ->
+                operator.attackType.equals(RecruitmentPool.ATTACK_TYPE_MELEE));
+        initToggleButton(R.id.atk_type_ranged, operator ->
+                operator.attackType.equals(RecruitmentPool.ATTACK_TYPE_RANGED));
 
         //Class Filter Buttons
-        initToggleButton(R.id.class_guard, operator -> operator.inGameClass.equals(RecruitmentPool.CLASS_GUARD));
-        initToggleButton(R.id.class_specialist, operator -> operator.inGameClass.equals(RecruitmentPool.CLASS_SPECIALIST));
-        initToggleButton(R.id.class_sniper, operator -> operator.inGameClass.equals(RecruitmentPool.CLASS_SNIPER));
-        initToggleButton(R.id.class_caster, operator -> operator.inGameClass.equals(RecruitmentPool.CLASS_CASTER));
-        initToggleButton(R.id.class_defender, operator -> operator.inGameClass.equals(RecruitmentPool.CLASS_DEFENDER));
-        initToggleButton(R.id.class_medic, operator -> operator.inGameClass.equals(RecruitmentPool.CLASS_MEDIC));
-        initToggleButton(R.id.class_vanguard, operator -> operator.inGameClass.equals(RecruitmentPool.CLASS_VANGUARD));
-        initToggleButton(R.id.class_supporter, operator -> operator.inGameClass.equals(RecruitmentPool.CLASS_SUPPORTER));
+        initToggleButton(R.id.class_guard, operator ->
+                operator.inGameClass.equals(RecruitmentPool.CLASS_GUARD));
+        initToggleButton(R.id.class_specialist, operator ->
+                operator.inGameClass.equals(RecruitmentPool.CLASS_SPECIALIST));
+        initToggleButton(R.id.class_sniper, operator ->
+                operator.inGameClass.equals(RecruitmentPool.CLASS_SNIPER));
+        initToggleButton(R.id.class_caster, operator ->
+                operator.inGameClass.equals(RecruitmentPool.CLASS_CASTER));
+        initToggleButton(R.id.class_defender, operator ->
+                operator.inGameClass.equals(RecruitmentPool.CLASS_DEFENDER));
+        initToggleButton(R.id.class_medic, operator ->
+                operator.inGameClass.equals(RecruitmentPool.CLASS_MEDIC));
+        initToggleButton(R.id.class_vanguard, operator ->
+                operator.inGameClass.equals(RecruitmentPool.CLASS_VANGUARD));
+        initToggleButton(R.id.class_supporter, operator ->
+                operator.inGameClass.equals(RecruitmentPool.CLASS_SUPPORTER));
 
         //region Affix Filter Buttons
         initToggleButton(R.id.affix_healing, operator ->
