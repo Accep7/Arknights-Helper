@@ -3,7 +3,6 @@ package com.accep7.arknightshelper;
 import static com.accep7.arknightshelper.RecruitmentPool.recruitableOperators;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -21,8 +20,9 @@ public class MainActivity extends AppCompatActivity {
     //Declaring views and buttons. This int is used to keep a track of active buttons.
     private int selectedFilterCounter = 0;
 
-    private Button resetSelectedFilters;
+    private Button resetButton;
 
+    private final RecyclerViewDesigner recyclerViewDesigner = new RecyclerViewDesigner();
     private ConstraintLayout resultsLayout;
     private RecyclerViewAdapter operatorAdapter;
     private final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,
@@ -41,23 +41,18 @@ public class MainActivity extends AppCompatActivity {
         tb.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 selectedFilterCounter++;
-                setSelectedFilterCounter();
-                showResults();
+                recyclerViewDesigner.setSelectedFilterCounter(resetButton, selectedFilterCounter);
+                recyclerViewDesigner.showResults(resultsLayout);
                 lockExcessFilters((ToggleButton) buttonView);
             } else {
                 selectedFilterCounter--;
-                setSelectedFilterCounter();
-                hideResults();
+                recyclerViewDesigner.setSelectedFilterCounter(resetButton, selectedFilterCounter);
+                recyclerViewDesigner.hideResults(resultsLayout, selectedFilterCounter);
                 unlockExcessFilters();
             }
             filterRecruitmentPool();
         });
         buttonLockAndReset.put(tb, filteringParameter);
-    }
-
-    //Update tag counter on reset button
-    private void setSelectedFilterCounter() {
-        resetSelectedFilters.setText(resetSelectedFilters.getContext().getString(R.string.resetButton, selectedFilterCounter));
     }
 
     //Filtering the RecruitmentPool ArrayList, and passing filtered contents to the RecyclerView
@@ -95,16 +90,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void showResults() {
-        resultsLayout.setVisibility(View.VISIBLE);
-    }
-
-    private void hideResults() {
-        if (selectedFilterCounter == 0) {
-            resultsLayout.setVisibility(View.GONE);
-        }
-    }
-
     /* When 5th button is checked, this method iterates over Map of buttons and locks
      * all other unchecked buttons. setAlpha is used to visually differentiate locked buttons. */
     private void lockExcessFilters(ToggleButton toggleButton) {
@@ -135,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
     /* Big red Reset button that iterates over Map of buttons and returns checked buttons to their
     * initial unchecked state */
-    private void resetSelectedFilters() {
+    private void resetSelection() {
         for (ToggleButton toggleButton : buttonLockAndReset.keySet()) {
             if (toggleButton.isChecked()) {
                 toggleButton.setChecked(false);
@@ -148,11 +133,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //region Results views and Reset selection Button
-        resetSelectedFilters = findViewById(R.id.resetButton);
-        resetSelectedFilters.setOnClickListener(v -> resetSelectedFilters());
+        //Results views and Reset selection Button
+        resetButton = findViewById(R.id.resetButton);
+        resetButton.setOnClickListener(v -> resetSelection());
         resultsLayout = findViewById(R.id.resultsLayout);
-        //endregion
 
         //Qualification Filter Buttons
         initToggleButton(R.id.qualification_starter, operator ->
