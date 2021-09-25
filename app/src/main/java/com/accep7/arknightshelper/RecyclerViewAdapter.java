@@ -16,7 +16,6 @@ import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.OperatorHolder> {
 
-    RecyclerViewDesigner recyclerViewDesigner = new RecyclerViewDesigner();
     final List<OperatorWrapper> operators = new ArrayList<>();
 
     @NonNull
@@ -30,8 +29,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull OperatorHolder holder, int position) {
         holder.bind(operators.get(position));
 
-        recyclerViewDesigner.setListItemBackground(holder, operators, position);
-        recyclerViewDesigner.setOperatorDetails(holder, operators, position);
+        RecyclerViewDesigner.setListItemBackground(holder, operators, position);
+        RecyclerViewDesigner.setOperatorDetails(holder, operators, position);
 
         boolean isExpanded = operators.get(position).getOperator().isExpanded();
         holder.expandOperatorDetails.setVisibility(isExpanded ? View.VISIBLE : View.GONE);

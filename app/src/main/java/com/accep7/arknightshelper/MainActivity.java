@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
     private Button resetButton;
 
-    private final RecyclerViewDesigner recyclerViewDesigner = new RecyclerViewDesigner();
     private ConstraintLayout resultsLayout;
     private RecyclerViewAdapter operatorAdapter;
     private final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,
@@ -41,13 +40,13 @@ public class MainActivity extends AppCompatActivity {
         tb.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 selectedFilterCounter++;
-                recyclerViewDesigner.setSelectedFilterCounter(resetButton, selectedFilterCounter);
-                recyclerViewDesigner.showResults(resultsLayout);
+                RecyclerViewDesigner.setSelectedFilterCounter(resetButton, selectedFilterCounter);
+                RecyclerViewDesigner.showResults(resultsLayout);
                 lockExcessFilters((ToggleButton) buttonView);
             } else {
                 selectedFilterCounter--;
-                recyclerViewDesigner.setSelectedFilterCounter(resetButton, selectedFilterCounter);
-                recyclerViewDesigner.hideResults(resultsLayout, selectedFilterCounter);
+                RecyclerViewDesigner.setSelectedFilterCounter(resetButton, selectedFilterCounter);
+                RecyclerViewDesigner.hideResults(resultsLayout, selectedFilterCounter);
                 unlockExcessFilters();
             }
             filterRecruitmentPool();

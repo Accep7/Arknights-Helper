@@ -9,7 +9,7 @@ import java.util.List;
 
 class RecyclerViewDesigner {
 
-    protected void setListItemBackground(RecyclerViewAdapter.OperatorHolder holder,
+    protected static void setListItemBackground(RecyclerViewAdapter.OperatorHolder holder,
                                          List<OperatorWrapper> operators, int position)  {
 
         if (operators.get(position).getOperator().rarity == 6) {
@@ -38,7 +38,7 @@ class RecyclerViewDesigner {
         }
     }
 
-    protected void setOperatorDetails(RecyclerViewAdapter.OperatorHolder holder,
+    protected static void setOperatorDetails(RecyclerViewAdapter.OperatorHolder holder,
                                       List<OperatorWrapper> operators, int position) {
 
         RecruitmentPool.RecruitableOperator operator = operators.get(position).getOperator();
@@ -69,15 +69,15 @@ class RecyclerViewDesigner {
         }
     }
 
-    protected void setSelectedFilterCounter(Button button, int counter) {
+    protected static void setSelectedFilterCounter(Button button, int counter) {
         button.setText(button.getContext().getString(R.string.resetButton, counter));
     }
 
-    protected void showResults(ConstraintLayout layout) {
+    protected static void showResults(ConstraintLayout layout) {
         layout.setVisibility(View.VISIBLE);
     }
 
-    protected void hideResults(ConstraintLayout layout, int counter) {
+    protected static void hideResults(ConstraintLayout layout, int counter) {
         if (counter == 0) {
             layout.setVisibility(View.GONE);
         }
