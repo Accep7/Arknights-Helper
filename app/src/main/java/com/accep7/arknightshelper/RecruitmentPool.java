@@ -168,6 +168,7 @@ class RecruitmentPool {
         recruitableOperators.add(new RecruitableOperator("Gitano", ATTACK_TYPE_RANGED, null, 4, CLASS_CASTER, AFFIX_AOE, null, null));
         recruitableOperators.add(new RecruitableOperator("Haze", ATTACK_TYPE_RANGED, null, 4, CLASS_CASTER, AFFIX_DPS, AFFIX_DEBUFF, null));
         recruitableOperators.add(new RecruitableOperator("Earthspirit", ATTACK_TYPE_RANGED, null, 4, CLASS_SUPPORTER, AFFIX_SLOW, null, null));
+        recruitableOperators.add(new RecruitableOperator("May", ATTACK_TYPE_RANGED, null, 4, CLASS_SNIPER, AFFIX_DPS, AFFIX_SLOW, null));
 
         //5-star rarity
         recruitableOperators.add(new RecruitableOperator("Astesia", ATTACK_TYPE_MELEE, QUALIFICATION_SENIOR, 5, CLASS_GUARD, AFFIX_DPS, AFFIX_DEFENSE, null));
@@ -184,6 +185,7 @@ class RecruitmentPool {
         recruitableOperators.add(new RecruitableOperator("Nearl", ATTACK_TYPE_MELEE, QUALIFICATION_SENIOR, 5, CLASS_DEFENDER, AFFIX_HEALING, AFFIX_DEFENSE, null));
         recruitableOperators.add(new RecruitableOperator("Texas", ATTACK_TYPE_MELEE, QUALIFICATION_SENIOR, 5, CLASS_VANGUARD, AFFIX_DP_RECOVERY, AFFIX_CROWD_CONTROL, null));
         recruitableOperators.add(new RecruitableOperator("Zima", ATTACK_TYPE_MELEE, QUALIFICATION_SENIOR, 5, CLASS_VANGUARD, AFFIX_DP_RECOVERY, AFFIX_SUPPORT, null));
+        recruitableOperators.add(new RecruitableOperator("Waai Fu", ATTACK_TYPE_MELEE, QUALIFICATION_SENIOR, 5, CLASS_SPECIALIST, AFFIX_FAST_REDEPLOY, AFFIX_DEBUFF, null));
         recruitableOperators.add(new RecruitableOperator("Executor", ATTACK_TYPE_RANGED, QUALIFICATION_SENIOR, 5, CLASS_SNIPER, AFFIX_AOE, null, null));
         recruitableOperators.add(new RecruitableOperator("Meteorite", ATTACK_TYPE_RANGED, QUALIFICATION_SENIOR, 5, CLASS_SNIPER, AFFIX_AOE, AFFIX_DEBUFF, null));
         recruitableOperators.add(new RecruitableOperator("Platinum", ATTACK_TYPE_RANGED, QUALIFICATION_SENIOR, 5, CLASS_SNIPER, AFFIX_DPS, null, null));
@@ -213,6 +215,7 @@ class RecruitmentPool {
         recruitableOperators.add(new RecruitableOperator("Ifrit", ATTACK_TYPE_RANGED, QUALIFICATION_TOP, 6, CLASS_CASTER, AFFIX_AOE, AFFIX_DEBUFF, null));
         recruitableOperators.add(new RecruitableOperator("Shining", ATTACK_TYPE_RANGED, QUALIFICATION_TOP, 6, CLASS_MEDIC, AFFIX_HEALING, AFFIX_SUPPORT, null));
         recruitableOperators.add(new RecruitableOperator("Nightingale", ATTACK_TYPE_RANGED, QUALIFICATION_TOP, 6, CLASS_MEDIC, AFFIX_HEALING, AFFIX_SUPPORT, null));
+        recruitableOperators.add(new RecruitableOperator("Mostima", ATTACK_TYPE_RANGED, QUALIFICATION_TOP, 6, CLASS_CASTER, AFFIX_AOE, AFFIX_SUPPORT, AFFIX_CROWD_CONTROL));
     }
 }
 
