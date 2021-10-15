@@ -1,7 +1,5 @@
 package com.accep7.arknightshelper;
 
-import static com.accep7.arknightshelper.RecruitmentPool.recruitableOperators;
-
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
@@ -14,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.accep7.arknightshelper.RecruitmentPool.recruitableOperators;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                     operatorAdapter.operators.sort((o1, o2) ->
                             o2.getOperator().rarity - o1.getOperator().rarity);
-                    operator.setExpanded(false);
                 }
             }
         }

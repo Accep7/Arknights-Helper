@@ -32,7 +32,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         RecyclerViewDesigner.setListItemBackground(holder, operators, position);
         RecyclerViewDesigner.setOperatorDetails(holder, operators, position);
 
-        boolean isExpanded = operators.get(position).getOperator().isExpanded();
+        boolean isExpanded = operators.get(position).isExpanded();
         holder.expandOperatorDetails.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
         holder.expandButton.animate().setDuration(200).rotation(isExpanded ? 180 : 0);
     }
@@ -105,7 +105,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
             operatorName.setOnClickListener(v -> {
                 OperatorWrapper operator = operators.get(getAdapterPosition());
-                operator.getOperator().setExpanded(!operator.getOperator().isExpanded());
+                operator.setExpanded(!operator.isExpanded());
                 notifyItemChanged(getAdapterPosition());
             });
         }

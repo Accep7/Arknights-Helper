@@ -51,15 +51,6 @@ class RecruitmentPool {
         final String affix2;
         final String affix3;
         //Used for showing expandable operator details in list.
-        boolean expanded;
-
-        public boolean isExpanded() {
-            return expanded;
-        }
-
-        public void setExpanded(boolean expanded) {
-            this.expanded = expanded;
-        }
 
         RecruitableOperator(String operatorName, String attackType, String qualification, int rarity, String inGameClass, String affix1, String affix2, String affix3) {
             this.operatorName = operatorName;
@@ -70,7 +61,6 @@ class RecruitmentPool {
             this.affix1 = affix1;
             this.affix2 = affix2;
             this.affix3 = affix3;
-            this.expanded = false;
         }
 
         @Override
