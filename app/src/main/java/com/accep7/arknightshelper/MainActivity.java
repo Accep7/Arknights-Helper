@@ -136,21 +136,23 @@ public class MainActivity extends AppCompatActivity {
         resetButton.setOnClickListener(v -> resetSelection());
         resultsLayout = findViewById(R.id.resultsLayout);
 
-        //Qualification Filter Buttons
+        //region Qualification Filter Buttons
         initToggleButton(R.id.qualification_starter, operator ->
                 RecruitmentPool.QUALIFICATION_STARTER.equals(operator.qualification));
         initToggleButton(R.id.qualification_seniorOp, operator ->
                 RecruitmentPool.QUALIFICATION_SENIOR.equals(operator.qualification));
         initToggleButton(R.id.qualification_topOp, operator ->
                 RecruitmentPool.QUALIFICATION_TOP.equals(operator.qualification));
+        //endregion
 
-        //Attack type Filter Buttons
+        //region Attack type Filter Buttons
         initToggleButton(R.id.atk_type_melee, operator ->
                 operator.attackType.equals(RecruitmentPool.ATTACK_TYPE_MELEE));
         initToggleButton(R.id.atk_type_ranged, operator ->
                 operator.attackType.equals(RecruitmentPool.ATTACK_TYPE_RANGED));
+        //endregion
 
-        //Class Filter Buttons
+        //region Class Filter Buttons
         initToggleButton(R.id.class_guard, operator ->
                 operator.inGameClass.equals(RecruitmentPool.CLASS_GUARD));
         initToggleButton(R.id.class_specialist, operator ->
@@ -167,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
                 operator.inGameClass.equals(RecruitmentPool.CLASS_VANGUARD));
         initToggleButton(R.id.class_supporter, operator ->
                 operator.inGameClass.equals(RecruitmentPool.CLASS_SUPPORTER));
+        //endregion
 
         //region Affix Filter Buttons
         initToggleButton(R.id.affix_healing, operator ->

@@ -51,6 +51,7 @@ class RecruitmentPool {
         final String affix2;
         final String affix3;
         //Used for showing expandable operator details in list.
+        //sadsadas
 
         RecruitableOperator(String operatorName, String attackType, String qualification, int rarity, String inGameClass, String affix1, String affix2, String affix3) {
             this.operatorName = operatorName;
