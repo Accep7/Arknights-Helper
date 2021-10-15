@@ -7,6 +7,7 @@ import java.util.Objects;
 public class OperatorWrapper {
     private final RecruitmentPool.RecruitableOperator operator;
     private final List<String> selectedTagsList = new ArrayList<>();
+    private boolean isExpanded;
 
     public OperatorWrapper(RecruitmentPool.RecruitableOperator operator) {
         this.operator = operator;
@@ -18,6 +19,14 @@ public class OperatorWrapper {
 
     public List<String> getSelectedTagsList() {
         return selectedTagsList;
+    }
+
+    public void setExpanded(boolean expanded) {
+        isExpanded = expanded;
+    }
+
+    public boolean isExpanded() {
+        return isExpanded;
     }
 
     //When multiple tags selected, they will be printed on the left side of a ListItem
