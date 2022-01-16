@@ -1,6 +1,7 @@
 package com.accep7.arknightshelper;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -10,21 +11,20 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-
-import static com.accep7.arknightshelper.RecruitmentPool.recruitableOperators;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     //Declaring views and buttons. This int is used to keep a track of active buttons.
-    private int selectedFilterCounter = 0;
+    private int activeTagCounter = 0;
 
     private Button resetButton;
 
     private ConstraintLayout resultsLayout;
-    private RecyclerViewAdapter operatorAdapter;
-    private final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,
+    private GroupRecyclerViewAdapter groupAdapter;
+    private final RecyclerView.LayoutManager groupLayout = new LinearLayoutManager(this,
             LinearLayoutManager.VERTICAL, false);
 
     /* This hashmap is used to iterate over for purposes of filtering the RecruitmentPool ArrayList
@@ -39,14 +39,14 @@ public class MainActivity extends AppCompatActivity {
         ToggleButton tb = findViewById(buttonId);
         tb.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                selectedFilterCounter++;
-                RecyclerViewDesigner.setSelectedFilterCounter(resetButton, selectedFilterCounter);
-                RecyclerViewDesigner.showResults(resultsLayout);
+                activeTagCounter++;
+                setSelectedFilterCounter();
+                showResults();
                 lockExcessFilters((ToggleButton) buttonView);
             } else {
-                selectedFilterCounter--;
-                RecyclerViewDesigner.setSelectedFilterCounter(resetButton, selectedFilterCounter);
-                RecyclerViewDesigner.hideResults(resultsLayout, selectedFilterCounter);
+                activeTagCounter--;
+                setSelectedFilterCounter();
+                hideResults();
                 unlockExcessFilters();
             }
             filterRecruitmentPool();
@@ -56,42 +56,20 @@ public class MainActivity extends AppCompatActivity {
 
     //Filtering the RecruitmentPool ArrayList, and passing filtered contents to the RecyclerView
     private void filterRecruitmentPool() {
-        operatorAdapter.clearItems();
-        for (Map.Entry<ToggleButton, OperatorPredicate> entry : buttonLockAndReset.entrySet()) {
-            ToggleButton toggleButton = entry.getKey();
-            ToggleButton excludeTopOp = findViewById(R.id.qualification_topOp);
+        groupAdapter.clearItems();
+        List<String> selectedTags = new ArrayList<>();
+        for (ToggleButton toggleButton : buttonLockAndReset.keySet()) {
             if (toggleButton.isChecked()) {
-                OperatorPredicate filteringParameter = entry.getValue();
-                for (RecruitmentPool.RecruitableOperator operator : recruitableOperators) {
-                    if (filteringParameter.matches(operator)) {
-                        if (!excludeTopOp.isChecked() && operator.qualification != null
-                                && operator.qualification.equals(RecruitmentPool.QUALIFICATION_TOP)) {
-                            continue;
-                        } else {
-                            int position = operatorAdapter.getPosition(operator);
-                            if (position != -1) {
-                                OperatorWrapper existingWrapper = operatorAdapter.getItem(position);
-                                OperatorWrapper newWrapper = new OperatorWrapper(existingWrapper.getOperator());
-                                newWrapper.getSelectedTagsList().addAll(existingWrapper.getSelectedTagsList());
-                                newWrapper.getSelectedTagsList().add(toggleButton.getText().toString());
-                                operatorAdapter.insert(newWrapper, 0);
-                            }
-                            OperatorWrapper operatorWrapper = new OperatorWrapper(operator);
-                            operatorWrapper.getSelectedTagsList().add(toggleButton.getText().toString());
-                            operatorAdapter.add(operatorWrapper);
-                        }
-                    }
-                    operatorAdapter.operators.sort((o1, o2) ->
-                            o2.getOperator().rarity - o1.getOperator().rarity);
-                }
+                selectedTags.add(toggleButton.getText().toString());
             }
         }
+        groupAdapter.addAll(GroupRecycler.getEntries(selectedTags));
     }
 
-    /* When 5th button is checked, this method iterates over Map of buttons and locks
+    /* UX feature - When 5th button is checked, this method iterates over Map of buttons and locks
      * all other unchecked buttons. setAlpha is used to visually differentiate locked buttons. */
     private void lockExcessFilters(ToggleButton toggleButton) {
-        if (selectedFilterCounter == 5) {
+        if (activeTagCounter == 5) {
             Toast.makeText(toggleButton.getContext(),
                     "You can only select a maximum of 5 tags. Other tags are locked now",
                     Toast.LENGTH_LONG).show();
@@ -104,9 +82,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //Unlocks all other buttons when less than 5 buttons are pressed
+    // UX feature - unlocks all other buttons when less than 5 buttons are pressed
     private void unlockExcessFilters() {
-        if (selectedFilterCounter < 5) {
+        if (activeTagCounter < 5) {
             for (ToggleButton toggleButton : buttonLockAndReset.keySet()) {
                 if (!toggleButton.isChecked()) {
                     toggleButton.setEnabled(true);
@@ -115,6 +93,22 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    // UX feature - displays current number of active tags on reset button
+    protected void setSelectedFilterCounter() {
+        resetButton.setText(resetButton.getContext().getString(R.string.resetButtonCounter, activeTagCounter));
+    }
+
+    protected void showResults() {
+        resultsLayout.setVisibility(View.VISIBLE);
+    }
+
+    protected void hideResults() {
+        if (activeTagCounter == 0) {
+            resultsLayout.setVisibility(View.GONE);
+        }
+    }
+
 
     /* Big red Reset button that iterates over Map of buttons and returns checked buttons to their
     * initial unchecked state */
@@ -249,9 +243,11 @@ public class MainActivity extends AppCompatActivity {
         //endregion
 
         //Initializing filtered output views
-        RecyclerView resultsOutput = findViewById(R.id.recyclerview_results);
-        operatorAdapter = new RecyclerViewAdapter();
-        resultsOutput.setAdapter(operatorAdapter);
-        resultsOutput.setLayoutManager(layoutManager);
+        RecyclerView results = findViewById(R.id.recyclerview_group);
+        groupAdapter = new GroupRecyclerViewAdapter();
+
+        results.setAdapter(groupAdapter);
+        results.setLayoutManager(groupLayout);
+
     }
 }

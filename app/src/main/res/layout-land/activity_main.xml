@@ -465,7 +465,7 @@
                     app:layout_constraintTop_toBottomOf="@id/text_view_tag" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerview_results"
+                    android:id="@+id/recyclerview_group"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:nestedScrollingEnabled="true"

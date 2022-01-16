@@ -68,8 +68,10 @@
 
             <ToggleButton
                 android:id="@+id/qualification_seniorOp"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:textOff="@string/senior_op"
                 android:textOn="@string/senior_op"
                 app:layout_constraintBottom_toTopOf="@id/line_1"
@@ -79,8 +81,10 @@
 
             <ToggleButton
                 android:id="@+id/qualification_topOp"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:textOff="@string/top_op"
                 android:textOn="@string/top_op"
                 app:layout_constraintBottom_toTopOf="@id/line_1"
@@ -435,9 +439,9 @@
                     android:id="@+id/text_view_tag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
                     android:text="@string/tag"
                     android:textSize="14sp"
-                    android:layout_marginStart="5dp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/line_6" />
 
@@ -459,7 +463,7 @@
                     app:layout_constraintTop_toBottomOf="@id/text_view_tag" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerview_results"
+                    android:id="@+id/recyclerview_group"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:nestedScrollingEnabled="true"

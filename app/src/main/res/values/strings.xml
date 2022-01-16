@@ -8,8 +8,8 @@
     <string name="select_the_tags">Select the tags:</string>
     <string name="qualification">Qualification</string>
     <string name="starter">Starter</string>
-    <string name="senior_op">Senior Op</string>
-    <string name="top_op">Top Op</string>
+    <string name="senior_op">Senior Operator</string>
+    <string name="top_op">Top Operator</string>
     <string name="attack_type">Attack Type</string>
     <string name="melee">Melee</string>
     <string name="ranged">Ranged</string>
@@ -42,13 +42,15 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="operatorDetails_Rarity">%1$d★</string>
-    <string name="resetButton">Reset %1$d tags</string>
+    <string name="resetButtonCounter">Reset %1$d tags</string>
     <string name="tags">Tags:</string>
-    <string name="tag">Tag</string>
+    <string name="tag">Tags</string>
     <string name="possible_character">Possible Character</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="expand_operator_details">Expand operator details</string>
+    <string name="operator_class_icon">Operator class icon</string>
+    <string name="operator_archetype_icon">Operator archetype icon</string>
 </resources>

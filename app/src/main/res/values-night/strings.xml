@@ -8,8 +8,8 @@
     <string name="select_the_tags">Select the tags:</string>
     <string name="qualification">Qualification</string>
     <string name="starter">Starter</string>
-    <string name="senior_op">Senior Op</string>
-    <string name="top_op">Top Op</string>
+    <string name="senior_op">Senior Operator</string>
+    <string name="top_op">Top Operator</string>
     <string name="attack_type">Attack Type</string>
     <string name="melee">Melee</string>
     <string name="ranged">Ranged</string>

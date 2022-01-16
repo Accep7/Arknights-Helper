@@ -18,7 +18,7 @@
     <color name="sixStar_background">#FF6600</color>
     <color name="fiveStar_background">#FFA500</color>
     <color name="fourStar_background">#DBB1DB</color>
-    <color name="threeStar_background">#00B2E6</color>
+    <color name="threeStar_background">#37D2FF</color>
     <color name="twoStar_background">#DCE537</color>
     <color name="oneStar_background">#9F9F9F</color>
 </resources>
