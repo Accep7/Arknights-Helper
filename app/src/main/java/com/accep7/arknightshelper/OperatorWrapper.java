@@ -2,6 +2,7 @@ package com.accep7.arknightshelper;
 
 import java.util.Objects;
 
+@Deprecated
 public class OperatorWrapper {
     private final RecruitableOperator operator;
     private boolean isExpanded = false;

@@ -1,195 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/recycler_vg"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/recycler_item"
+        android:id="@+id/recyclerview_entry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:cardCornerRadius="3dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="5dp"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="3dp"
-        tools:backgroundTint="@color/six_star_card_bg"
-        tools:layout_marginStart="115dp">
+        android:layout_marginBottom="5dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/operator_info_collapsed"
+            android:id="@+id/operatorNameHeader"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:foreground="?selectableItemBackground">
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:background="#FFFFFF"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toTopOf="@id/operator_info_expanded"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
-
-            <ImageView
-                android:id="@+id/operator_portrait_collapsed_icon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/image_round_outline"
-                android:contentDescription="@string/operator_class_icon"
-                android:elevation="10dp"
-                android:outlineProvider="background"
-                app:layout_constraintBottom_toTopOf="@id/operator_info_expanded"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:background="@drawable/image_round_outline"
-                tools:src="@drawable/six_star_magallan" />
+            android:foreground="?selectableItemBackground"
+            android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/operator_name"
-                android:layout_width="wrap_content"
+                android:id="@+id/operatorName"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@id/operator_info_expanded"
-                app:layout_constraintLeft_toRightOf="@id/operator_portrait_collapsed_icon"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Magallan" />
+                android:textSize="17sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/expand_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="5dp"
-                android:layout_marginBottom="5dp"
                 android:contentDescription="@string/expand_operator_details"
-                android:src="@drawable/outline_expand_circle_down_black_24"
+                android:src="@drawable/outline_expand_circle_down_black_18"
+                app:layout_constraintBottom_toTopOf="@id/expandableOperatorDetails"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/black" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/operator_info_expanded"
+                android:id="@+id/expandableOperatorDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:visibility="visible">
+                app:layout_constraintTop_toBottomOf="@id/operatorName">
 
                 <View
-                    android:id="@+id/info_divider"
+                    android:id="@+id/detailsDivider"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/black"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/operator_info_rarity"
+                    android:id="@+id/operatorDetails_Rarity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="5dp"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    app:layout_constraintLeft_toRightOf="@id/operator_portrait_expanded_icon"
-                    app:layout_constraintRight_toLeftOf="@id/operator_info_type_class"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="6*" />
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/operatorDetails_ArchetypeAndClass"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/operator_info_type_class"
+                    android:id="@+id/operatorDetails_ArchetypeAndClass"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:maxLines="2"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    app:layout_constraintLeft_toRightOf="@id/operator_info_rarity"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/operator_info_rarity"
-                    tools:text="Decel Binder Supporter" />
+                    android:maxLines="2"
+                    app:layout_constraintLeft_toRightOf="@id/operatorDetails_Rarity"
+                    app:layout_constraintRight_toLeftOf="@id/type_and_class_icons"
+                    app:layout_constraintTop_toTopOf="@id/operatorDetails_Rarity" />
 
                 <TextView
-                    android:id="@+id/operator_info_tags"
+                    android:id="@+id/operatorDetails_Tags"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tags"
                     android:textColor="@color/black"
-                    app:layout_constraintLeft_toLeftOf="@id/operator_info_rarity"
-                    app:layout_constraintTop_toBottomOf="@id/operator_info_type_class" />
+                    app:layout_constraintLeft_toLeftOf="@id/operatorDetails_Rarity"
+                    app:layout_constraintTop_toBottomOf="@id/operatorDetails_ArchetypeAndClass" />
 
                 <TextView
-                    android:id="@+id/operator_tags"
-                    android:layout_width="0dp"
+                    android:id="@+id/operatorDetails_AttackType"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:ellipsize="end"
-                    android:maxLines="5"
                     android:textColor="@color/black"
-                    app:layout_constraintLeft_toLeftOf="@id/operator_info_rarity"
+                    app:layout_constraintLeft_toLeftOf="@id/operatorDetails_Tags"
+                    app:layout_constraintRight_toLeftOf="@id/operatorDetails_Qualification"
+                    app:layout_constraintTop_toBottomOf="@id/operatorDetails_Tags" />
+
+                <TextView
+                    android:id="@+id/operatorDetails_Qualification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:textColor="@color/black"
+                    app:layout_constraintLeft_toRightOf="@id/operatorDetails_AttackType"
+                    app:layout_constraintTop_toBottomOf="@id/operatorDetails_Tags" />
+
+                <TextView
+                    android:id="@+id/operatorDetails_Affix1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    app:layout_constraintLeft_toLeftOf="@id/operatorDetails_AttackType"
+                    app:layout_constraintRight_toLeftOf="@id/operatorDetails_Affix2"
+                    app:layout_constraintTop_toBottomOf="@id/operatorDetails_Qualification" />
+
+                <TextView
+                    android:id="@+id/operatorDetails_Affix2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:textColor="@color/black"
+                    app:layout_constraintLeft_toRightOf="@id/operatorDetails_Affix1"
+                    app:layout_constraintRight_toLeftOf="@id/operatorDetails_Affix3"
+                    app:layout_constraintTop_toBottomOf="@id/operatorDetails_Qualification" />
+
+                <TextView
+                    android:id="@+id/operatorDetails_Affix3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:textColor="@color/black"
+                    app:layout_constraintLeft_toRightOf="@id/operatorDetails_Affix2"
+                    app:layout_constraintTop_toBottomOf="@id/operatorDetails_Qualification" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/type_and_class_icons"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/operator_info_tags"
-                    tools:text="Ranged\nSenior Operator\nCrowd-Control\nFast-Redeploy" />
+                    app:layout_constraintTop_toTopOf="@id/operatorDetails_Rarity">
 
-                <ImageView
-                    android:id="@+id/operator_portrait_expanded_icon"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:background="@drawable/image_round_outline"
-                    android:contentDescription="@string/larger_operator_portrait_in_expanded_menu"
-                    android:elevation="10dp"
-                    android:outlineProvider="background"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toLeftOf="@id/operator_info_rarity"
-                    app:layout_constraintTop_toTopOf="@id/operator_info_rarity"
-                    tools:src="@drawable/six_star_magallan" />
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/operator_archetype_card"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        app:cardCornerRadius="5dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toLeftOf="@id/operator_class_icon"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:id="@+id/operator_archetype_icon"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@drawable/image_round_outline"
-                    android:backgroundTint="@color/black"
-                    android:contentDescription="@string/operator_archetype_icon"
-                    android:elevation="10dp"
-                    android:outlineProvider="background"
-                    android:padding="3dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="@id/operator_portrait_expanded_icon"
-                    app:layout_constraintTop_toBottomOf="@id/operator_portrait_expanded_icon"
-                    tools:src="@drawable/type_supporter_summoner" />
+                        <ImageView
+                            android:id="@+id/operator_archetype_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/black"
+                            android:contentDescription="@string/operator_archetype_icon"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintRight_toLeftOf="@id/operator_class_icon"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.cardview.widget.CardView>
 
-                <ImageView
-                    android:id="@+id/operator_class_icon"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="@drawable/image_round_outline"
-                    android:backgroundTint="@color/black"
-                    android:contentDescription="@string/operator_archetype_icon"
-                    android:elevation="10dp"
-                    android:outlineProvider="background"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintRight_toRightOf="@id/operator_portrait_expanded_icon"
-                    app:layout_constraintTop_toBottomOf="@id/operator_portrait_expanded_icon"
-                    tools:src="@drawable/class_supporter" />
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/operator_class_card"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        app:cardCornerRadius="5dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@id/operator_archetype_icon"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/operator_class_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/black"
+                            android:contentDescription="@string/operator_class_icon"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.cardview.widget.CardView>
+
+
+                </LinearLayout>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

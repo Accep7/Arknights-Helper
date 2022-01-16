@@ -53,5 +53,4 @@
     <string name="expand_operator_details">Expand operator details</string>
     <string name="operator_class_icon">Operator class icon</string>
     <string name="operator_archetype_icon">Operator archetype icon</string>
-    <string name="larger_operator_portrait_in_expanded_menu">Larger operator portrait in expanded menu</string>
 </resources>

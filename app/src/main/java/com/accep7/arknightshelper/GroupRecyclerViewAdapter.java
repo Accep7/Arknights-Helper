@@ -1,6 +1,5 @@
 package com.accep7.arknightshelper;
 
-import android.animation.LayoutTransition;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,19 +11,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecyclerViewAdapter.GroupHolder> {
+public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecyclerViewAdapter.OperatorHolder> {
 
-    final List<OperatorRecycler> operators = new ArrayList<>();
+    final List<ItemRecycler> operators = new ArrayList<>();
 
     @NonNull
     @Override
-    public GroupHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public OperatorHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_group, parent, false);
-        return new GroupHolder(v);
+        return new OperatorHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GroupHolder holder, int position) {
+    public void onBindViewHolder(@NonNull OperatorHolder holder, int position) {
         holder.bind(operators.get(position));
     }
 
@@ -33,31 +32,31 @@ public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecycler
         return operators.size();
     }
 
-    public void addAll(List<OperatorRecycler> entries) {
-        clearAdapter();
+    public void clearItems() {
+        operators.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addAll(List<ItemRecycler> entries) {
         operators.addAll(entries);
         notifyDataSetChanged();
     }
 
-    public void clearAdapter() {
-        operators.clear();
-    }
-
-    static class GroupHolder extends RecyclerView.ViewHolder {
+    static class OperatorHolder extends RecyclerView.ViewHolder {
         TextView selectedTag;
-        RecyclerView operatorRecycler;
+        RecyclerView entryRecycler;
 
-        public GroupHolder(View itemView) {
+
+        public OperatorHolder(View itemView) {
             super(itemView);
-            ((ViewGroup) itemView).getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
             selectedTag = itemView.findViewById(R.id.selectedTag);
-            operatorRecycler = itemView.findViewById(R.id.group_items);
-            //operatorRecycler.setItemAnimator(new ExpandItemAnimator());
+            entryRecycler = itemView.findViewById(R.id.group_entries);
         }
 
-        public void bind(OperatorRecycler operatorRecycler) {
-            selectedTag.setText(String.join(",\n", operatorRecycler.getTagList()));
-            this.operatorRecycler.setAdapter(new OperatorRecyclerViewAdapter(operatorRecycler.getOperatorList()));
+        public void bind(ItemRecycler entry) {
+            selectedTag.setText(String.join(",\n", entry.getTagList()));
+            entryRecycler.setAdapter(new ItemRecyclerViewAdapter(entry.getOperatorList()));
+
         }
     }
 }
