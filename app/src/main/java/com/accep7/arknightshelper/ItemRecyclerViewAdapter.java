@@ -120,7 +120,7 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
                     break;
             }
 
-            //Prevents layout fuck-ups when operator affix is null
+            // Prevents layout fuck-ups when operator affix is null
             if (operator.affix1 == null) {
                 operatorAffix1.setVisibility(View.GONE);
             } else {
