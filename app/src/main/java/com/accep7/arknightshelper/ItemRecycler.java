@@ -5,6 +5,7 @@ import com.accep7.arknightshelper.RecruitmentPool.RecruitableOperator;
 import java.util.ArrayList;
 import java.util.List;
 
+// Inner recycler that adds elements (operators) to a larger group recycler (tag groups)
 public class ItemRecycler implements Comparable<ItemRecycler> {
     private final List<String> tagList;
     private final List<RecruitableOperator> operatorList = new ArrayList<>();

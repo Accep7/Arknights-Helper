@@ -114,7 +114,7 @@ class RecruitmentPool {
         int archetypeIconResourceID;
         int classIconResourceID;
 
-        //Used for showing expandable menu with operator details in results list
+        // Used for showing expandable menu with operator details in results list
         boolean expandedDetails;
 
         public boolean isExpandedDetails() {
@@ -235,19 +235,19 @@ class RecruitmentPool {
     static List<RecruitableOperator> recruitableOperators = new ArrayList<>();
 
     static {
-        //1-star rarity
+        // 1-star rarity
         recruitableOperators.add(new RecruitableOperator("Lancet-2", ATTACK_TYPE_RANGED, null, 1, TYPE_MEDIC_ST, CLASS_MEDIC, AFFIX_HEALING, AFFIX_ROBOT, null, R.mipmap.type_medic_st, R.mipmap.class_medic));
         recruitableOperators.add(new RecruitableOperator("Castle-3", ATTACK_TYPE_MELEE, null, 1, TYPE_GUARD_DREADNOUGHT, CLASS_GUARD, AFFIX_SUPPORT, AFFIX_ROBOT, null, R.mipmap.type_guard_dreadnought, R.mipmap.class_guard));
         recruitableOperators.add(new RecruitableOperator("THRM-EX", ATTACK_TYPE_MELEE, null, 1, TYPE_SPECIALIST_EXECUTOR, CLASS_SPECIALIST, AFFIX_NUKER, AFFIX_ROBOT, null, R.mipmap.type_specialist_executor, R.mipmap.class_specialist));
 
-        //2-star rarity
+        // 2-star rarity
         recruitableOperators.add(new RecruitableOperator("12F", ATTACK_TYPE_RANGED, QUALIFICATION_STARTER, 2, TYPE_CASTER_SPLASH, CLASS_CASTER, null, null, null, R.mipmap.type_caster_splash, R.mipmap.class_caster));
         recruitableOperators.add(new RecruitableOperator("Durin", ATTACK_TYPE_RANGED, QUALIFICATION_STARTER, 2, TYPE_CASTER_CORE, CLASS_CASTER, null, null, null, R.mipmap.type_caster_core, R.mipmap.class_caster));
         recruitableOperators.add(new RecruitableOperator("Rangers", ATTACK_TYPE_RANGED, QUALIFICATION_STARTER, 2, TYPE_SNIPER_MARKSMAN, CLASS_SNIPER, null, null, null, R.mipmap.type_sniper_marksman, R.mipmap.class_sniper));
         recruitableOperators.add(new RecruitableOperator("Noir Corne", ATTACK_TYPE_MELEE, QUALIFICATION_STARTER, 2, TYPE_DEFENDER_PROTECTOR, CLASS_DEFENDER, null, null, null, R.mipmap.type_defender_protector, R.mipmap.class_defender));
         recruitableOperators.add(new RecruitableOperator("Yato", ATTACK_TYPE_MELEE, QUALIFICATION_STARTER, 2, TYPE_VANGUARD_PIONEER, CLASS_VANGUARD, null, null, null, R.mipmap.type_vanguard_pioneer, R.mipmap.class_vanguard));
 
-        //3-star rarity
+        // 3-star rarity
         recruitableOperators.add(new RecruitableOperator("Popukar", ATTACK_TYPE_MELEE, null, 3, TYPE_GUARD_CENTURION, CLASS_GUARD, AFFIX_AOE, AFFIX_SURVIVAL, null, R.mipmap.type_guard_centurion, R.mipmap.class_guard));
         recruitableOperators.add(new RecruitableOperator("Spot", ATTACK_TYPE_MELEE, null, 3, TYPE_DEFENDER_GUARDIAN, CLASS_DEFENDER, AFFIX_HEALING, AFFIX_DEFENSE, null, R.mipmap.type_defender_guardian, R.mipmap.class_defender));
         recruitableOperators.add(new RecruitableOperator("Midnight", ATTACK_TYPE_MELEE, null, 3, TYPE_GUARD_LORD, CLASS_GUARD, AFFIX_DPS, null, null, R.mipmap.type_guard_lord, R.mipmap.class_guard));
@@ -265,7 +265,7 @@ class RecruitmentPool {
         recruitableOperators.add(new RecruitableOperator("Vanilla", ATTACK_TYPE_MELEE, null, 3, TYPE_VANGUARD_PIONEER, CLASS_VANGUARD, AFFIX_DP_RECOVERY, null, null, R.mipmap.type_vanguard_pioneer, R.mipmap.class_vanguard));
         recruitableOperators.add(new RecruitableOperator("Fang", ATTACK_TYPE_MELEE, null, 3, TYPE_VANGUARD_PIONEER, CLASS_VANGUARD, AFFIX_DP_RECOVERY, null, null, R.mipmap.type_vanguard_pioneer, R.mipmap.class_vanguard));
 
-        //4-star rarity
+        // 4-star rarity
         recruitableOperators.add(new RecruitableOperator("May", ATTACK_TYPE_RANGED, null, 4, TYPE_SNIPER_MARKSMAN, CLASS_SNIPER, AFFIX_DPS, AFFIX_SLOW, null, R.mipmap.type_sniper_marksman, R.mipmap.class_sniper));
         recruitableOperators.add(new RecruitableOperator("Vermeil", ATTACK_TYPE_RANGED, null, 4, TYPE_SNIPER_MARKSMAN, CLASS_SNIPER, AFFIX_DPS, null, null, R.mipmap.type_sniper_marksman, R.mipmap.class_sniper));
         recruitableOperators.add(new RecruitableOperator("Myrtle", ATTACK_TYPE_MELEE, null, 4, TYPE_VANGUARD_STANDARD_BEARER, CLASS_VANGUARD, AFFIX_DP_RECOVERY, AFFIX_HEALING, null, R.mipmap.type_vanguard_standardbearer, R.mipmap.class_vanguard));
@@ -295,7 +295,7 @@ class RecruitmentPool {
         recruitableOperators.add(new RecruitableOperator("Haze", ATTACK_TYPE_RANGED, null, 4, TYPE_CASTER_CORE, CLASS_CASTER, AFFIX_DPS, AFFIX_DEBUFF, null, R.mipmap.type_caster_core, R.mipmap.class_caster));
         recruitableOperators.add(new RecruitableOperator("Ambriel", ATTACK_TYPE_RANGED, null, 4, TYPE_SNIPER_DEADEYE, CLASS_SNIPER, AFFIX_DPS, AFFIX_SLOW, null, R.mipmap.type_sniper_deadeye, R.mipmap.class_sniper));
 
-        //5-star rarity
+        // 5-star rarity
         recruitableOperators.add(new RecruitableOperator("Waai Fu", ATTACK_TYPE_MELEE, QUALIFICATION_SENIOR, 5, TYPE_SPECIALIST_EXECUTOR, CLASS_SPECIALIST, AFFIX_FAST_REDEPLOY, AFFIX_DEBUFF, null, R.mipmap.type_specialist_executor, R.mipmap.class_specialist));
         recruitableOperators.add(new RecruitableOperator("Executor", ATTACK_TYPE_RANGED, QUALIFICATION_SENIOR, 5, TYPE_SNIPER_SPREADSHOOTER, CLASS_SNIPER, AFFIX_AOE, null, null, R.mipmap.type_sniper_spreadshooter, R.mipmap.class_sniper));
         recruitableOperators.add(new RecruitableOperator("Astesia", ATTACK_TYPE_MELEE, QUALIFICATION_SENIOR, 5, TYPE_GUARD_ARTS_FIGHTER, CLASS_GUARD, AFFIX_DPS, AFFIX_DEFENSE, null, R.mipmap.type_guard_arts_fighter, R.mipmap.class_guard));
@@ -329,8 +329,7 @@ class RecruitmentPool {
         recruitableOperators.add(new RecruitableOperator("Reed", ATTACK_TYPE_MELEE, QUALIFICATION_SENIOR, 5, TYPE_VANGUARD_CHARGER, CLASS_VANGUARD, AFFIX_DPS, AFFIX_DP_RECOVERY, null, R.mipmap.type_vanguard_charger, R.mipmap.class_vanguard));
         recruitableOperators.add(new RecruitableOperator("Broca", ATTACK_TYPE_MELEE, QUALIFICATION_SENIOR, 5, TYPE_GUARD_CENTURION, CLASS_GUARD, AFFIX_AOE, AFFIX_SURVIVAL, null, R.mipmap.type_guard_centurion, R.mipmap.class_guard));
 
-
-        //6-star rarity
+        // 6-star rarity
         recruitableOperators.add(new RecruitableOperator("Mostima", ATTACK_TYPE_RANGED, QUALIFICATION_TOP, 6, TYPE_CASTER_SPLASH, CLASS_CASTER, AFFIX_AOE, AFFIX_SUPPORT, AFFIX_CROWD_CONTROL, R.mipmap.type_caster_splash, R.mipmap.class_caster));
         recruitableOperators.add(new RecruitableOperator("Magallan", ATTACK_TYPE_RANGED, QUALIFICATION_TOP, 6, TYPE_SUPPORTER_SUMMONER, CLASS_SUPPORTER, AFFIX_SLOW, AFFIX_SUPPORT, AFFIX_DPS, R.mipmap.type_supporter_summoner, R.mipmap.class_supporter));
         recruitableOperators.add(new RecruitableOperator("Hellagur", ATTACK_TYPE_MELEE, QUALIFICATION_TOP, 6, TYPE_GUARD_MUSHA, CLASS_GUARD, AFFIX_DPS, AFFIX_SURVIVAL, null, R.mipmap.type_guard_musha, R.mipmap.class_guard));

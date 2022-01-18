@@ -17,7 +17,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Declaring views and buttons. This int is used to keep a track of active buttons.
     private int activeTagCounter = 0;
 
     private Button resetButton;
@@ -31,10 +30,10 @@ public class MainActivity extends AppCompatActivity {
      * and locking excess buttons.
      * OperatorPredicate is used to assign each button to its corresponding filtering parameter.
      * E.g. "Melee" toggle button is paired with String type "ATTACK_TYPE_MELEE" predicate.
-     * Pressing "Melee" button will output all of the operators with "ATTACK_TYPE_MELEE". */
+     * Pressing "Melee" button will output all of the operators with "ATTACK_TYPE_MELEE" */
     private final HashMap<ToggleButton, OperatorPredicate> buttonLockAndReset = new HashMap<>();
 
-    //Button behaviour and initialization
+    // Button logic and initialization
     private void initToggleButton(int buttonId, OperatorPredicate filteringParameter) {
         ToggleButton tb = findViewById(buttonId);
         tb.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -54,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         buttonLockAndReset.put(tb, filteringParameter);
     }
 
-    //Filtering the RecruitmentPool ArrayList, and passing filtered contents to the RecyclerView
     private void filterRecruitmentPool() {
         groupAdapter.clearItems();
         List<String> selectedTags = new ArrayList<>();
@@ -63,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 selectedTags.add(toggleButton.getText().toString());
             }
         }
-        groupAdapter.addAll(GroupRecycler.getEntries(selectedTags));
+        groupAdapter.addAll(GroupRecycler.createResults(selectedTags));
     }
 
     /* UX feature - When 5th button is checked, this method iterates over Map of buttons and locks
@@ -111,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     /* Big red Reset button that iterates over Map of buttons and returns checked buttons to their
-    * initial unchecked state */
+     * initial unchecked state */
     private void resetSelection() {
         for (ToggleButton toggleButton : buttonLockAndReset.keySet()) {
             if (toggleButton.isChecked()) {
@@ -125,28 +123,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Results views and Reset selection Button
+        // Results views and Reset selection Button
         resetButton = findViewById(R.id.resetButton);
         resetButton.setOnClickListener(v -> resetSelection());
         resultsLayout = findViewById(R.id.resultsLayout);
 
-        //region Qualification Filter Buttons
+        // Qualification Filter Buttons
         initToggleButton(R.id.qualification_starter, operator ->
                 RecruitmentPool.QUALIFICATION_STARTER.equals(operator.qualification));
         initToggleButton(R.id.qualification_seniorOp, operator ->
                 RecruitmentPool.QUALIFICATION_SENIOR.equals(operator.qualification));
         initToggleButton(R.id.qualification_topOp, operator ->
                 RecruitmentPool.QUALIFICATION_TOP.equals(operator.qualification));
-        //endregion
 
-        //region Attack type Filter Buttons
+        // Attack type Filter Buttons
         initToggleButton(R.id.atk_type_melee, operator ->
                 operator.attackType.equals(RecruitmentPool.ATTACK_TYPE_MELEE));
         initToggleButton(R.id.atk_type_ranged, operator ->
                 operator.attackType.equals(RecruitmentPool.ATTACK_TYPE_RANGED));
-        //endregion
 
-        //region Class Filter Buttons
+        // Class Filter Buttons
         initToggleButton(R.id.class_guard, operator ->
                 operator.inGameClass.equals(RecruitmentPool.CLASS_GUARD));
         initToggleButton(R.id.class_specialist, operator ->
@@ -163,7 +159,6 @@ public class MainActivity extends AppCompatActivity {
                 operator.inGameClass.equals(RecruitmentPool.CLASS_VANGUARD));
         initToggleButton(R.id.class_supporter, operator ->
                 operator.inGameClass.equals(RecruitmentPool.CLASS_SUPPORTER));
-        //endregion
 
         //region Affix Filter Buttons
         initToggleButton(R.id.affix_healing, operator ->
@@ -242,7 +237,6 @@ public class MainActivity extends AppCompatActivity {
                         || RecruitmentPool.AFFIX_NUKER.equals(operator.affix3));
         //endregion
 
-        //Initializing filtered output views
         RecyclerView results = findViewById(R.id.recyclerview_group);
         groupAdapter = new GroupRecyclerViewAdapter();
 
