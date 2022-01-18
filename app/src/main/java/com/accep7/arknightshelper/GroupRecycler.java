@@ -15,10 +15,12 @@ public class GroupRecycler {
 
     static List<String> selectedTags;
 
-    /* The recruitment pool filtering algorithm is based on generating combinations from selected
+    /**
+     * The recruitment pool filtering algorithm is based on generating combinations from selected
      * tags. These combinations (also referred to as "groups" (GroupRecycler)) of operators are then
      * used to find operators from recruitment pool that have ALL of the tags in respective group.
-     * Amount of combinations to be generated determined by nCr formula, more on that further below */
+     * Amount of combinations to be generated determined by nCr formula, more on that further below
+     */
     public static List<ItemRecycler> createResults(List<String> tags) {
         selectedTags = tags;
         int sample = MAX_TAG_COMBO;
@@ -30,11 +32,7 @@ public class GroupRecycler {
                 List<String> combination = Arrays.asList(tagCombination);
                 for (RecruitableOperator operator : recruitableOperators) {
                     /* Excludes top operators from results when top op tag is not selected, since
-                     * they are not obtainable without this tag selected. Also resets expanded details
-                     * state. I know it's dirty, deal with it */
-                    if (operator.isExpandedDetails()) {
-                        operator.setExpandedDetails(false);
-                    }
+                     * they are not obtainable without this tag selected */
                     if (!combination.contains(QUALIFICATION_TOP) && operator.qualification != null &&
                             operator.qualification.equals(QUALIFICATION_TOP)) {
                         continue;
@@ -51,7 +49,8 @@ public class GroupRecycler {
         return result;
     }
 
-    /* Creates tag combination using nCr formula: n! / (r! * (n - r)! )
+    /**
+     * Creates tag combination using nCr formula: n! / (r! * (n - r)! )
      * The formula show us the number of ways a sample of "r" elements can be obtained from a larger
      * set of "n" distinguishable objects where order does not matter and repetitions are not allowed.
      * "n" is the larger set, amount of tags selected by user, and "r" is the "sample" variable from
@@ -62,7 +61,9 @@ public class GroupRecycler {
      * there are element (item, operator) that can satisfy all of those 10 combinations.
      * In case with 5 tags, according to formula, 10 combinations of 3 tags, 10 combinations of 2,
      * and 5 groups of single tags will be generated, total of 25 groups.
-     * To check this, select tags "Guard", "Melee", "Survival", "AoE", "Senior Operator" */
+     * To check this, select tags "Guard", "Melee", "Survival", "AoE", "Senior Operator"
+     * Algorithm source: https://www.baeldung.com/java-combinations-algorithm
+     */
     private static List<String[]> makeTagCombinations(int n, int r) {
         List<String[]> combinations = new ArrayList<>();
         generateCombination(combinations, new String[r], 0, n - 1, 0);
@@ -83,10 +84,12 @@ public class GroupRecycler {
         }
     }
 
-    /* Compares groups (lists) of selected tags (let's say we got AoE and Slow selected)
+    /**
+     * Compares groups (lists) of selected tags (let's say we got AoE and Slow selected)
      * When an intersection is found (operators that have both AoE and Slow tags),
      * creates and returns a new corresponding group of items (operators), that consists
-     * ONLY of operators with both AoE and Slow tags */
+     * ONLY of operators with both AoE and Slow tags
+     */
     private static List<String> intersection(List<String> firstList, List<String> secondList) {
         List<String> result = new ArrayList<>();
         for (String string : firstList) {
@@ -103,12 +106,12 @@ public class GroupRecycler {
         for (int i = 0; i < resultList.size(); i++) {
             ItemRecycler itemRecycler = resultList.get(i);
             if (itemRecycler.getTagList().equals(tags)) {
-                itemRecycler.addOperator(operator);
+                itemRecycler.addOperator(new OperatorWrapper(operator));
                 added = true;
             }
         }
         if (!added) {
-            resultList.add(new ItemRecycler(tags, operator));
+            resultList.add(new ItemRecycler(tags, new OperatorWrapper(operator)));
         }
     }
 }

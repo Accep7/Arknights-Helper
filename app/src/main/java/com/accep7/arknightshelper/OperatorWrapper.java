@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Deprecated
 public class OperatorWrapper {
     private final RecruitmentPool.RecruitableOperator operator;
     private final List<String> selectedTagsList = new ArrayList<>();

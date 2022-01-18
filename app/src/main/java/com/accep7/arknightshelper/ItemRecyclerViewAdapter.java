@@ -17,9 +17,9 @@ import java.util.List;
 
 public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerViewAdapter.ItemHolder> {
 
-    protected final List<RecruitableOperator> items;
+    protected final List<OperatorWrapper> items;
 
-    public ItemRecyclerViewAdapter(List<RecruitableOperator> items) {
+    public ItemRecyclerViewAdapter(List<OperatorWrapper> items) {
         this.items = items;
     }
 
@@ -34,13 +34,13 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
     public void onBindViewHolder(@NonNull ItemHolder holder, int position) {
         holder.bind(items.get(position));
 
-        boolean isExpanded = items.get(position).isExpandedDetails();
+        boolean isExpanded = items.get(position).isExpanded();
         holder.operatorInfoLayout.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
         holder.expandOperatorInfoButton.animate().setDuration(200).rotation(isExpanded ? 180 : 0);
 
         holder.itemView.setOnClickListener(v -> {
-            RecruitableOperator item = items.get(position);
-            item.setExpandedDetails(!item.isExpandedDetails());
+            OperatorWrapper item = items.get(position);
+            item.setExpanded(!item.isExpanded());
             notifyItemChanged(position);
         });
     }
@@ -59,7 +59,7 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
         TextView operatorRarity, operatorArchetypeAndClass, operatorAttackType, operatorQualification,
                 operatorAffix1, operatorAffix2, operatorAffix3;
 
-        public ItemHolder(@NonNull View itemView, List<RecruitableOperator> items) {
+        public ItemHolder(@NonNull View itemView, List<OperatorWrapper> items) {
             super(itemView);
 
             operatorName = itemView.findViewById(R.id.operatorName);
@@ -82,18 +82,18 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
             operatorAffix3 = itemView.findViewById(R.id.operatorDetails_Affix3);
         }
 
-        public void bind(RecruitableOperator operator) {
-            operatorName.setText(operator.operatorName);
+        public void bind(OperatorWrapper operator) {
+            operatorName.setText(operator.getOperator().operatorName);
             operatorRarity.setText(operatorRarity.getContext()
-                    .getString(R.string.operatorDetails_Rarity, operator.rarity));
-            operatorArchetypeAndClass.setText(String.join(" ", operator.archetype,
-                    operator.inGameClass));
-            operatorAttackType.setText(operator.attackType);
-            operatorQualification.setText(operator.qualification);
-            operatorArchetypeIcon.setImageResource(operator.archetypeIconResourceID);
-            operatorClassIcon.setImageResource(operator.classIconResourceID);
+                    .getString(R.string.operatorDetails_Rarity, operator.getOperator().rarity));
+            operatorArchetypeAndClass.setText(String.join(" ", operator.getOperator().archetype,
+                    operator.getOperator().inGameClass));
+            operatorAttackType.setText(operator.getOperator().attackType);
+            operatorQualification.setText(operator.getOperator().qualification);
+            operatorArchetypeIcon.setImageResource(operator.getOperator().archetypeIconResourceID);
+            operatorClassIcon.setImageResource(operator.getOperator().classIconResourceID);
 
-            switch (operator.rarity) {
+            switch (operator.getOperator().rarity) {
                 case 6:
                     listItem.setCardBackgroundColor(listItem.getContext().getResources()
                             .getColor(R.color.sixStar_background, null));
@@ -121,22 +121,22 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
             }
 
             // Prevents layout fuck-ups when operator affix is null
-            if (operator.affix1 == null) {
+            if (operator.getOperator().affix1 == null) {
                 operatorAffix1.setVisibility(View.GONE);
             } else {
-                operatorAffix1.setText(operator.affix1);
+                operatorAffix1.setText(operator.getOperator().affix1);
                 operatorAffix1.setVisibility(View.VISIBLE);
             }
-            if (operator.affix2 == null) {
+            if (operator.getOperator().affix2 == null) {
                 operatorAffix2.setVisibility(View.GONE);
             } else {
-                operatorAffix2.setText(operator.affix2);
+                operatorAffix2.setText(operator.getOperator().affix2);
                 operatorAffix2.setVisibility(View.VISIBLE);
             }
-            if (operator.affix3 == null) {
+            if (operator.getOperator().affix3 == null) {
                 operatorAffix3.setVisibility(View.GONE);
             } else {
-                operatorAffix3.setText(operator.affix3);
+                operatorAffix3.setText(operator.getOperator().affix3);
                 operatorAffix3.setVisibility(View.VISIBLE);
             }
         }

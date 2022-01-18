@@ -114,17 +114,6 @@ class RecruitmentPool {
         int archetypeIconResourceID;
         int classIconResourceID;
 
-        // Used for showing expandable menu with operator details in results list
-        boolean expandedDetails;
-
-        public boolean isExpandedDetails() {
-            return expandedDetails;
-        }
-
-        public void setExpandedDetails(boolean expandedDetails) {
-            this.expandedDetails = expandedDetails;
-        }
-
         RecruitableOperator(String operatorName, String attackType, String qualification, int rarity,
                             String archetype, String inGameClass, String affix1, String affix2,
                             String affix3, int archetypeIconResourceID, int classIconResourceID) {
@@ -139,7 +128,6 @@ class RecruitmentPool {
             this.affix3 = affix3;
             this.archetypeIconResourceID = archetypeIconResourceID;
             this.classIconResourceID = classIconResourceID;
-            this.expandedDetails = false;
         }
 
         public List<String> getTags() {
