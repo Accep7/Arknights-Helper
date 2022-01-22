@@ -28,24 +28,25 @@ public class GroupRecycler {
 
         for (int i = 0; i < MAX_TAG_COMBO; i++) {
             List<String[]> tagCombinations = makeTagCombinations(selectedTags.size(), sample);
-            for (String[] tagCombination : tagCombinations) {
-                List<String> combination = Arrays.asList(tagCombination);
+            for (String[] combination : tagCombinations) {
+                List<String> combinationsList = Arrays.asList(combination);
                 for (RecruitableOperator operator : recruitableOperators) {
                     /* Excludes top operators from results when top op tag is not selected, since
                      * they are not obtainable without this tag selected */
-                    if (!combination.contains(QUALIFICATION_TOP) && operator.qualification != null &&
-                            operator.qualification.equals(QUALIFICATION_TOP)) {
+                    if (!combinationsList.contains(QUALIFICATION_TOP)
+                            && operator.qualification != null
+                            && operator.qualification.equals(QUALIFICATION_TOP)) {
                         continue;
                     }
-                    List<String> intersectedTags = intersection(combination, operator.getTags());
+                    List<String> intersectedTags = intersection(combinationsList, operator.getTags());
                     if (!intersectedTags.isEmpty()) {
                         addOperator(result, intersectedTags, operator);
                     }
                 }
-                Collections.sort(result);
             }
             sample--;
         }
+        Collections.sort(result);
         return result;
     }
 
