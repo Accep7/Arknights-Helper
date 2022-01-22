@@ -1,6 +1,8 @@
 package com.accep7.arknightshelper;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -54,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void filterRecruitmentPool() {
-        groupAdapter.clearItems();
         List<String> selectedTags = new ArrayList<>();
         for (ToggleButton toggleButton : buttonLockAndReset.keySet()) {
             if (toggleButton.isChecked()) {

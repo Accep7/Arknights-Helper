@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-    <background android:drawable="@color/type_vanguard_pioneer_background"/>
-    <foreground android:drawable="@mipmap/type_vanguard_pioneer_foreground"/>
-</adaptive-icon>

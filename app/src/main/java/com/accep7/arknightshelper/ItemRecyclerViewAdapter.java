@@ -11,8 +11,6 @@ import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.accep7.arknightshelper.RecruitmentPool.RecruitableOperator;
-
 import java.util.List;
 
 public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerViewAdapter.ItemHolder> {
@@ -27,7 +25,7 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
     @Override
     public ItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item, parent, false);
-        return new ItemHolder(v, items);
+        return new ItemHolder(v);
     }
 
     @Override
@@ -36,6 +34,7 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
 
         boolean isExpanded = items.get(position).isExpanded();
         holder.operatorInfoLayout.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+        holder.operatorPortraitPreviewCard.setVisibility(isExpanded ? View.GONE : View.VISIBLE);
         holder.expandOperatorInfoButton.animate().setDuration(200).rotation(isExpanded ? 180 : 0);
 
         holder.itemView.setOnClickListener(v -> {
@@ -54,24 +53,29 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
         TextView operatorName;
 
         ConstraintLayout operatorInfoLayout;
-        CardView listItem, operatorArchetypeCard, operatorClassCard;
-        ImageView expandOperatorInfoButton, operatorArchetypeIcon, operatorClassIcon;
+        CardView listItem, operatorArchetypeCard, operatorClassCard, operatorPortraitCard,
+                operatorPortraitPreviewCard;
+        ImageView expandOperatorInfoButton, operatorArchetypeIcon, operatorClassIcon,
+                operatorPortraitIcon, operatorPortraitPreview;
         TextView operatorRarity, operatorArchetypeAndClass, operatorAttackType, operatorQualification,
                 operatorAffix1, operatorAffix2, operatorAffix3;
 
-        public ItemHolder(@NonNull View itemView, List<OperatorWrapper> items) {
+        public ItemHolder(@NonNull View itemView) {
             super(itemView);
 
             operatorName = itemView.findViewById(R.id.operatorName);
-
+            operatorPortraitPreviewCard = itemView.findViewById(R.id.operator_portrait_preview_card);
             expandOperatorInfoButton = itemView.findViewById(R.id.expand_button);
 
             operatorInfoLayout = itemView.findViewById(R.id.expandableOperatorDetails);
             listItem = itemView.findViewById(R.id.recyclerview_entry);
+            operatorPortraitCard = itemView.findViewById(R.id.operator_portrait_card_expanded);
+            operatorPortraitIcon = itemView.findViewById(R.id.operator_portrait_icon_expanded);
             operatorArchetypeCard = itemView.findViewById(R.id.operator_archetype_card);
             operatorArchetypeIcon = itemView.findViewById(R.id.operator_archetype_icon);
             operatorClassCard = itemView.findViewById(R.id.operator_class_card);
             operatorClassIcon = itemView.findViewById(R.id.operator_class_icon);
+            operatorPortraitPreview = itemView.findViewById(R.id.operator_portrait_preview_icon);
 
             operatorRarity = itemView.findViewById(R.id.operatorDetails_Rarity);
             operatorArchetypeAndClass = itemView.findViewById(R.id.operatorDetails_ArchetypeAndClass);
@@ -83,6 +87,8 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
         }
 
         public void bind(OperatorWrapper operator) {
+            operatorPortraitPreview.setImageResource(operator.getOperator().portraitDrawableID);
+            operatorPortraitIcon.setImageResource(operator.getOperator().portraitDrawableID);
             operatorName.setText(operator.getOperator().operatorName);
             operatorRarity.setText(operatorRarity.getContext()
                     .getString(R.string.operatorDetails_Rarity, operator.getOperator().rarity));
@@ -90,8 +96,8 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
                     operator.getOperator().inGameClass));
             operatorAttackType.setText(operator.getOperator().attackType);
             operatorQualification.setText(operator.getOperator().qualification);
-            operatorArchetypeIcon.setImageResource(operator.getOperator().archetypeIconResourceID);
-            operatorClassIcon.setImageResource(operator.getOperator().classIconResourceID);
+            operatorArchetypeIcon.setImageResource(operator.getOperator().archetypeIconDrawableID);
+            operatorClassIcon.setImageResource(operator.getOperator().classIconDrawableID);
 
             switch (operator.getOperator().rarity) {
                 case 6:

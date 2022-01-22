@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-    <background android:drawable="@color/type_specialist_push_stroker_background"/>
-    <foreground android:drawable="@mipmap/type_specialist_push_stroker_foreground"/>
-</adaptive-icon>

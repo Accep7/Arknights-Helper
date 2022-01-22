@@ -32,12 +32,8 @@ public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecycler
         return operators.size();
     }
 
-    public void clearItems() {
-        operators.clear();
-        notifyDataSetChanged();
-    }
-
     public void addAll(List<ItemRecycler> entries) {
+        operators.clear();
         operators.addAll(entries);
         notifyDataSetChanged();
     }
