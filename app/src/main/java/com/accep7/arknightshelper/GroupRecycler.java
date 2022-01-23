@@ -11,9 +11,9 @@ import java.util.List;
 public class GroupRecycler {
 
     // Represents the max amount of tags user can select in the game and create combinations from
-    final static int MAX_TAG_COMBO = 3;
+    private final static int MAX_TAG_COMBO = 3;
 
-    static List<String> selectedTags;
+    private static List<String> selectedTags;
 
     /**
      * The recruitment pool filtering algorithm is based on generating combinations from selected
@@ -27,8 +27,8 @@ public class GroupRecycler {
         List<ItemRecycler> result = new ArrayList<>();
 
         for (int i = 0; i < MAX_TAG_COMBO; i++) {
-            List<String[]> tagCombinations = makeTagCombinations(selectedTags.size(), sample);
-            for (String[] combination : tagCombinations) {
+            List<String[]> combinations = makeTagCombinations(selectedTags.size(), sample);
+            for (String[] combination : combinations) {
                 List<String> combinationsList = Arrays.asList(combination);
                 for (RecruitableOperator operator : recruitableOperators) {
                     /* Excludes top operators from results when top op tag is not selected, since

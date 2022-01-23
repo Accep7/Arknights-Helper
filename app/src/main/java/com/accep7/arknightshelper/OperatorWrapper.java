@@ -7,7 +7,7 @@ import java.util.Objects;
 public class OperatorWrapper {
     private final RecruitmentPool.RecruitableOperator operator;
     private final List<String> selectedTagsList = new ArrayList<>();
-    private boolean isExpanded;
+    private boolean isExpanded = false;
 
     public OperatorWrapper(RecruitmentPool.RecruitableOperator operator) {
         this.operator = operator;
