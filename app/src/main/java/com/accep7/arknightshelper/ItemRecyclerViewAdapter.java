@@ -63,12 +63,13 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
         public ItemHolder(@NonNull View itemView) {
             super(itemView);
 
+            listItem = itemView.findViewById(R.id.recyclerview_entry);
+
             operatorName = itemView.findViewById(R.id.operatorName);
             operatorPortraitPreviewCard = itemView.findViewById(R.id.operator_portrait_preview_card);
             expandOperatorInfoButton = itemView.findViewById(R.id.expand_button);
 
             operatorInfoLayout = itemView.findViewById(R.id.expandableOperatorDetails);
-            listItem = itemView.findViewById(R.id.recyclerview_entry);
             operatorPortraitCard = itemView.findViewById(R.id.operator_portrait_card_expanded);
             operatorPortraitIcon = itemView.findViewById(R.id.operator_portrait_icon_expanded);
             operatorArchetypeCard = itemView.findViewById(R.id.operator_archetype_card);

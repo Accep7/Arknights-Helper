@@ -25,11 +25,11 @@
             <View
                 android:layout_width="45dp"
                 android:layout_height="45dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/expandableOperatorDetails"
+                android:background="#FFFFFF"
                 android:visibility="invisible"
-                android:background="#FF0000FF" />
+                app:layout_constraintBottom_toTopOf="@id/expandableOperatorDetails"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/operator_portrait_preview_card"
@@ -90,6 +90,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                android:visibility="gone"
                 tools:visibility="visible">
 
                 <View
@@ -147,7 +148,7 @@
                     android:id="@+id/operatorDetails_Qualification"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginStart="10dp"
                     android:textColor="@color/black"
                     app:layout_constraintLeft_toRightOf="@id/operatorDetails_AttackType"
                     app:layout_constraintTop_toBottomOf="@id/operatorDetails_Tags"
@@ -167,9 +168,10 @@
                     android:id="@+id/operatorDetails_Affix2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:textColor="@color/black"
-                    app:layout_constraintLeft_toLeftOf="@id/operatorDetails_Affix1"
-                    app:layout_constraintTop_toBottomOf="@id/operatorDetails_Affix1"
+                    app:layout_constraintLeft_toRightOf="@id/operatorDetails_Affix1"
+                    app:layout_constraintTop_toTopOf="@id/operatorDetails_Affix1"
                     tools:text="Fast-Redeploy" />
 
                 <TextView
@@ -177,7 +179,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    app:layout_constraintLeft_toLeftOf="@id/operatorDetails_Affix2"
+                    app:layout_constraintLeft_toLeftOf="@id/operatorDetails_Affix1"
                     app:layout_constraintTop_toBottomOf="@id/operatorDetails_Affix2"
                     tools:text="Survival" />
 
@@ -187,9 +189,7 @@
                     android:layout_height="75dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
                     app:cardCornerRadius="5dp"
-                    app:layout_constraintBottom_toTopOf="@id/operator_archetype_card"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toLeftOf="@id/operatorDetails_Rarity"
                     app:layout_constraintTop_toTopOf="@id/operatorDetails_Rarity">
@@ -209,11 +209,13 @@
                     android:id="@+id/operator_archetype_card"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:backgroundTint="@color/black"
                     app:cardCornerRadius="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="@id/operator_portrait_card_expanded">
+                    app:layout_constraintLeft_toLeftOf="@id/operator_portrait_card_expanded"
+                    app:layout_constraintTop_toBottomOf="@id/operator_portrait_card_expanded">
 
                     <ImageView
                         android:id="@+id/operator_archetype_icon"
@@ -229,11 +231,13 @@
                     android:id="@+id/operator_class_card"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:backgroundTint="@color/black"
                     app:cardCornerRadius="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintRight_toRightOf="@id/operator_portrait_card_expanded">
+                    app:layout_constraintRight_toRightOf="@id/operator_portrait_card_expanded"
+                    app:layout_constraintTop_toBottomOf="@id/operator_portrait_card_expanded">
 
                     <ImageView
                         android:id="@+id/operator_class_icon"

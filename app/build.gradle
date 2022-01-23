@@ -9,7 +9,7 @@ android {
         applicationId "com.accep7.arknightshelper"
         minSdk 26
         targetSdk 30
-        versionCode 4
+        versionCode 5
         versionName "1.0"
 
         testInstrumentationRunner "androidx.operator_portrait_background.runner.AndroidJUnitRunner"
