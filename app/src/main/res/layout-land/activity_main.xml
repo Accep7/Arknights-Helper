@@ -49,6 +49,8 @@
                 android:id="@+id/text_view_quali"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
                 android:text="@string/qualification"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/line_1"
@@ -63,8 +65,10 @@
                 android:textOff="@string/starter"
                 android:textOn="@string/starter"
                 app:layout_constraintBottom_toTopOf="@id/line_1"
-                app:layout_constraintLeft_toRightOf="@id/text_view_quali"
-                app:layout_constraintRight_toLeftOf="@id/qualification_seniorOp"
+                app:layout_constraintEnd_toStartOf="@+id/qualification_seniorOp"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@+id/text_view_quali"
                 app:layout_constraintTop_toBottomOf="@id/topline" />
 
             <ToggleButton
@@ -74,8 +78,9 @@
                 android:textOff="@string/senior_op"
                 android:textOn="@string/senior_op"
                 app:layout_constraintBottom_toTopOf="@id/line_1"
-                app:layout_constraintLeft_toRightOf="@id/qualification_starter"
-                app:layout_constraintRight_toLeftOf="@id/qualification_topOp"
+                app:layout_constraintEnd_toStartOf="@+id/qualification_topOp"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/qualification_starter"
                 app:layout_constraintTop_toBottomOf="@id/topline" />
 
             <ToggleButton
@@ -85,7 +90,8 @@
                 android:textOff="@string/top_op"
                 android:textOn="@string/top_op"
                 app:layout_constraintBottom_toTopOf="@id/line_1"
-                app:layout_constraintLeft_toRightOf="@id/qualification_seniorOp"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/qualification_seniorOp"
                 app:layout_constraintTop_toBottomOf="@id/topline" />
             <!-- endregion -->
 
@@ -125,7 +131,7 @@
                 android:textOff="@string/ranged"
                 android:textOn="@string/ranged"
                 app:layout_constraintBottom_toTopOf="@id/line_2"
-                app:layout_constraintLeft_toLeftOf="@id/qualification_seniorOp"
+                app:layout_constraintLeft_toRightOf="@id/atk_type_melee"
                 app:layout_constraintTop_toBottomOf="@id/line_1" />
             <!-- endregion -->
 
@@ -174,7 +180,7 @@
                 android:textOff="@string/sniper"
                 android:textOn="@string/sniper"
                 app:layout_constraintLeft_toRightOf="@id/class_specialist"
-                app:layout_constraintRight_toRightOf="@id/qualification_topOp"
+                app:layout_constraintRight_toLeftOf="@id/class_caster"
                 app:layout_constraintTop_toTopOf="@id/class_guard" />
 
             <ToggleButton
@@ -253,7 +259,6 @@
                 android:textOff="@string/healing"
                 android:textOn="@string/healing"
                 app:layout_constraintLeft_toLeftOf="@id/class_guard"
-                app:layout_constraintRight_toLeftOf="@id/affix_defense"
                 app:layout_constraintTop_toBottomOf="@id/line_3" />
 
             <ToggleButton
@@ -262,8 +267,9 @@
                 android:layout_height="wrap_content"
                 android:textOff="@string/defense"
                 android:textOn="@string/defense"
-                app:layout_constraintLeft_toRightOf="@id/affix_healing"
-                app:layout_constraintRight_toLeftOf="@id/affix_slow"
+                app:layout_constraintEnd_toStartOf="@+id/affix_slow"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/affix_healing"
                 app:layout_constraintTop_toTopOf="@id/affix_healing" />
 
             <ToggleButton
@@ -272,7 +278,9 @@
                 android:layout_height="wrap_content"
                 android:textOff="@string/slow"
                 android:textOn="@string/slow"
-                app:layout_constraintRight_toRightOf="@id/class_sniper"
+                app:layout_constraintEnd_toStartOf="@+id/affix_dprec"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/affix_defense"
                 app:layout_constraintTop_toTopOf="@id/affix_healing" />
 
             <ToggleButton
@@ -281,8 +289,9 @@
                 android:layout_height="wrap_content"
                 android:textOff="@string/dp_recovery"
                 android:textOn="@string/dp_recovery"
-                app:layout_constraintLeft_toRightOf="@id/affix_slow"
-                app:layout_constraintRight_toLeftOf="@id/affix_aoe"
+                app:layout_constraintEnd_toStartOf="@+id/affix_aoe"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/affix_slow"
                 app:layout_constraintTop_toTopOf="@id/affix_healing" />
 
             <ToggleButton
@@ -291,8 +300,9 @@
                 android:layout_height="wrap_content"
                 android:textOff="@string/aoe"
                 android:textOn="@string/aoe"
-                app:layout_constraintLeft_toRightOf="@id/affix_dprec"
-                app:layout_constraintRight_toRightOf="@id/affix_dps"
+                app:layout_constraintEnd_toStartOf="@+id/affix_dps"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/affix_dprec"
                 app:layout_constraintTop_toTopOf="@id/affix_healing" />
 
             <ToggleButton
@@ -301,8 +311,9 @@
                 android:layout_height="wrap_content"
                 android:textOff="@string/dps"
                 android:textOn="@string/dps"
-                app:layout_constraintLeft_toRightOf="@id/affix_aoe"
-                app:layout_constraintRight_toLeftOf="@id/affix_survival"
+                app:layout_constraintEnd_toStartOf="@+id/affix_survival"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/affix_aoe"
                 app:layout_constraintTop_toTopOf="@id/affix_healing" />
 
             <ToggleButton
@@ -311,7 +322,9 @@
                 android:layout_height="wrap_content"
                 android:textOff="@string/survival"
                 android:textOn="@string/survival"
-                app:layout_constraintLeft_toRightOf="@id/affix_dps"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/affix_dps"
                 app:layout_constraintTop_toTopOf="@id/affix_healing" />
 
             <ToggleButton
@@ -371,7 +384,7 @@
                 android:textOff="@string/summon"
                 android:textOn="@string/summon"
                 app:layout_constraintLeft_toRightOf="@id/affix_robot"
-                app:layout_constraintRight_toLeftOf="@id/affix_cc"
+                app:layout_constraintRight_toLeftOf="@id/affix_nuker"
                 app:layout_constraintTop_toTopOf="@id/affix_shift" />
 
             <ToggleButton
