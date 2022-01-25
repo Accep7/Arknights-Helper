@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         }
         groupAdapter.addAll(GroupRecycler.createResults(selectedTags));
         new Thread(() -> {
-            List<ItemRecycler> results = GroupRecycler.createResults(selectedTags);
+            List<OperatorRecycler> results = GroupRecycler.createResults(selectedTags);
             new Handler(Looper.getMainLooper()).post(() -> groupAdapter.addAll(results));
         }).start();
     }
@@ -155,18 +155,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Results views and Reset selection Button
-        resetButton = findViewById(R.id.resetButton);
+        resetButton = findViewById(R.id.reset_button);
         resetButton.setOnClickListener(v -> resetSelection());
-        resultsLayout = findViewById(R.id.resultsLayout);
+        resultsLayout = findViewById(R.id.results_layout);
 
         // Qualification Filter Buttons
         initToggleButton(R.id.qualification_starter, QUALIFICATION_STARTER);
-        initToggleButton(R.id.qualification_seniorOp, QUALIFICATION_SENIOR);
-        initToggleButton(R.id.qualification_topOp, QUALIFICATION_TOP);
+        initToggleButton(R.id.qualification_senior_operator, QUALIFICATION_SENIOR);
+        initToggleButton(R.id.qualification_top_operator, QUALIFICATION_TOP);
 
         // Attack type Filter Buttons
-        initToggleButton(R.id.atk_type_melee, ATTACK_TYPE_MELEE);
-        initToggleButton(R.id.atk_type_ranged, ATTACK_TYPE_RANGED);
+        initToggleButton(R.id.attack_type_melee, ATTACK_TYPE_MELEE);
+        initToggleButton(R.id.attack_type_ranged, ATTACK_TYPE_RANGED);
 
         // Class Filter Buttons
         initToggleButton(R.id.class_guard, CLASS_GUARD);
@@ -182,21 +182,21 @@ public class MainActivity extends AppCompatActivity {
         initToggleButton(R.id.affix_healing, AFFIX_HEALING);
         initToggleButton(R.id.affix_defense, AFFIX_DEFENSE);
         initToggleButton(R.id.affix_slow, AFFIX_SLOW);
-        initToggleButton(R.id.affix_dprec, AFFIX_DP_RECOVERY);
+        initToggleButton(R.id.affix_dp_recovery, AFFIX_DP_RECOVERY);
         initToggleButton(R.id.affix_aoe, AFFIX_AOE);
         initToggleButton(R.id.affix_dps, AFFIX_DPS);
         initToggleButton(R.id.affix_survival, AFFIX_SURVIVAL);
         initToggleButton(R.id.affix_shift, AFFIX_SHIFT);
         initToggleButton(R.id.affix_support, AFFIX_SUPPORT);
         initToggleButton(R.id.affix_debuff, AFFIX_DEBUFF);
-        initToggleButton(R.id.affix_fastred, AFFIX_FAST_REDEPLOY);
+        initToggleButton(R.id.affix_fast_redeploy, AFFIX_FAST_REDEPLOY);
         initToggleButton(R.id.affix_robot, AFFIX_ROBOT);
         initToggleButton(R.id.affix_summon, AFFIX_SUMMON);
         initToggleButton(R.id.affix_cc, AFFIX_CROWD_CONTROL);
         initToggleButton(R.id.affix_nuker, AFFIX_NUKER);
         //endregion
 
-        RecyclerView results = findViewById(R.id.recyclerview_group);
+        RecyclerView results = findViewById(R.id.recycler_view_group);
         groupAdapter = new GroupRecyclerViewAdapter();
 
         results.setAdapter(groupAdapter);

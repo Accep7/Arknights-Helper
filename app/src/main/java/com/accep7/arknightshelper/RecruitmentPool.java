@@ -1,12 +1,10 @@
 package com.accep7.arknightshelper;
 
-import androidx.annotation.NonNull;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 class RecruitmentPool {
+
     //region Filtering parameters and operator properties
     protected final static String QUALIFICATION_STARTER = "Starter";
     protected final static String QUALIFICATION_SENIOR = "Senior Operator";
@@ -100,125 +98,6 @@ class RecruitmentPool {
     protected final static String AFFIX_CROWD_CONTROL = "Crowd-Control";
     protected final static String AFFIX_NUKER = "Nuker";
     //endregion
-
-    protected static class RecruitableOperator {
-        final String operatorName;
-        final String attackType;
-        final String qualification;
-        final int rarity;
-        final String archetype;
-        final String inGameClass;
-        final String affix1;
-        final String affix2;
-        final String affix3;
-        int archetypeIconDrawableID;
-        int classIconDrawableID;
-        int portraitDrawableID;
-
-        RecruitableOperator(String operatorName, String attackType, String qualification, int rarity,
-                            String archetype, String inGameClass, String affix1, String affix2,
-                            String affix3, int archetypeIconDrawableID, int classIconDrawableID, int portraitDrawableID) {
-            this.operatorName = operatorName;
-            this.attackType = attackType;
-            this.qualification = qualification;
-            this.rarity = rarity;
-            this.archetype = archetype;
-            this.inGameClass = inGameClass;
-            this.affix1 = affix1;
-            this.affix2 = affix2;
-            this.affix3 = affix3;
-            this.archetypeIconDrawableID = archetypeIconDrawableID;
-            this.classIconDrawableID = classIconDrawableID;
-            this.portraitDrawableID = portraitDrawableID;
-        }
-
-        public List<String> getTags() {
-            List<String> result = new ArrayList<>();
-            result.add(attackType);
-            result.add(qualification);
-            result.add("" + rarity);
-            result.add(inGameClass);
-            result.add(affix1);
-            result.add(affix2);
-            result.add(affix3);
-            return result;
-        }
-
-        @Override
-        @NonNull
-        public String toString() {
-            return "RecruitableOperator{" +
-                    "name='" + operatorName + '\'' +
-                    ", attackType='" + attackType + '\'' +
-                    ", qualification='" + qualification + '\'' +
-                    ", rarity=" + rarity +
-                    ", inGameClass='" + archetype + '\'' +
-                    ", inGameClass='" + inGameClass + '\'' +
-                    ", affix1='" + affix1 + '\'' +
-                    ", affix2='" + affix2 + '\'' +
-                    ", affix3='" + affix3 + '\'' +
-                    '}';
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) {
-                return true;
-            }
-            if (o == null || getClass() != o.getClass()) {
-                return false;
-            }
-            RecruitableOperator that = (RecruitableOperator) o;
-            return rarity == that.rarity && Objects.equals(operatorName, that.operatorName) &&
-                    Objects.equals(attackType, that.attackType) &&
-                    Objects.equals(qualification, that.qualification) &&
-                    Objects.equals(inGameClass, that.inGameClass) &&
-                    Objects.equals(affix1, that.affix1) && Objects.equals(affix2, that.affix2) &&
-                    Objects.equals(affix3, that.affix3);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(operatorName, attackType, qualification, rarity, inGameClass,
-                    affix1, affix2, affix3);
-        }
-    }
-
-    static List<String> operatorTags = new ArrayList<>();
-
-    static {
-        operatorTags.add(QUALIFICATION_STARTER);
-        operatorTags.add(QUALIFICATION_SENIOR);
-        operatorTags.add(QUALIFICATION_TOP);
-
-        operatorTags.add(ATTACK_TYPE_MELEE);
-        operatorTags.add(ATTACK_TYPE_RANGED);
-
-        operatorTags.add(CLASS_GUARD);
-        operatorTags.add(CLASS_SPECIALIST);
-        operatorTags.add(CLASS_SNIPER);
-        operatorTags.add(CLASS_CASTER);
-        operatorTags.add(CLASS_DEFENDER);
-        operatorTags.add(CLASS_MEDIC);
-        operatorTags.add(CLASS_SUPPORTER);
-        operatorTags.add(CLASS_VANGUARD);
-
-        operatorTags.add(AFFIX_HEALING);
-        operatorTags.add(AFFIX_DEFENSE);
-        operatorTags.add(AFFIX_SLOW);
-        operatorTags.add(AFFIX_DP_RECOVERY);
-        operatorTags.add(AFFIX_AOE);
-        operatorTags.add(AFFIX_DPS);
-        operatorTags.add(AFFIX_SURVIVAL);
-        operatorTags.add(AFFIX_SHIFT);
-        operatorTags.add(AFFIX_SUPPORT);
-        operatorTags.add(AFFIX_DEBUFF);
-        operatorTags.add(AFFIX_FAST_REDEPLOY);
-        operatorTags.add(AFFIX_ROBOT);
-        operatorTags.add(AFFIX_SUMMON);
-        operatorTags.add(AFFIX_CROWD_CONTROL);
-        operatorTags.add(AFFIX_NUKER);
-    }
 
     /* The RecruitmentPool ArrayList, that contains all of the current global server operators in recruitment pool.
      * When in-game recruitment pool updates, simply add a new RecruitableOperator to this ArrayList and assign its in-game attributes */

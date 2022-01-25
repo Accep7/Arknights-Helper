@@ -17,46 +17,46 @@
             android:nestedScrollingEnabled="false">
 
             <TextView
-                android:id="@+id/text_view_heading"
+                android:id="@+id/rec_calc_activity_heading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/select_the_tags"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/topline"
+                app:layout_constraintBottom_toTopOf="@id/divider_heading"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <!-- region Qualification -->
             <View
-                android:id="@+id/topline"
+                android:id="@+id/divider_heading"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/divider_background"
-                app:layout_constraintBottom_toBottomOf="@id/text_view_heading"
-                app:layout_constraintTop_toBottomOf="@id/text_view_heading" />
+                android:background="@color/divider_bg"
+                app:layout_constraintBottom_toBottomOf="@id/rec_calc_activity_heading"
+                app:layout_constraintTop_toBottomOf="@id/rec_calc_activity_heading" />
 
             <View
-                android:id="@+id/line_1"
+                android:id="@+id/qualification_divider"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/divider_background"
+                android:background="@color/divider_bg"
                 app:layout_constraintBottom_toBottomOf="@id/qualification_starter"
-                app:layout_constraintTop_toBottomOf="@id/text_view_quali" />
+                app:layout_constraintTop_toBottomOf="@id/section_qualification" />
 
             <TextView
-                android:id="@+id/text_view_quali"
+                android:id="@+id/section_qualification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:text="@string/qualification"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/line_1"
+                app:layout_constraintBottom_toTopOf="@id/qualification_divider"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/qualification_starter"
-                app:layout_constraintTop_toTopOf="@id/topline" />
+                app:layout_constraintTop_toTopOf="@id/divider_heading" />
 
             <ToggleButton
                 android:id="@+id/qualification_starter"
@@ -64,95 +64,95 @@
                 android:layout_height="wrap_content"
                 android:textOff="@string/starter"
                 android:textOn="@string/starter"
-                app:layout_constraintBottom_toTopOf="@id/line_1"
-                app:layout_constraintEnd_toStartOf="@+id/qualification_seniorOp"
+                app:layout_constraintBottom_toTopOf="@id/qualification_divider"
+                app:layout_constraintEnd_toStartOf="@+id/qualification_senior_operator"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toEndOf="@+id/text_view_quali"
-                app:layout_constraintTop_toBottomOf="@id/topline" />
+                app:layout_constraintStart_toEndOf="@+id/section_qualification"
+                app:layout_constraintTop_toBottomOf="@id/divider_heading" />
 
             <ToggleButton
-                android:id="@+id/qualification_seniorOp"
+                android:id="@+id/qualification_senior_operator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textOff="@string/senior_op"
                 android:textOn="@string/senior_op"
-                app:layout_constraintBottom_toTopOf="@id/line_1"
-                app:layout_constraintEnd_toStartOf="@+id/qualification_topOp"
+                app:layout_constraintBottom_toTopOf="@id/qualification_divider"
+                app:layout_constraintEnd_toStartOf="@+id/qualification_top_operator"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/qualification_starter"
-                app:layout_constraintTop_toBottomOf="@id/topline" />
+                app:layout_constraintTop_toBottomOf="@id/divider_heading" />
 
             <ToggleButton
-                android:id="@+id/qualification_topOp"
+                android:id="@+id/qualification_top_operator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textOff="@string/top_op"
                 android:textOn="@string/top_op"
-                app:layout_constraintBottom_toTopOf="@id/line_1"
+                app:layout_constraintBottom_toTopOf="@id/qualification_divider"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/qualification_seniorOp"
-                app:layout_constraintTop_toBottomOf="@id/topline" />
+                app:layout_constraintStart_toEndOf="@+id/qualification_senior_operator"
+                app:layout_constraintTop_toBottomOf="@id/divider_heading" />
             <!-- endregion -->
 
             <!-- region Attack type -->
             <View
-                android:id="@+id/line_2"
+                android:id="@+id/divider_attack_type"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/divider_background"
-                app:layout_constraintTop_toBottomOf="@id/atk_type_melee" />
+                android:background="@color/divider_bg"
+                app:layout_constraintTop_toBottomOf="@id/attack_type_melee" />
 
             <TextView
-                android:id="@+id/text_view_atktype"
+                android:id="@+id/section_attack_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/attack_type"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/line_2"
+                app:layout_constraintBottom_toTopOf="@id/divider_attack_type"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/qualification_starter"
-                app:layout_constraintTop_toBottomOf="@id/line_1" />
+                app:layout_constraintTop_toBottomOf="@id/qualification_divider" />
 
             <ToggleButton
-                android:id="@+id/atk_type_melee"
+                android:id="@+id/attack_type_melee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textOff="@string/melee"
                 android:textOn="@string/melee"
-                app:layout_constraintBottom_toTopOf="@id/line_2"
+                app:layout_constraintBottom_toTopOf="@id/divider_attack_type"
                 app:layout_constraintLeft_toLeftOf="@id/qualification_starter"
-                app:layout_constraintTop_toBottomOf="@id/line_1" />
+                app:layout_constraintTop_toBottomOf="@id/qualification_divider" />
 
             <ToggleButton
-                android:id="@+id/atk_type_ranged"
+                android:id="@+id/attack_type_ranged"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textOff="@string/ranged"
                 android:textOn="@string/ranged"
-                app:layout_constraintBottom_toTopOf="@id/line_2"
-                app:layout_constraintLeft_toRightOf="@id/atk_type_melee"
-                app:layout_constraintTop_toBottomOf="@id/line_1" />
+                app:layout_constraintBottom_toTopOf="@id/divider_attack_type"
+                app:layout_constraintLeft_toRightOf="@id/attack_type_melee"
+                app:layout_constraintTop_toBottomOf="@id/qualification_divider" />
             <!-- endregion -->
 
             <!-- region Class -->
             <View
-                android:id="@+id/line_3"
+                android:id="@+id/divider_class"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/divider_background"
+                android:background="@color/divider_bg"
                 app:layout_constraintTop_toBottomOf="@id/class_supporter" />
 
             <TextView
-                android:id="@+id/text_view_class"
+                android:id="@+id/section_class"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/inGameClass"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/line_3"
+                app:layout_constraintBottom_toTopOf="@id/divider_class"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/qualification_starter"
-                app:layout_constraintTop_toBottomOf="@id/line_2" />
+                app:layout_constraintTop_toBottomOf="@id/divider_attack_type" />
 
             <ToggleButton
                 android:id="@+id/class_guard"
@@ -160,8 +160,8 @@
                 android:layout_height="wrap_content"
                 android:textOff="@string/guard"
                 android:textOn="@string/guard"
-                app:layout_constraintLeft_toLeftOf="@id/atk_type_melee"
-                app:layout_constraintTop_toBottomOf="@id/atk_type_melee" />
+                app:layout_constraintLeft_toLeftOf="@id/attack_type_melee"
+                app:layout_constraintTop_toBottomOf="@id/attack_type_melee" />
 
             <ToggleButton
                 android:id="@+id/class_specialist"
@@ -228,17 +228,17 @@
                 android:layout_height="wrap_content"
                 android:textOff="@string/supporter"
                 android:textOn="@string/supporter"
-                app:layout_constraintBottom_toTopOf="@id/line_3"
+                app:layout_constraintBottom_toTopOf="@id/divider_class"
                 app:layout_constraintLeft_toLeftOf="@id/class_guard"
                 app:layout_constraintTop_toBottomOf="@id/class_guard" />
             <!-- endregion -->
 
             <!-- region Affix -->
             <View
-                android:id="@+id/line_4"
+                android:id="@+id/divider_affix"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/divider_background"
+                android:background="@color/divider_bg"
                 app:layout_constraintTop_toBottomOf="@id/affix_cc" />
 
             <TextView
@@ -247,10 +247,10 @@
                 android:layout_height="wrap_content"
                 android:text="@string/affix"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/line_4"
+                app:layout_constraintBottom_toTopOf="@id/divider_affix"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/qualification_starter"
-                app:layout_constraintTop_toBottomOf="@id/line_3" />
+                app:layout_constraintTop_toBottomOf="@id/divider_class" />
 
             <ToggleButton
                 android:id="@+id/affix_healing"
@@ -259,7 +259,7 @@
                 android:textOff="@string/healing"
                 android:textOn="@string/healing"
                 app:layout_constraintLeft_toLeftOf="@id/class_guard"
-                app:layout_constraintTop_toBottomOf="@id/line_3" />
+                app:layout_constraintTop_toBottomOf="@id/divider_class" />
 
             <ToggleButton
                 android:id="@+id/affix_defense"
@@ -278,13 +278,13 @@
                 android:layout_height="wrap_content"
                 android:textOff="@string/slow"
                 android:textOn="@string/slow"
-                app:layout_constraintEnd_toStartOf="@+id/affix_dprec"
+                app:layout_constraintEnd_toStartOf="@+id/affix_dp_recovery"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/affix_defense"
                 app:layout_constraintTop_toTopOf="@id/affix_healing" />
 
             <ToggleButton
-                android:id="@+id/affix_dprec"
+                android:id="@+id/affix_dp_recovery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textOff="@string/dp_recovery"
@@ -302,7 +302,7 @@
                 android:textOn="@string/aoe"
                 app:layout_constraintEnd_toStartOf="@+id/affix_dps"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/affix_dprec"
+                app:layout_constraintStart_toEndOf="@+id/affix_dp_recovery"
                 app:layout_constraintTop_toTopOf="@id/affix_healing" />
 
             <ToggleButton
@@ -354,11 +354,11 @@
                 android:textOff="@string/debuff"
                 android:textOn="@string/debuff"
                 app:layout_constraintLeft_toRightOf="@id/affix_support"
-                app:layout_constraintRight_toLeftOf="@id/affix_fastred"
+                app:layout_constraintRight_toLeftOf="@id/affix_fast_redeploy"
                 app:layout_constraintTop_toTopOf="@id/affix_shift" />
 
             <ToggleButton
-                android:id="@+id/affix_fastred"
+                android:id="@+id/affix_fast_redeploy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textOff="@string/fast_redeploy"
@@ -373,7 +373,7 @@
                 android:layout_height="wrap_content"
                 android:textOff="@string/robot"
                 android:textOn="@string/robot"
-                app:layout_constraintLeft_toRightOf="@id/affix_fastred"
+                app:layout_constraintLeft_toRightOf="@id/affix_fast_redeploy"
                 app:layout_constraintRight_toLeftOf="@id/affix_summon"
                 app:layout_constraintTop_toTopOf="@id/affix_shift" />
 
@@ -408,15 +408,15 @@
 
             <!--region Results-->
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/resultsLayout"
+                android:id="@+id/results_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/line_4">
+                app:layout_constraintTop_toBottomOf="@id/divider_affix">
 
 
                 <Button
-                    android:id="@+id/resetButton"
+                    android:id="@+id/reset_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -426,14 +426,14 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <View
-                    android:id="@+id/line_5"
+                    android:id="@+id/divider_reset"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/divider_background"
-                    app:layout_constraintTop_toBottomOf="@id/resetButton" />
+                    android:background="@color/divider_bg"
+                    app:layout_constraintTop_toBottomOf="@id/reset_button" />
 
                 <TextView
-                    android:id="@+id/text_view_results"
+                    android:id="@+id/heading_results"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/results"
@@ -441,51 +441,51 @@
                     android:textStyle="bold"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/line_5" />
+                    app:layout_constraintTop_toBottomOf="@id/divider_reset" />
 
                 <View
-                    android:id="@+id/line_6"
+                    android:id="@+id/divider_results"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/divider_background"
-                    app:layout_constraintTop_toBottomOf="@id/text_view_results" />
+                    android:background="@color/divider_bg"
+                    app:layout_constraintTop_toBottomOf="@id/heading_results" />
 
                 <TextView
-                    android:id="@+id/text_view_tag"
+                    android:id="@+id/heading_selected_tag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:text="@string/tag"
                     android:textSize="14sp"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/line_6" />
+                    app:layout_constraintTop_toBottomOf="@id/divider_results" />
 
                 <TextView
-                    android:id="@+id/text_view_characterPossibility"
+                    android:id="@+id/heading_character_possibility"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/possible_character"
                     android:textSize="14sp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/line_6" />
+                    app:layout_constraintTop_toBottomOf="@id/divider_results" />
 
                 <View
-                    android:id="@+id/line_7"
+                    android:id="@+id/divider_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="@color/divider_background"
-                    app:layout_constraintTop_toBottomOf="@id/text_view_tag" />
+                    android:background="@color/divider_bg"
+                    app:layout_constraintTop_toBottomOf="@id/heading_selected_tag" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerview_group"
+                    android:id="@+id/recycler_view_group"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:nestedScrollingEnabled="true"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/line_7" />
+                    app:layout_constraintTop_toBottomOf="@id/divider_recycler" />
             </androidx.constraintlayout.widget.ConstraintLayout>
             <!-- endregion -->
 

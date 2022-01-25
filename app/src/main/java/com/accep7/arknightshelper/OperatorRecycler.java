@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Inner recycler that adds elements (operators) to a larger group recycler (tag groups)
-public class ItemRecycler implements Comparable<ItemRecycler> {
+public class OperatorRecycler implements Comparable<OperatorRecycler> {
     private final List<String> tagList;
     private final List<OperatorWrapper> operatorList = new ArrayList<>();
 
-    public ItemRecycler(List<String> tagList, OperatorWrapper operator) {
+    public OperatorRecycler(List<String> tagList, OperatorWrapper operator) {
         this.tagList = tagList;
         operatorList.add(operator);
     }
@@ -25,16 +25,15 @@ public class ItemRecycler implements Comparable<ItemRecycler> {
         if (!operatorList.contains(operator)) {
             operatorList.add(operator);
         }
-
     }
 
     public void sortByRarity() {
         operatorList.sort((operator1, operator2) ->
-                operator2.getOperator().rarity - operator1.getOperator().rarity);
+                operator2.getOperator().getRarity() - operator1.getOperator().getRarity());
     }
 
     @Override
-    public int compareTo(ItemRecycler itemRecycler) {
-        return Integer.compare(itemRecycler.tagList.size(), this.tagList.size());
+    public int compareTo(OperatorRecycler operatorRecycler) {
+        return Integer.compare(operatorRecycler.tagList.size(), this.tagList.size());
     }
 }
