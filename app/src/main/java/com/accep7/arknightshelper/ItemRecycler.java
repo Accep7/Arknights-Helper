@@ -25,7 +25,12 @@ public class ItemRecycler implements Comparable<ItemRecycler> {
         if (!operatorList.contains(operator)) {
             operatorList.add(operator);
         }
-        operatorList.sort((operator1, operator2) -> operator2.getOperator().rarity - operator1.getOperator().rarity);
+
+    }
+
+    public void sortByRarity() {
+        operatorList.sort((operator1, operator2) ->
+                operator2.getOperator().rarity - operator1.getOperator().rarity);
     }
 
     @Override

@@ -56,12 +56,9 @@ public class MainActivity extends AppCompatActivity {
     private final RecyclerView.LayoutManager groupLayout = new LinearLayoutManager(this,
             LinearLayoutManager.VERTICAL, false);
 
-    /* This hashmap is used to iterate over for purposes of filtering the RecruitmentPool ArrayList
-     * and locking excess buttons.
-     * OperatorPredicate is used to assign each button to its corresponding filtering parameter.
-     * E.g. "Melee" toggle button is paired with String type "ATTACK_TYPE_MELEE" predicate.
-     * Pressing "Melee" button will output all of the operators with "ATTACK_TYPE_MELEE" */
-    private final List<ToggleButton> buttonLockAndReset = new ArrayList<>();
+    /* This list is used for purposes of filtering the RecruitmentPool ArrayList and UX features,
+     * such as locking other buttons when 5 of them already pressed. */
+    private final List<ToggleButton> buttonList = new ArrayList<>();
 
     // Button logic and initialization
     private void initToggleButton(int buttonId, String tag) {
@@ -81,12 +78,12 @@ public class MainActivity extends AppCompatActivity {
             }
             filterRecruitmentPool();
         });
-        buttonLockAndReset.add(tb);
+        buttonList.add(tb);
     }
 
     private void filterRecruitmentPool() {
         List<String> selectedTags = new ArrayList<>();
-        for (ToggleButton toggleButton : buttonLockAndReset) {
+        for (ToggleButton toggleButton : buttonList) {
             if (toggleButton.isChecked()) {
                 selectedTags.add(toggleButton.getText().toString());
             }
@@ -98,14 +95,14 @@ public class MainActivity extends AppCompatActivity {
         }).start();
     }
 
-    /* UX feature - When 5th button is checked, this method iterates over Map of buttons and locks
+    /* UX feature - When 5th button is checked, this method iterates over a list of buttons and locks
      * all other unchecked buttons. setAlpha is used to visually differentiate locked buttons. */
     private void lockExcessFilters(ToggleButton toggleButton) {
         if (activeTagCounter == 5) {
             Toast.makeText(toggleButton.getContext(),
                     "You can only select a maximum of 5 tags. Other tags are locked now",
                     Toast.LENGTH_LONG).show();
-            for (ToggleButton button : buttonLockAndReset) {
+            for (ToggleButton button : buttonList) {
                 if (!button.isChecked()) {
                     button.setEnabled(false);
                     button.getBackground().setAlpha(64);
@@ -117,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
     // UX feature - unlocks all other buttons when less than 5 buttons are pressed
     private void unlockExcessFilters() {
         if (activeTagCounter < 5) {
-            for (ToggleButton toggleButton : buttonLockAndReset) {
+            for (ToggleButton toggleButton : buttonList) {
                 if (!toggleButton.isChecked()) {
                     toggleButton.setEnabled(true);
                     toggleButton.getBackground().setAlpha(255);
@@ -127,25 +124,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // UX feature - displays current number of active tags on reset button
-    protected void setSelectedFilterCounter() {
+    private void setSelectedFilterCounter() {
         resetButton.setText(resetButton.getContext().getString(R.string.resetButtonCounter, activeTagCounter));
     }
 
-    protected void showResults() {
+    private void showResults() {
         resultsLayout.setVisibility(View.VISIBLE);
     }
 
-    protected void hideResults() {
+    private void hideResults() {
         if (activeTagCounter == 0) {
             resultsLayout.setVisibility(View.GONE);
         }
     }
 
 
-    /* Big red Reset button that iterates over Map of buttons and returns checked buttons to their
+    /* Big red Reset button that iterates over list of buttons and returns checked buttons to their
      * initial unchecked state */
     private void resetSelection() {
-        for (ToggleButton toggleButton : buttonLockAndReset) {
+        for (ToggleButton toggleButton : buttonList) {
             if (toggleButton.isChecked()) {
                 toggleButton.setChecked(false);
             }
