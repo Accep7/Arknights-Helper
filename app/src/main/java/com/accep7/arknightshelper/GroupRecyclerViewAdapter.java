@@ -40,18 +40,18 @@ public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecycler
 
     static class OperatorHolder extends RecyclerView.ViewHolder {
         TextView selectedTag;
-        RecyclerView entryRecycler;
+        RecyclerView itemRecycler;
 
 
         public OperatorHolder(View itemView) {
             super(itemView);
             selectedTag = itemView.findViewById(R.id.selectedTag);
-            entryRecycler = itemView.findViewById(R.id.group_entries);
+            itemRecycler = itemView.findViewById(R.id.group_items);
         }
 
-        public void bind(ItemRecycler entry) {
-            selectedTag.setText(String.join(",\n", entry.getTagList()));
-            entryRecycler.setAdapter(new ItemRecyclerViewAdapter(entry.getOperatorList()));
+        public void bind(ItemRecycler item) {
+            selectedTag.setText(String.join(",\n", item.getTagList()));
+            this.itemRecycler.setAdapter(new ItemRecyclerViewAdapter(item.getOperatorList()));
 
         }
     }

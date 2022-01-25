@@ -34,7 +34,8 @@ public class OperatorWrapper {
             return false;
         }
         OperatorWrapper that = (OperatorWrapper) o;
-        return Objects.equals(operator, that.operator) && Objects.equals(selectedTagsList, that.selectedTagsList);
+        return Objects.equals(operator, that.operator) &&
+                Objects.equals(selectedTagsList, that.selectedTagsList);
     }
 
     @Override

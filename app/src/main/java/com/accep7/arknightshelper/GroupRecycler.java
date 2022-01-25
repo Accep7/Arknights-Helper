@@ -46,6 +46,9 @@ public class GroupRecycler {
             }
             sample--;
         }
+        for (ItemRecycler tagsGroup : result) {
+            tagsGroup.sortByRarity();
+        }
         Collections.sort(result);
         return result;
     }
@@ -101,18 +104,18 @@ public class GroupRecycler {
         return result;
     }
 
-    private static void addOperator(List<ItemRecycler> resultList, List<String> tags,
+    private static void addOperator(List<ItemRecycler> groupsList, List<String> tags,
                                     RecruitableOperator operator) {
         boolean added = false;
-        for (int i = 0; i < resultList.size(); i++) {
-            ItemRecycler itemRecycler = resultList.get(i);
-            if (itemRecycler.getTagList().equals(tags)) {
-                itemRecycler.addOperator(new OperatorWrapper(operator));
+        for (int i = 0; i < groupsList.size(); i++) {
+            ItemRecycler tagsGroup = groupsList.get(i);
+            if (tagsGroup.getTagList().equals(tags)) {
+                tagsGroup.addOperator(new OperatorWrapper(operator));
                 added = true;
             }
         }
         if (!added) {
-            resultList.add(new ItemRecycler(tags, new OperatorWrapper(operator)));
+            groupsList.add(new ItemRecycler(tags, new OperatorWrapper(operator)));
         }
     }
 }

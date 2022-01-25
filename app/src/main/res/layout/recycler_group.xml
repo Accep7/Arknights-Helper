@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/group_entries"
+        android:id="@+id/group_items"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -31,11 +31,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="selectedTag,group_entries"
+        app:constraint_referenced_ids="selectedTag,group_items"
         tools:layout_editor_absoluteX="5dp" />
 
     <View
-        android:id="@+id/group_line"
+        android:id="@+id/group_divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/divider_background"
