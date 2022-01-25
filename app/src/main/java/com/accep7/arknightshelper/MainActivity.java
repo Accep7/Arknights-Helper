@@ -1,5 +1,34 @@
 package com.accep7.arknightshelper;
 
+import static com.accep7.arknightshelper.RecruitmentPool.AFFIX_AOE;
+import static com.accep7.arknightshelper.RecruitmentPool.AFFIX_CROWD_CONTROL;
+import static com.accep7.arknightshelper.RecruitmentPool.AFFIX_DEBUFF;
+import static com.accep7.arknightshelper.RecruitmentPool.AFFIX_DEFENSE;
+import static com.accep7.arknightshelper.RecruitmentPool.AFFIX_DPS;
+import static com.accep7.arknightshelper.RecruitmentPool.AFFIX_DP_RECOVERY;
+import static com.accep7.arknightshelper.RecruitmentPool.AFFIX_FAST_REDEPLOY;
+import static com.accep7.arknightshelper.RecruitmentPool.AFFIX_HEALING;
+import static com.accep7.arknightshelper.RecruitmentPool.AFFIX_NUKER;
+import static com.accep7.arknightshelper.RecruitmentPool.AFFIX_ROBOT;
+import static com.accep7.arknightshelper.RecruitmentPool.AFFIX_SHIFT;
+import static com.accep7.arknightshelper.RecruitmentPool.AFFIX_SLOW;
+import static com.accep7.arknightshelper.RecruitmentPool.AFFIX_SUMMON;
+import static com.accep7.arknightshelper.RecruitmentPool.AFFIX_SUPPORT;
+import static com.accep7.arknightshelper.RecruitmentPool.AFFIX_SURVIVAL;
+import static com.accep7.arknightshelper.RecruitmentPool.ATTACK_TYPE_MELEE;
+import static com.accep7.arknightshelper.RecruitmentPool.ATTACK_TYPE_RANGED;
+import static com.accep7.arknightshelper.RecruitmentPool.CLASS_CASTER;
+import static com.accep7.arknightshelper.RecruitmentPool.CLASS_DEFENDER;
+import static com.accep7.arknightshelper.RecruitmentPool.CLASS_GUARD;
+import static com.accep7.arknightshelper.RecruitmentPool.CLASS_MEDIC;
+import static com.accep7.arknightshelper.RecruitmentPool.CLASS_SNIPER;
+import static com.accep7.arknightshelper.RecruitmentPool.CLASS_SPECIALIST;
+import static com.accep7.arknightshelper.RecruitmentPool.CLASS_SUPPORTER;
+import static com.accep7.arknightshelper.RecruitmentPool.CLASS_VANGUARD;
+import static com.accep7.arknightshelper.RecruitmentPool.QUALIFICATION_SENIOR;
+import static com.accep7.arknightshelper.RecruitmentPool.QUALIFICATION_STARTER;
+import static com.accep7.arknightshelper.RecruitmentPool.QUALIFICATION_TOP;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -14,7 +43,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,11 +61,12 @@ public class MainActivity extends AppCompatActivity {
      * OperatorPredicate is used to assign each button to its corresponding filtering parameter.
      * E.g. "Melee" toggle button is paired with String type "ATTACK_TYPE_MELEE" predicate.
      * Pressing "Melee" button will output all of the operators with "ATTACK_TYPE_MELEE" */
-    private final HashMap<ToggleButton, OperatorPredicate> buttonLockAndReset = new HashMap<>();
+    private final List<ToggleButton> buttonLockAndReset = new ArrayList<>();
 
     // Button logic and initialization
-    private void initToggleButton(int buttonId, OperatorPredicate filteringParameter) {
+    private void initToggleButton(int buttonId, String tag) {
         ToggleButton tb = findViewById(buttonId);
+        tb.setText(tag);
         tb.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 activeTagCounter++;
@@ -52,12 +81,12 @@ public class MainActivity extends AppCompatActivity {
             }
             filterRecruitmentPool();
         });
-        buttonLockAndReset.put(tb, filteringParameter);
+        buttonLockAndReset.add(tb);
     }
 
     private void filterRecruitmentPool() {
         List<String> selectedTags = new ArrayList<>();
-        for (ToggleButton toggleButton : buttonLockAndReset.keySet()) {
+        for (ToggleButton toggleButton : buttonLockAndReset) {
             if (toggleButton.isChecked()) {
                 selectedTags.add(toggleButton.getText().toString());
             }
@@ -76,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(toggleButton.getContext(),
                     "You can only select a maximum of 5 tags. Other tags are locked now",
                     Toast.LENGTH_LONG).show();
-            for (ToggleButton button : buttonLockAndReset.keySet()) {
+            for (ToggleButton button : buttonLockAndReset) {
                 if (!button.isChecked()) {
                     button.setEnabled(false);
                     button.getBackground().setAlpha(64);
@@ -88,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
     // UX feature - unlocks all other buttons when less than 5 buttons are pressed
     private void unlockExcessFilters() {
         if (activeTagCounter < 5) {
-            for (ToggleButton toggleButton : buttonLockAndReset.keySet()) {
+            for (ToggleButton toggleButton : buttonLockAndReset) {
                 if (!toggleButton.isChecked()) {
                     toggleButton.setEnabled(true);
                     toggleButton.getBackground().setAlpha(255);
@@ -116,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
     /* Big red Reset button that iterates over Map of buttons and returns checked buttons to their
      * initial unchecked state */
     private void resetSelection() {
-        for (ToggleButton toggleButton : buttonLockAndReset.keySet()) {
+        for (ToggleButton toggleButton : buttonLockAndReset) {
             if (toggleButton.isChecked()) {
                 toggleButton.setChecked(false);
             }
@@ -134,112 +163,40 @@ public class MainActivity extends AppCompatActivity {
         resultsLayout = findViewById(R.id.resultsLayout);
 
         // Qualification Filter Buttons
-        initToggleButton(R.id.qualification_starter, operator ->
-                RecruitmentPool.QUALIFICATION_STARTER.equals(operator.qualification));
-        initToggleButton(R.id.qualification_seniorOp, operator ->
-                RecruitmentPool.QUALIFICATION_SENIOR.equals(operator.qualification));
-        initToggleButton(R.id.qualification_topOp, operator ->
-                RecruitmentPool.QUALIFICATION_TOP.equals(operator.qualification));
+        initToggleButton(R.id.qualification_starter, QUALIFICATION_STARTER);
+        initToggleButton(R.id.qualification_seniorOp, QUALIFICATION_SENIOR);
+        initToggleButton(R.id.qualification_topOp, QUALIFICATION_TOP);
 
         // Attack type Filter Buttons
-        initToggleButton(R.id.atk_type_melee, operator ->
-                operator.attackType.equals(RecruitmentPool.ATTACK_TYPE_MELEE));
-        initToggleButton(R.id.atk_type_ranged, operator ->
-                operator.attackType.equals(RecruitmentPool.ATTACK_TYPE_RANGED));
+        initToggleButton(R.id.atk_type_melee, ATTACK_TYPE_MELEE);
+        initToggleButton(R.id.atk_type_ranged, ATTACK_TYPE_RANGED);
 
         // Class Filter Buttons
-        initToggleButton(R.id.class_guard, operator ->
-                operator.inGameClass.equals(RecruitmentPool.CLASS_GUARD));
-        initToggleButton(R.id.class_specialist, operator ->
-                operator.inGameClass.equals(RecruitmentPool.CLASS_SPECIALIST));
-        initToggleButton(R.id.class_sniper, operator ->
-                operator.inGameClass.equals(RecruitmentPool.CLASS_SNIPER));
-        initToggleButton(R.id.class_caster, operator ->
-                operator.inGameClass.equals(RecruitmentPool.CLASS_CASTER));
-        initToggleButton(R.id.class_defender, operator ->
-                operator.inGameClass.equals(RecruitmentPool.CLASS_DEFENDER));
-        initToggleButton(R.id.class_medic, operator ->
-                operator.inGameClass.equals(RecruitmentPool.CLASS_MEDIC));
-        initToggleButton(R.id.class_vanguard, operator ->
-                operator.inGameClass.equals(RecruitmentPool.CLASS_VANGUARD));
-        initToggleButton(R.id.class_supporter, operator ->
-                operator.inGameClass.equals(RecruitmentPool.CLASS_SUPPORTER));
+        initToggleButton(R.id.class_guard, CLASS_GUARD);
+        initToggleButton(R.id.class_specialist, CLASS_SPECIALIST);
+        initToggleButton(R.id.class_sniper, CLASS_SNIPER);
+        initToggleButton(R.id.class_caster, CLASS_CASTER);
+        initToggleButton(R.id.class_defender, CLASS_DEFENDER);
+        initToggleButton(R.id.class_medic, CLASS_MEDIC);
+        initToggleButton(R.id.class_vanguard, CLASS_VANGUARD);
+        initToggleButton(R.id.class_supporter, CLASS_SUPPORTER);
 
         //region Affix Filter Buttons
-        initToggleButton(R.id.affix_healing, operator ->
-                RecruitmentPool.AFFIX_HEALING.equals(operator.affix1)
-                        || RecruitmentPool.AFFIX_HEALING.equals(operator.affix2)
-                        || RecruitmentPool.AFFIX_HEALING.equals(operator.affix3));
-
-        initToggleButton(R.id.affix_defense, operator ->
-                RecruitmentPool.AFFIX_DEFENSE.equals(operator.affix1)
-                        || RecruitmentPool.AFFIX_DEFENSE.equals(operator.affix2)
-                        || RecruitmentPool.AFFIX_DEFENSE.equals(operator.affix3));
-
-        initToggleButton(R.id.affix_slow, operator ->
-                RecruitmentPool.AFFIX_SLOW.equals(operator.affix1)
-                        || RecruitmentPool.AFFIX_SLOW.equals(operator.affix2)
-                        || RecruitmentPool.AFFIX_SLOW.equals(operator.affix3));
-
-        initToggleButton(R.id.affix_dprec, operator ->
-                RecruitmentPool.AFFIX_DP_RECOVERY.equals(operator.affix1)
-                        || RecruitmentPool.AFFIX_DP_RECOVERY.equals(operator.affix2)
-                        || RecruitmentPool.AFFIX_DP_RECOVERY.equals(operator.affix3));
-
-        initToggleButton(R.id.affix_aoe, operator ->
-                RecruitmentPool.AFFIX_AOE.equals(operator.affix1)
-                        || RecruitmentPool.AFFIX_AOE.equals(operator.affix2)
-                        || RecruitmentPool.AFFIX_AOE.equals(operator.affix3));
-
-        initToggleButton(R.id.affix_dps, operator ->
-                RecruitmentPool.AFFIX_DPS.equals(operator.affix1)
-                        || RecruitmentPool.AFFIX_DPS.equals(operator.affix2)
-                        || RecruitmentPool.AFFIX_DPS.equals(operator.affix3));
-
-        initToggleButton(R.id.affix_survival, operator ->
-                RecruitmentPool.AFFIX_SURVIVAL.equals(operator.affix1)
-                        || RecruitmentPool.AFFIX_SURVIVAL.equals(operator.affix2)
-                        || RecruitmentPool.AFFIX_SURVIVAL.equals(operator.affix3));
-
-        initToggleButton(R.id.affix_shift, operator ->
-                RecruitmentPool.AFFIX_SHIFT.equals(operator.affix1)
-                        || RecruitmentPool.AFFIX_SHIFT.equals(operator.affix2)
-                        || RecruitmentPool.AFFIX_SHIFT.equals(operator.affix3));
-
-        initToggleButton(R.id.affix_support, operator ->
-                RecruitmentPool.AFFIX_SUPPORT.equals(operator.affix1)
-                        || RecruitmentPool.AFFIX_SUPPORT.equals(operator.affix2)
-                        || RecruitmentPool.AFFIX_SUPPORT.equals(operator.affix3));
-
-        initToggleButton(R.id.affix_debuff, operator ->
-                RecruitmentPool.AFFIX_DEBUFF.equals(operator.affix1)
-                        || RecruitmentPool.AFFIX_DEBUFF.equals(operator.affix2)
-                        || RecruitmentPool.AFFIX_DEBUFF.equals(operator.affix3));
-
-        initToggleButton(R.id.affix_fastred, operator ->
-                RecruitmentPool.AFFIX_FAST_REDEPLOY.equals(operator.affix1)
-                        || RecruitmentPool.AFFIX_FAST_REDEPLOY.equals(operator.affix2)
-                        || RecruitmentPool.AFFIX_FAST_REDEPLOY.equals(operator.affix3));
-
-        initToggleButton(R.id.affix_robot, operator ->
-                RecruitmentPool.AFFIX_ROBOT.equals(operator.affix1)
-                        || RecruitmentPool.AFFIX_ROBOT.equals(operator.affix2)
-                        || RecruitmentPool.AFFIX_ROBOT.equals(operator.affix3));
-
-        initToggleButton(R.id.affix_summon, operator ->
-                RecruitmentPool.AFFIX_SUMMON.equals(operator.affix1)
-                        || RecruitmentPool.AFFIX_SUMMON.equals(operator.affix2)
-                        || RecruitmentPool.AFFIX_SUMMON.equals(operator.affix3));
-
-        initToggleButton(R.id.affix_cc, operator ->
-                RecruitmentPool.AFFIX_CROWD_CONTROL.equals(operator.affix1)
-                        || RecruitmentPool.AFFIX_CROWD_CONTROL.equals(operator.affix2)
-                        || RecruitmentPool.AFFIX_CROWD_CONTROL.equals(operator.affix3));
-
-        initToggleButton(R.id.affix_nuker, operator ->
-                RecruitmentPool.AFFIX_NUKER.equals(operator.affix1)
-                        || RecruitmentPool.AFFIX_NUKER.equals(operator.affix2)
-                        || RecruitmentPool.AFFIX_NUKER.equals(operator.affix3));
+        initToggleButton(R.id.affix_healing, AFFIX_HEALING);
+        initToggleButton(R.id.affix_defense, AFFIX_DEFENSE);
+        initToggleButton(R.id.affix_slow, AFFIX_SLOW);
+        initToggleButton(R.id.affix_dprec, AFFIX_DP_RECOVERY);
+        initToggleButton(R.id.affix_aoe, AFFIX_AOE);
+        initToggleButton(R.id.affix_dps, AFFIX_DPS);
+        initToggleButton(R.id.affix_survival, AFFIX_SURVIVAL);
+        initToggleButton(R.id.affix_shift, AFFIX_SHIFT);
+        initToggleButton(R.id.affix_support, AFFIX_SUPPORT);
+        initToggleButton(R.id.affix_debuff, AFFIX_DEBUFF);
+        initToggleButton(R.id.affix_fastred, AFFIX_FAST_REDEPLOY);
+        initToggleButton(R.id.affix_robot, AFFIX_ROBOT);
+        initToggleButton(R.id.affix_summon, AFFIX_SUMMON);
+        initToggleButton(R.id.affix_cc, AFFIX_CROWD_CONTROL);
+        initToggleButton(R.id.affix_nuker, AFFIX_NUKER);
         //endregion
 
         RecyclerView results = findViewById(R.id.recyclerview_group);
