@@ -5,15 +5,15 @@ import java.util.List;
 import java.util.Objects;
 
 public class OperatorWrapper {
-    private final RecruitmentPool.RecruitableOperator operator;
+    private final RecruitableOperator operator;
     private final List<String> selectedTagsList = new ArrayList<>();
     private boolean isExpanded = false;
 
-    public OperatorWrapper(RecruitmentPool.RecruitableOperator operator) {
+    public OperatorWrapper(RecruitableOperator operator) {
         this.operator = operator;
     }
 
-    public RecruitmentPool.RecruitableOperator getOperator() {
+    public RecruitableOperator getOperator() {
         return operator;
     }
 

@@ -11,19 +11,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecyclerViewAdapter.OperatorHolder> {
+public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecyclerViewAdapter.GroupHolder> {
 
-    final List<ItemRecycler> operators = new ArrayList<>();
+    final List<OperatorRecycler> operators = new ArrayList<>();
 
     @NonNull
     @Override
-    public OperatorHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public GroupHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_group, parent, false);
-        return new OperatorHolder(v);
+        return new GroupHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull OperatorHolder holder, int position) {
+    public void onBindViewHolder(@NonNull GroupHolder holder, int position) {
         holder.bind(operators.get(position));
     }
 
@@ -32,27 +32,26 @@ public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecycler
         return operators.size();
     }
 
-    public void addAll(List<ItemRecycler> entries) {
+    public void addAll(List<OperatorRecycler> entries) {
         operators.clear();
         operators.addAll(entries);
         notifyDataSetChanged();
     }
 
-    static class OperatorHolder extends RecyclerView.ViewHolder {
+    static class GroupHolder extends RecyclerView.ViewHolder {
         TextView selectedTag;
         RecyclerView itemRecycler;
 
 
-        public OperatorHolder(View itemView) {
+        public GroupHolder(View itemView) {
             super(itemView);
             selectedTag = itemView.findViewById(R.id.selectedTag);
             itemRecycler = itemView.findViewById(R.id.group_items);
         }
 
-        public void bind(ItemRecycler item) {
-            selectedTag.setText(String.join(",\n", item.getTagList()));
-            this.itemRecycler.setAdapter(new ItemRecyclerViewAdapter(item.getOperatorList()));
-
+        public void bind(OperatorRecycler operatorRecycler) {
+            selectedTag.setText(String.join(",\n", operatorRecycler.getTagList()));
+            this.itemRecycler.setAdapter(new OperatorRecyclerViewAdapter(operatorRecycler.getOperatorList()));
         }
     }
 }
