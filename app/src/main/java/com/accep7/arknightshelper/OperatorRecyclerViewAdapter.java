@@ -36,7 +36,7 @@ public class OperatorRecyclerViewAdapter extends RecyclerView.Adapter<OperatorRe
 
         boolean isExpanded = operators.get(position).isExpanded();
         holder.expandedOperatorInfo.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
-        holder.operatorPortraitCollapsedCard.setVisibility(isExpanded ? View.GONE : View.VISIBLE);
+        holder.operatorPortraitCollapsed.setVisibility(isExpanded ? View.GONE : View.VISIBLE);
         holder.expandOperatorInfoButton.animate().setDuration(200).rotation(isExpanded ? 180 : 0);
 
         holder.itemView.setOnClickListener(v -> {
@@ -55,8 +55,7 @@ public class OperatorRecyclerViewAdapter extends RecyclerView.Adapter<OperatorRe
         TextView operatorName;
 
         ConstraintLayout expandedOperatorInfo;
-        CardView operator, operatorArchetypeCard, operatorClassCard,
-                operatorPortraitExpandedCard, operatorPortraitCollapsedCard;
+        CardView operator, operatorArchetypeCard, operatorClassCard;
         ImageView expandOperatorInfoButton, operatorArchetypeIcon, operatorClassIcon,
                 operatorPortraitExpanded, operatorPortraitCollapsed;
         TextView operatorRarity, operatorArchetypeAndClass, operatorInfoTV;
@@ -67,11 +66,9 @@ public class OperatorRecyclerViewAdapter extends RecyclerView.Adapter<OperatorRe
             operator = itemView.findViewById(R.id.recycler_item);
 
             operatorName = itemView.findViewById(R.id.operator_name);
-            operatorPortraitCollapsedCard = itemView.findViewById(R.id.operator_portrait_collapsed_card);
             expandOperatorInfoButton = itemView.findViewById(R.id.expand_button);
 
             expandedOperatorInfo = itemView.findViewById(R.id.operator_info_expanded);
-            operatorPortraitExpandedCard = itemView.findViewById(R.id.operator_portrait_expanded_card);
             operatorPortraitExpanded = itemView.findViewById(R.id.operator_portrait_expanded_icon);
             operatorArchetypeCard = itemView.findViewById(R.id.operator_archetype_card);
             operatorArchetypeIcon = itemView.findViewById(R.id.operator_archetype_icon);
@@ -87,8 +84,10 @@ public class OperatorRecyclerViewAdapter extends RecyclerView.Adapter<OperatorRe
         public void bind(OperatorWrapper operatorWrapper) {
             operatorPortraitCollapsed.setImageResource(operatorWrapper.getOperator()
                     .getPortraitDrawableID());
+            operatorPortraitCollapsed.setClipToOutline(true);
             operatorPortraitExpanded.setImageResource(operatorWrapper.getOperator()
                     .getPortraitDrawableID());
+            operatorPortraitExpanded.setClipToOutline(true);
 
             operatorName.setText(operatorWrapper.getOperator().getOperatorName());
             operatorRarity.setText(operatorRarity.getContext()

@@ -400,7 +400,6 @@
                 app:layout_constraintTop_toBottomOf="@id/divider_affix"
                 tools:visibility="visible">
 
-
                 <Button
                     android:id="@+id/reset_button"
                     android:layout_width="match_parent"
@@ -409,7 +408,8 @@
                     android:layout_marginEnd="10dp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Reset 5 tags" />
 
                 <View
                     android:id="@+id/divider_reset"
