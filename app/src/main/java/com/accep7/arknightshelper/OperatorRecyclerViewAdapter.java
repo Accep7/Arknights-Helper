@@ -52,39 +52,38 @@ public class OperatorRecyclerViewAdapter extends RecyclerView.Adapter<OperatorRe
     }
 
     static class OperatorHolder extends RecyclerView.ViewHolder {
+        CardView operatorInfo;
         TextView operatorName;
 
         ConstraintLayout expandedOperatorInfo;
-        CardView operator, operatorArchetypeCard, operatorClassCard;
-        ImageView expandOperatorInfoButton, operatorArchetypeIcon, operatorClassIcon,
-                operatorPortraitExpanded, operatorPortraitCollapsed;
-        TextView operatorRarity, operatorArchetypeAndClass, operatorInfoTV;
+
+        ImageView expandOperatorInfoButton, operatorPortraitCollapsed, operatorPortraitExpanded,
+                operatorArchetypeIcon, operatorClassIcon;
+        TextView operatorRarity, operatorArchetypeAndClass, operatorTags;
 
         public OperatorHolder(@NonNull View itemView) {
             super(itemView);
 
-            operator = itemView.findViewById(R.id.recycler_item);
-
+            operatorInfo = itemView.findViewById(R.id.recycler_item);
             operatorName = itemView.findViewById(R.id.operator_name);
             expandOperatorInfoButton = itemView.findViewById(R.id.expand_button);
-
             expandedOperatorInfo = itemView.findViewById(R.id.operator_info_expanded);
-            operatorPortraitExpanded = itemView.findViewById(R.id.operator_portrait_expanded_icon);
-            operatorArchetypeCard = itemView.findViewById(R.id.operator_archetype_card);
-            operatorArchetypeIcon = itemView.findViewById(R.id.operator_archetype_icon);
-            operatorClassCard = itemView.findViewById(R.id.operator_class_card);
-            operatorClassIcon = itemView.findViewById(R.id.operator_class_icon);
+
             operatorPortraitCollapsed = itemView.findViewById(R.id.operator_portrait_collapsed_icon);
+            operatorPortraitExpanded = itemView.findViewById(R.id.operator_portrait_expanded_icon);
+            operatorArchetypeIcon = itemView.findViewById(R.id.operator_archetype_icon);
+            operatorClassIcon = itemView.findViewById(R.id.operator_class_icon);
 
             operatorRarity = itemView.findViewById(R.id.operator_info_rarity);
             operatorArchetypeAndClass = itemView.findViewById(R.id.operator_info_type_class);
-            operatorInfoTV = itemView.findViewById(R.id.operator_info);
+            operatorTags = itemView.findViewById(R.id.operator_tags);
         }
 
         public void bind(OperatorWrapper operatorWrapper) {
             operatorPortraitCollapsed.setImageResource(operatorWrapper.getOperator()
                     .getPortraitDrawableID());
             operatorPortraitCollapsed.setClipToOutline(true);
+
             operatorPortraitExpanded.setImageResource(operatorWrapper.getOperator()
                     .getPortraitDrawableID());
             operatorPortraitExpanded.setClipToOutline(true);
@@ -97,43 +96,44 @@ public class OperatorRecyclerViewAdapter extends RecyclerView.Adapter<OperatorRe
                     operatorWrapper.getOperator().getOperatorArchetype(),
                     operatorWrapper.getOperator().getOperatorClass()));
 
-            operatorInfoTV.setText(Stream.of(
+            operatorTags.setText(Stream.of(
                     operatorWrapper.getOperator().getQualification(),
                     operatorWrapper.getOperator().getAttackType(),
                     operatorWrapper.getOperator().getAffix1(),
                     operatorWrapper.getOperator().getAffix2(),
                     operatorWrapper.getOperator().getAffix3())
                     .filter(s -> s != null && !s.isEmpty())
-                    .collect(Collectors.joining("   ")));
+                    .collect(Collectors.joining("\n")));
 
             operatorArchetypeIcon.setImageResource(operatorWrapper.getOperator()
                     .getArchetypeIconDrawableID());
+
             operatorClassIcon.setImageResource(operatorWrapper.getOperator()
                     .getClassIconDrawableID());
 
             switch (operatorWrapper.getOperator().getRarity()) {
                 case 6:
-                    operator.setCardBackgroundColor(operator.getContext().getResources()
+                    operatorInfo.setCardBackgroundColor(operatorInfo.getContext().getResources()
                             .getColor(R.color.six_star_card_bg, null));
                     break;
                 case 5:
-                    operator.setCardBackgroundColor(operator.getContext().getResources()
+                    operatorInfo.setCardBackgroundColor(operatorInfo.getContext().getResources()
                             .getColor(R.color.five_star_card_bg, null));
                     break;
                 case 4:
-                    operator.setCardBackgroundColor(operator.getContext().getResources()
+                    operatorInfo.setCardBackgroundColor(operatorInfo.getContext().getResources()
                             .getColor(R.color.four_star_card_bg, null));
                     break;
                 case 3:
-                    operator.setCardBackgroundColor(operator.getContext().getResources()
+                    operatorInfo.setCardBackgroundColor(operatorInfo.getContext().getResources()
                             .getColor(R.color.three_star_card_bg, null));
                     break;
                 case 2:
-                    operator.setCardBackgroundColor(operator.getContext().getResources()
+                    operatorInfo.setCardBackgroundColor(operatorInfo.getContext().getResources()
                             .getColor(R.color.two_star_card_bg, null));
                     break;
                 case 1:
-                    operator.setCardBackgroundColor(operator.getContext().getResources()
+                    operatorInfo.setCardBackgroundColor(operatorInfo.getContext().getResources()
                             .getColor(R.color.one_star_card_bg, null));
                     break;
             }
