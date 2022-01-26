@@ -33,9 +33,12 @@ public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecycler
     }
 
     public void addAll(List<OperatorRecycler> entries) {
-        operators.clear();
         operators.addAll(entries);
         notifyDataSetChanged();
+    }
+
+    public void clearAdapter(){
+        operators.clear();
     }
 
     static class GroupHolder extends RecyclerView.ViewHolder {
