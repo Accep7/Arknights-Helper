@@ -33,6 +33,7 @@ public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecycler
     }
 
     public void addAll(List<OperatorRecycler> entries) {
+        clearAdapter();
         operators.addAll(entries);
         notifyDataSetChanged();
     }

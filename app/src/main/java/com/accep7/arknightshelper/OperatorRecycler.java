@@ -3,7 +3,7 @@ package com.accep7.arknightshelper;
 import java.util.ArrayList;
 import java.util.List;
 
-// Inner recycler that adds elements (operators) to a larger group recycler (tag groups)
+// Child recycler that hold List of elements (operators)
 public class OperatorRecycler implements Comparable<OperatorRecycler> {
     private final List<String> tagList;
     private final List<OperatorWrapper> operatorList = new ArrayList<>();

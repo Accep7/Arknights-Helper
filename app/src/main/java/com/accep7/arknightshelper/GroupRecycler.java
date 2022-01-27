@@ -7,7 +7,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-// External recycler, handles recruitment pool filtering logic and creates tag groups of operators
+/* Parent recycler, handles recruitment pool filtering logic, contains Lists of child recyclers
+ * of corresponding tags and tag combinations */
 class GroupRecycler {
 
     // Represents the max amount of tags user can select in the game and create combinations from
