@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
                 selectedTags.add(toggleButton.getText().toString());
             }
         }
-        groupAdapter.clearAdapter();
         groupAdapter.addAll(GroupRecycler.createResults(selectedTags));
         new Thread(() -> {
             List<OperatorRecycler> results = GroupRecycler.createResults(selectedTags);
