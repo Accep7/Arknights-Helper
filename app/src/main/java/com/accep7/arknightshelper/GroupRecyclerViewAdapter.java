@@ -38,24 +38,23 @@ public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecycler
         notifyDataSetChanged();
     }
 
-    public void clearAdapter(){
+    public void clearAdapter() {
         operators.clear();
     }
 
     static class GroupHolder extends RecyclerView.ViewHolder {
         TextView selectedTag;
-        RecyclerView itemRecycler;
-
+        RecyclerView operatorRecycler;
 
         public GroupHolder(View itemView) {
             super(itemView);
             selectedTag = itemView.findViewById(R.id.selectedTag);
-            itemRecycler = itemView.findViewById(R.id.group_items);
+            operatorRecycler = itemView.findViewById(R.id.group_items);
         }
 
         public void bind(OperatorRecycler operatorRecycler) {
             selectedTag.setText(String.join(",\n", operatorRecycler.getTagList()));
-            this.itemRecycler.setAdapter(new OperatorRecyclerViewAdapter(operatorRecycler.getOperatorList()));
+            this.operatorRecycler.setAdapter(new OperatorRecyclerViewAdapter(operatorRecycler.getOperatorList()));
         }
     }
 }
