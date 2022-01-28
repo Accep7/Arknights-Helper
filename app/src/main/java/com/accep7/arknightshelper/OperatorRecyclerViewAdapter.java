@@ -34,11 +34,6 @@ public class OperatorRecyclerViewAdapter extends RecyclerView.Adapter<OperatorRe
     public void onBindViewHolder(@NonNull OperatorHolder holder, int position) {
         holder.bind(operators.get(position));
 
-        boolean isExpanded = operators.get(position).isExpanded();
-        holder.expandedOperatorInfo.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
-        holder.operatorPortraitCollapsed.setVisibility(isExpanded ? View.GONE : View.VISIBLE);
-        holder.expandOperatorInfoButton.animate().setDuration(200).rotation(isExpanded ? 180 : 0);
-
         holder.itemView.setOnClickListener(v -> {
             OperatorWrapper item = operators.get(position);
             item.setExpanded(!item.isExpanded());
@@ -52,6 +47,8 @@ public class OperatorRecyclerViewAdapter extends RecyclerView.Adapter<OperatorRe
     }
 
     static class OperatorHolder extends RecyclerView.ViewHolder {
+        ViewGroup parent;
+
         CardView operatorInfo;
         TextView operatorName;
 
@@ -63,6 +60,7 @@ public class OperatorRecyclerViewAdapter extends RecyclerView.Adapter<OperatorRe
 
         public OperatorHolder(@NonNull View itemView) {
             super(itemView);
+            parent = itemView.findViewById(R.id.recycler_vg);
 
             operatorInfo = itemView.findViewById(R.id.recycler_item);
             operatorName = itemView.findViewById(R.id.operator_name);
@@ -137,6 +135,10 @@ public class OperatorRecyclerViewAdapter extends RecyclerView.Adapter<OperatorRe
                             .getColor(R.color.one_star_card_bg, null));
                     break;
             }
+
+            expandedOperatorInfo.setVisibility(operatorWrapper.isExpanded() ? View.VISIBLE : View.GONE);
+            operatorPortraitCollapsed.setVisibility(operatorWrapper.isExpanded() ? View.GONE : View.VISIBLE);
+            expandOperatorInfoButton.animate().setDuration(200).rotation(operatorWrapper.isExpanded() ? 180 : 0);
         }
     }
 }
