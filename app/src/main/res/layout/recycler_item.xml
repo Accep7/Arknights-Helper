@@ -14,7 +14,8 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="5dp"
-        app:cardCornerRadius="3dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="3dp"
         tools:backgroundTint="@color/six_star_card_bg"
         tools:layout_marginStart="115dp">
 
@@ -31,7 +32,8 @@
                 android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@id/operator_info_expanded"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
 
             <ImageView
                 android:id="@+id/operator_portrait_collapsed_icon"
@@ -66,12 +68,11 @@
                 android:id="@+id/expand_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
                 android:contentDescription="@string/expand_operator_details"
                 android:src="@drawable/outline_expand_circle_down_black_24"
-                app:layout_constraintBottom_toTopOf="@id/operator_info_expanded"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/black" />

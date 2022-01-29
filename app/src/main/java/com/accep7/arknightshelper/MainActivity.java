@@ -163,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
 
         resetButton = findViewById(R.id.reset_button);
         resetButton.setOnClickListener(v -> resetSelection());
+
         resultsLayout = findViewById(R.id.results_layout);
         RecyclerView results = findViewById(R.id.recycler_view_group);
 

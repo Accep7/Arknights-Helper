@@ -34,10 +34,13 @@ public class OperatorRecyclerViewAdapter extends RecyclerView.Adapter<OperatorRe
     public void onBindViewHolder(@NonNull OperatorHolder holder, int position) {
         holder.bind(operators.get(position));
 
-        holder.itemView.setOnClickListener(v -> {
-            OperatorWrapper item = operators.get(position);
-            item.setExpanded(!item.isExpanded());
-            notifyItemChanged(position);
+        holder.itemView.setOnClickListener(new OperatorRecyclerClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                OperatorWrapper item = operators.get(holder.getAdapterPosition());
+                item.setExpanded(!item.isExpanded());
+                notifyItemChanged(holder.getAdapterPosition());
+            }
         });
     }
 
