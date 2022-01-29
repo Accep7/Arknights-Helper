@@ -6,7 +6,7 @@ import android.view.View;
 // Prevents ddos-clicking on recycler element, thus causing app crash with IllegalArgumentException
 public abstract class OperatorRecyclerClickListener implements View.OnClickListener {
 
-    private static final long MIN_CLICK_INTERVAL = 400;
+    private static final long MIN_CLICK_INTERVAL = 300;
     private long mLastClickTime;
 
     public abstract void onSingleClick(View v);

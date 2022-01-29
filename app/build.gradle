@@ -9,7 +9,7 @@ android {
         applicationId "com.accep7.arknightshelper"
         minSdk 26
         targetSdk 30
-        versionCode 14
+        versionCode 15
         versionName "1.0"
 
         testInstrumentationRunner "androidx.operator_portrait_bg.runner.AndroidJUnitRunner"
@@ -28,6 +28,8 @@ android {
     buildFeatures {
         viewBinding true
     }
+    compileSdkVersion 30
+    buildToolsVersion '30.0.2'
 }
 
 dependencies {
