@@ -1,5 +1,6 @@
 package com.accep7.arknightshelper;
 
+import android.animation.LayoutTransition;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +49,7 @@ public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecycler
 
         public GroupHolder(View itemView) {
             super(itemView);
+            ((ViewGroup) itemView).getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
             selectedTag = itemView.findViewById(R.id.selectedTag);
             operatorRecycler = itemView.findViewById(R.id.group_items);
         }
