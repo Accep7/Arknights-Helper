@@ -52,6 +52,7 @@ public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecycler
             ((ViewGroup) itemView).getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
             selectedTag = itemView.findViewById(R.id.selectedTag);
             operatorRecycler = itemView.findViewById(R.id.group_items);
+            //operatorRecycler.setItemAnimator(new ExpandItemAnimator());
         }
 
         public void bind(OperatorRecycler operatorRecycler) {
