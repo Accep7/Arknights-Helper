@@ -103,10 +103,10 @@ class RecruitableOperator {
         return "RecruitableOperator{" +
                 "name='" + operatorName + '\'' +
                 ", attackType='" + attackType + '\'' +
-                ", qualification='" + qualification + '\'' +
+                ", tv_operator_qualification='" + qualification + '\'' +
                 ", rarity=" + rarity +
-                ", inGameClass='" + operatorArchetype + '\'' +
-                ", inGameClass='" + operatorClass + '\'' +
+                ", tv_operator_class='" + operatorArchetype + '\'' +
+                ", tv_operator_class='" + operatorClass + '\'' +
                 ", affix1='" + affix1 + '\'' +
                 ", affix2='" + affix2 + '\'' +
                 ", affix3='" + affix3 + '\'' +

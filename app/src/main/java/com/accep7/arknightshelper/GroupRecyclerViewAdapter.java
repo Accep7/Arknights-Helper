@@ -1,6 +1,5 @@
 package com.accep7.arknightshelper;
 
-import android.animation.LayoutTransition;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecyclerViewAdapter.GroupHolder> {
 
@@ -19,7 +19,8 @@ public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecycler
     @NonNull
     @Override
     public GroupHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_group, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_group,
+                parent, false);
         return new GroupHolder(v);
     }
 
@@ -49,15 +50,17 @@ public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecycler
 
         public GroupHolder(View itemView) {
             super(itemView);
-            ((ViewGroup) itemView).getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
-            selectedTag = itemView.findViewById(R.id.selectedTag);
+            selectedTag = itemView.findViewById(R.id.group_selected_tags);
             operatorRecycler = itemView.findViewById(R.id.group_items);
-            //operatorRecycler.setItemAnimator(new ExpandItemAnimator());
+            operatorRecycler.setItemAnimator(new ExpandItemAnimator());
         }
 
         public void bind(OperatorRecycler operatorRecycler) {
-            selectedTag.setText(String.join(",\n", operatorRecycler.getTagList()));
-            this.operatorRecycler.setAdapter(new OperatorRecyclerViewAdapter(operatorRecycler.getOperatorList()));
+            selectedTag.setText(operatorRecycler.getTagList()
+                    .stream()
+                    .collect(Collectors.joining(",\n")));
+            this.operatorRecycler.setAdapter(new OperatorRecyclerViewAdapter
+                    (operatorRecycler.getOperatorList()));
         }
     }
 }

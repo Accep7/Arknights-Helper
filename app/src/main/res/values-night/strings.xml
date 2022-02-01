@@ -1,37 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="caster">Caster</string>
-    <string name="sniper">Sniper</string>
-    <string name="specialist">Specialist</string>
-    <string name="guard">Guard</string>
-    <string name="inGameClass">Class</string>
-    <string name="select_the_tags">Select the tags:</string>
-    <string name="qualification">Qualification</string>
-    <string name="starter">Starter</string>
-    <string name="senior_op">Senior Operator</string>
-    <string name="top_op">Top Operator</string>
-    <string name="attack_type">Attack Type</string>
-    <string name="melee">Melee</string>
-    <string name="ranged">Ranged</string>
-    <string name="medic">Medic</string>
-    <string name="defender">Defender</string>
-    <string name="supporter">Supporter</string>
-    <string name="vanguard">Vanguard</string>
-    <string name="affix">Affix</string>
-    <string name="healing">Healing</string>
-    <string name="results">Results:</string>
-    <string name="support">Support</string>
-    <string name="defense">Defense</string>
-    <string name="dps">DPS</string>
-    <string name="debuff">Debuff</string>
-    <string name="survival">Survival</string>
-    <string name="crowd_control">Crowd-Control</string>
-    <string name="dp_recovery">DP-Recovery</string>
-    <string name="summon">Summon</string>
-    <string name="fast_redeploy">Fast-Redeploy</string>
-    <string name="aoe">AoE</string>
-    <string name="slow">Slow</string>
-    <string name="nuker">Nuker</string>
-    <string name="shift">Shift</string>
-    <string name="robot">Robot</string>
+    <string name="tv_select_tags">Select the tags:</string>
+    <string name="tv_operator_qualification">Qualification</string>
+    <string name="tv_attack_type">Attack Type</string>
+    <string name="tv_operator_class">Class</string>
+    <string name="tv_affix">Affix</string>
+    <string name="tv_results">Results:</string>
 </resources>

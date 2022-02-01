@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/recycler_vg"
+    android:id="@+id/recycler_item_view_group"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -10,9 +10,7 @@
         android:id="@+id/recycler_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginBottom="5dp"
         app:cardCornerRadius="5dp"
         app:cardElevation="3dp"
@@ -36,7 +34,7 @@
                 app:layout_constraintVertical_bias="1.0" />
 
             <ImageView
-                android:id="@+id/operator_portrait_collapsed_icon"
+                android:id="@+id/operator_portrait_collapsed"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="5dp"
@@ -60,7 +58,7 @@
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toTopOf="@id/operator_info_expanded"
-                app:layout_constraintLeft_toRightOf="@id/operator_portrait_collapsed_icon"
+                app:layout_constraintLeft_toRightOf="@id/operator_portrait_collapsed"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Magallan" />
 
@@ -101,7 +99,7 @@
                     android:layout_marginTop="5dp"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    app:layout_constraintLeft_toRightOf="@id/operator_portrait_expanded_icon"
+                    app:layout_constraintLeft_toRightOf="@id/operator_portrait_expanded"
                     app:layout_constraintRight_toLeftOf="@id/operator_info_type_class"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="6*" />
@@ -122,15 +120,6 @@
 
                 <TextView
                     android:id="@+id/operator_info_tags"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tags"
-                    android:textColor="@color/black"
-                    app:layout_constraintLeft_toLeftOf="@id/operator_info_rarity"
-                    app:layout_constraintTop_toBottomOf="@id/operator_info_type_class" />
-
-                <TextView
-                    android:id="@+id/operator_tags"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
@@ -140,11 +129,11 @@
                     android:textColor="@color/black"
                     app:layout_constraintLeft_toLeftOf="@id/operator_info_rarity"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/operator_info_tags"
-                    tools:text="Ranged\nSenior Operator\nCrowd-Control\nFast-Redeploy" />
+                    app:layout_constraintTop_toBottomOf="@id/operator_info_type_class"
+                    tools:text="Tags:\nRanged\nSenior Operator\nCrowd-Control\nFast-Redeploy" />
 
                 <ImageView
-                    android:id="@+id/operator_portrait_expanded_icon"
+                    android:id="@+id/operator_portrait_expanded"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
                     android:layout_marginStart="5dp"
@@ -159,7 +148,7 @@
                     tools:src="@drawable/six_star_magallan" />
 
                 <ImageView
-                    android:id="@+id/operator_archetype_icon"
+                    android:id="@+id/operator_info_archetype_icon"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_marginTop="5dp"
@@ -171,12 +160,12 @@
                     android:outlineProvider="background"
                     android:padding="3dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="@id/operator_portrait_expanded_icon"
-                    app:layout_constraintTop_toBottomOf="@id/operator_portrait_expanded_icon"
+                    app:layout_constraintLeft_toLeftOf="@id/operator_portrait_expanded"
+                    app:layout_constraintTop_toBottomOf="@id/operator_portrait_expanded"
                     tools:src="@drawable/type_supporter_summoner" />
 
                 <ImageView
-                    android:id="@+id/operator_class_icon"
+                    android:id="@+id/operator_info_class_icon"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_marginTop="5dp"
@@ -187,12 +176,11 @@
                     android:elevation="10dp"
                     android:outlineProvider="background"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintRight_toRightOf="@id/operator_portrait_expanded_icon"
-                    app:layout_constraintTop_toBottomOf="@id/operator_portrait_expanded_icon"
+                    app:layout_constraintRight_toRightOf="@id/operator_portrait_expanded"
+                    app:layout_constraintTop_toBottomOf="@id/operator_portrait_expanded"
                     tools:src="@drawable/class_supporter" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
 </FrameLayout>

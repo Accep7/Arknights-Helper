@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
     // UX feature - displays current number of active tags on reset button
     private void setSelectedFilterCounter() {
-        resetButton.setText(resetButton.getContext().getString(R.string.resetButtonCounter, activeButtonCounter));
+        resetButton.setText(resetButton.getContext().getString(R.string.reset_button_counter, activeButtonCounter));
     }
 
     private void showResults() {

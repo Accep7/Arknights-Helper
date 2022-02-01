@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 /* Parent recycler, handles recruitment pool filtering logic, contains Lists of child recyclers
- * of corresponding tags and tag combinations */
+ * of corresponding tags and tv_tags combinations */
 class GroupRecycler {
 
     // Represents the max amount of tags user can select in the game and create combinations from
@@ -32,8 +32,8 @@ class GroupRecycler {
             for (String[] tagCombination : tagCombinations) {
                 List<String> combination = Arrays.asList(tagCombination);
                 for (RecruitableOperator operator : recruitableOperators) {
-                    /* Excludes top operators from results when top op tag is not selected, since
-                     * they are not obtainable without this tag selected */
+                    /* Excludes top operators from tv_results when top op tv_tags is not selected, since
+                     * they are not obtainable without this tv_tags selected */
                     if (!combination.contains(QUALIFICATION_TOP)
                             && operator.getQualification() != null
                             && operator.getQualification().equals(QUALIFICATION_TOP)) {
@@ -56,7 +56,7 @@ class GroupRecycler {
     }
 
     /**
-     * Creates tag combination using nCr formula: n! / (r! * (n - r)! )
+     * Creates tv_tags combination using nCr formula: n! / (r! * (n - r)! )
      * The formula show us the number of ways a sample of "r" elements can be obtained from a
      * larger set of "n" distinguishable objects where order does not matter and repetitions are
      * not allowed. "n" is the larger set, amount of tags selected by user, and "r" is the "sample"

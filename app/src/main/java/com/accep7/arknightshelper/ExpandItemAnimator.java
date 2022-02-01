@@ -20,18 +20,12 @@ import java.util.Map;
  */
 public class ExpandItemAnimator extends DefaultItemAnimator {
 
-    private static final float TRANSPARENT_ALPHA = 0.0f;
-    private static final float VISIBLE_ALPHA = 1.0f;
-    private static final String ALPHA_PROPERTY_NAME = "alpha";
-    private static final TimeInterpolator interpolator = new AccelerateDecelerateInterpolator();
-
     private final Map<RecyclerView.ViewHolder, AnimatorSet> animationMap = new HashMap<>();
 
     @Override
     public boolean canReuseUpdatedViewHolder(@NonNull RecyclerView.ViewHolder viewHolder) {
         return true;
     }
-
 
     @NonNull
     @Override
@@ -88,16 +82,6 @@ public class ExpandItemAnimator extends DefaultItemAnimator {
 
     private void animateExpand(OperatorRecyclerViewAdapter.OperatorHolder holder) {
         AnimatorSet set = new AnimatorSet();
-        ObjectAnimator animator = ObjectAnimator.ofFloat(
-                holder.expandedOperatorInfo,
-                ALPHA_PROPERTY_NAME,
-                TRANSPARENT_ALPHA,
-                VISIBLE_ALPHA
-        );
-        animator.setDuration(getAddDuration());
-        animator.setStartDelay(getAddDuration());
-        animator.setInterpolator(interpolator);
-        set.play(animator);
         set.addListener(new AnimatorListenerAdapter() {
 
             @Override
@@ -113,16 +97,6 @@ public class ExpandItemAnimator extends DefaultItemAnimator {
 
     private void animateCollapse(OperatorRecyclerViewAdapter.OperatorHolder holder) {
         AnimatorSet set = new AnimatorSet();
-        ObjectAnimator animator = ObjectAnimator.ofFloat(
-                holder.expandedOperatorInfo,
-                ALPHA_PROPERTY_NAME,
-                VISIBLE_ALPHA,
-                TRANSPARENT_ALPHA
-        );
-        animator.setDuration(getAddDuration());
-        animator.setStartDelay(getAddDuration());
-        animator.setInterpolator(interpolator);
-        set.play(animator);
         set.addListener(new AnimatorListenerAdapter() {
 
             @Override
@@ -155,10 +129,6 @@ public class ExpandItemAnimator extends DefaultItemAnimator {
 
         public ExpandedInfo(boolean expanded) {
             this.expanded = expanded;
-        }
-
-        public boolean isExpanded() {
-            return expanded;
         }
     }
 }
