@@ -25,7 +25,7 @@ class GroupRecycler {
     public static List<OperatorRecycler> createResults(List<String> tags) {
         selectedTags = tags;
         int sample = MAX_TAG_COMBO;
-        List<OperatorRecycler> result = new ArrayList<>();
+        List<OperatorRecycler> results = new ArrayList<>();
 
         for (int i = 0; i < MAX_TAG_COMBO; i++) {
             List<String[]> tagCombinations = makeTagCombinations(selectedTags.size(), sample);
@@ -42,17 +42,17 @@ class GroupRecycler {
                     List<String> intersectedTags = intersection(combination,
                             operator.getOperatorTags());
                     if (!intersectedTags.isEmpty()) {
-                        addOperator(result, intersectedTags, operator);
+                        addOperator(results, intersectedTags, operator);
                     }
                 }
             }
             sample--;
         }
-        for (OperatorRecycler tagsGroup : result) {
+        for (OperatorRecycler tagsGroup : results) {
             tagsGroup.sortByRarity();
         }
-        Collections.sort(result);
-        return result;
+        Collections.sort(results);
+        return results;
     }
 
     /**

@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -28,16 +28,7 @@ public class OperatorRecyclerViewAdapter extends RecyclerView.Adapter<OperatorRe
     public OperatorHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item,
                 parent, false);
-
-        OperatorHolder operatorHolder = new OperatorHolder(view);
-        view.setOnClickListener(v -> {
-            OperatorWrapper item = operators.get(operatorHolder.getAdapterPosition());
-            boolean expanded = !item.isExpanded();
-            item.setExpanded(expanded);
-            notifyItemChanged(operatorHolder.getAdapterPosition(), new ExpandItemAnimator
-                    .ExpandedInfo(expanded));
-        });
-        return operatorHolder;
+        return new OperatorHolder(view);
     }
 
     @Override
@@ -54,48 +45,42 @@ public class OperatorRecyclerViewAdapter extends RecyclerView.Adapter<OperatorRe
         CardView operatorInfo;
         TextView operatorName;
 
-        ConstraintLayout expandedOperatorInfo;
+        MotionLayout expandableOperatorInfo;
 
-        ImageView expandOperatorInfoButton, operatorPortraitCollapsed, operatorPortraitExpanded,
-                operatorArchetypeIcon, operatorClassIcon;
-        TextView operatorRarity, operatorArchetypeAndClass, operatorTags;
+        ImageView expandInfoButton, operatorPortrait, operatorArchetypeIcon, operatorClassIcon;
+        TextView operatorInfoRarity, operatorInfoArchetypeAndClass, operatorInfoTags;
 
         public OperatorHolder(@NonNull View itemView) {
             super(itemView);
             operatorInfo = itemView.findViewById(R.id.recycler_item);
             operatorName = itemView.findViewById(R.id.operator_name);
-            expandOperatorInfoButton = itemView.findViewById(R.id.expand_button);
-            expandedOperatorInfo = itemView.findViewById(R.id.operator_info_expanded);
+            expandInfoButton = itemView.findViewById(R.id.expand_button);
+            expandableOperatorInfo = itemView.findViewById(R.id.operator_info_expandable);
 
-            operatorPortraitCollapsed = itemView.findViewById(R.id.operator_portrait_collapsed);
-            operatorPortraitExpanded = itemView.findViewById(R.id.operator_portrait_expanded);
+            operatorPortrait = itemView.findViewById(R.id.operator_portrait);
             operatorArchetypeIcon = itemView.findViewById(R.id.operator_info_archetype_icon);
             operatorClassIcon = itemView.findViewById(R.id.operator_info_class_icon);
 
-            operatorRarity = itemView.findViewById(R.id.operator_info_rarity);
-            operatorArchetypeAndClass = itemView.findViewById(R.id.operator_info_type_class);
-            operatorTags = itemView.findViewById(R.id.operator_info_tags);
+            operatorInfoRarity = itemView.findViewById(R.id.operator_info_rarity);
+            operatorInfoArchetypeAndClass = itemView.findViewById(R.id.operator_info_type_class);
+            operatorInfoTags = itemView.findViewById(R.id.operator_info_tags);
         }
 
         public void bind(OperatorWrapper operatorWrapper) {
-            operatorPortraitCollapsed.setImageResource(
+            operatorPortrait.setImageResource(
                     operatorWrapper.getOperator().getPortraitDrawableID());
-            operatorPortraitCollapsed.setClipToOutline(true);
-
-            operatorPortraitExpanded.setImageResource(
-                    operatorWrapper.getOperator().getPortraitDrawableID());
-            operatorPortraitExpanded.setClipToOutline(true);
+            operatorPortrait.setClipToOutline(true);
 
             operatorName.setText(operatorWrapper.getOperator().getOperatorName());
-            operatorRarity.setText(operatorRarity.getContext()
+            operatorInfoRarity.setText(operatorInfoRarity.getContext()
                     .getString(R.string.tv_operator_info_rarity, operatorWrapper.getOperator().getRarity()));
 
-            operatorArchetypeAndClass.setText(Stream.of(
+            operatorInfoArchetypeAndClass.setText(Stream.of(
                     operatorWrapper.getOperator().getOperatorArchetype(),
                     operatorWrapper.getOperator().getOperatorClass())
                     .collect(Collectors.joining(" ")));
 
-            operatorTags.setText(Stream.of(
+            operatorInfoTags.setText(Stream.of(
                     "Tags:",
                     operatorWrapper.getOperator().getQualification(),
                     operatorWrapper.getOperator().getAttackType(),
@@ -137,16 +122,6 @@ public class OperatorRecyclerViewAdapter extends RecyclerView.Adapter<OperatorRe
                             .getColor(R.color.one_star_card_bg, null));
                     break;
             }
-
-            expandedOperatorInfo.setVisibility
-                    (operatorWrapper.isExpanded() ? View.VISIBLE : View.GONE);
-
-            operatorPortraitCollapsed.setVisibility
-                    (operatorWrapper.isExpanded() ? View.GONE : View.VISIBLE);
-
-            expandOperatorInfoButton.animate()
-                    .setDuration(200)
-                    .rotation(operatorWrapper.isExpanded() ? 180 : 0);
         }
     }
 }

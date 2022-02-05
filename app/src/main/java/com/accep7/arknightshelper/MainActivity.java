@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
         resetButton.setOnClickListener(v -> resetSelection());
 
         resultsLayout = findViewById(R.id.results_layout);
-        RecyclerView results = findViewById(R.id.recycler_view_group);
+        RecyclerView results = findViewById(R.id.parent_recycler);
 
         groupAdapter = new GroupRecyclerViewAdapter();
 

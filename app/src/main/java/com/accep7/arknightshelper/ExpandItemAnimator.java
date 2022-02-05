@@ -3,9 +3,7 @@ package com.accep7.arknightshelper;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.TimeInterpolator;
-import android.view.animation.AccelerateDecelerateInterpolator;
+import android.transition.TransitionManager;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -72,9 +70,9 @@ public class ExpandItemAnimator extends DefaultItemAnimator {
             OperatorRecyclerViewAdapter.OperatorHolder holder = (OperatorRecyclerViewAdapter.OperatorHolder) newHolder;
             ExpandedInfo info = (ExpandedInfo) preInfo;
             if (info.expanded) {
-                animateExpand(holder);
+                //animateExpand(holder);
             } else {
-                animateCollapse(holder);
+                //animateCollapse(holder);
             }
         }
         return false;

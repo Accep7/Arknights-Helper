@@ -52,7 +52,7 @@ public class GroupRecyclerViewAdapter extends RecyclerView.Adapter<GroupRecycler
             super(itemView);
             selectedTag = itemView.findViewById(R.id.group_selected_tags);
             operatorRecycler = itemView.findViewById(R.id.group_items);
-            operatorRecycler.setItemAnimator(new ExpandItemAnimator());
+            //operatorRecycler.setItemAnimator(new ExpandItemAnimator());
         }
 
         public void bind(OperatorRecycler operatorRecycler) {

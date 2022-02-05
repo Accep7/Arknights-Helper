@@ -9,7 +9,7 @@ android {
         applicationId "com.accep7.arknightshelper"
         minSdk 24
         targetSdk 30
-        versionCode 17
+        versionCode 18
         versionName "1.0"
 
         testInstrumentationRunner "androidx.operator_portrait_bg.runner.AndroidJUnitRunner"
@@ -29,7 +29,6 @@ android {
         viewBinding true
     }
     compileSdkVersion 30
-    buildToolsVersion '30.0.2'
 }
 
 dependencies {
@@ -44,7 +43,9 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
     //noinspection GradleDependency
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+    //noinspection GradleDependency
     implementation 'androidx.navigation:navigation-fragment:2.3.5'
+    //noinspection GradleDependency
     implementation 'androidx.navigation:navigation-ui:2.3.5'
     testImplementation 'junit:junit:'
     androidTestImplementation 'androidx.operator_portrait_bg.ext:junit:1.1.3'
