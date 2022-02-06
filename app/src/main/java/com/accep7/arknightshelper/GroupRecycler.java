@@ -19,7 +19,7 @@ class GroupRecycler {
     /**
      * The recruitment pool filtering algorithm is based on generating combinations from selected
      * tags. These combinations (also referred to as "groups" (GroupRecycler)) of operators are then
-     * used to find operators from recruitment pool that have ALL of the tags in respective group.
+     * used to find operators from recruitment pool that have ALL of the tags in respective group_expandable_views.
      * Amount of combinations to be generated determined by nCr formula, more on that further below
      */
     public static List<OperatorRecycler> createResults(List<String> tags) {
@@ -95,7 +95,7 @@ class GroupRecycler {
     /**
      * Compares groups (lists) of selected tags (let's say we got AoE and Slow selected)
      * When an intersection is found (operators that have both AoE and Slow tags),
-     * creates and returns a new corresponding group of items (operators), that consists
+     * creates and returns a new corresponding group_expandable_views of items (operators), that consists
      * ONLY of operators with both AoE and Slow tags
      */
     private static List<String> intersection(List<String> tagCombination,

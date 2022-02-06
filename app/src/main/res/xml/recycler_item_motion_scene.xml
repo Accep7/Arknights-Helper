@@ -17,7 +17,7 @@
             android:layout_height="30dp"
             android:layout_marginTop="5dp"
             android:layout_marginStart="5dp"
-            motion:layout_constraintLeft_toLeftOf="@id/margin_guide"
+            motion:layout_constraintLeft_toLeftOf="@id/guide_left_margin"
             motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintTop_toTopOf="parent" />
         <Constraint
@@ -28,7 +28,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
             android:elevation="10dp"
-            motion:layout_constraintLeft_toLeftOf="@id/margin_guide"
+            motion:layout_constraintLeft_toLeftOf="@id/guide_left_margin"
             motion:layout_constraintTop_toTopOf="parent" />
     </ConstraintSet>
 
@@ -41,7 +41,7 @@
             android:visibility="visible"
             motion:layout_constraintLeft_toLeftOf="parent"
             motion:layout_constraintRight_toRightOf="parent"
-            motion:layout_constraintTop_toBottomOf="@id/height_preserver" />
+            motion:layout_constraintTop_toBottomOf="@id/guide_collapsed_height" />
         <Constraint
             android:id="@+id/operator_info_rarity"
             android:layout_width="wrap_content"
@@ -49,7 +49,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:visibility="visible"
-            motion:layout_constraintLeft_toRightOf="@id/placeholder_portrait_expanded"
+            motion:layout_constraintLeft_toRightOf="@id/portrait_placeholder"
             motion:layout_constraintRight_toLeftOf="@id/operator_info_type_class"
             motion:layout_constraintTop_toBottomOf="@id/info_divider" />
         <Constraint
@@ -73,13 +73,13 @@
             motion:layout_constraintRight_toRightOf="parent"
             motion:layout_constraintTop_toBottomOf="@id/operator_info_type_class" />
         <Constraint
-            android:id="@+id/placeholder_portrait_expanded"
+            android:id="@+id/portrait_placeholder"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:visibility="visible"
-            motion:layout_constraintLeft_toRightOf="@id/margin_guide"
+            motion:layout_constraintLeft_toRightOf="@id/guide_left_margin"
             motion:layout_constraintTop_toBottomOf="@id/info_divider" />
         <Constraint
             android:id="@+id/operator_info_archetype_icon"
@@ -90,8 +90,8 @@
             android:elevation="10dp"
             android:visibility="visible"
             motion:layout_constraintBottom_toBottomOf="parent"
-            motion:layout_constraintLeft_toLeftOf="@id/placeholder_portrait_expanded"
-            motion:layout_constraintTop_toBottomOf="@id/placeholder_portrait_expanded" />
+            motion:layout_constraintLeft_toLeftOf="@id/portrait_placeholder"
+            motion:layout_constraintTop_toBottomOf="@id/portrait_placeholder" />
         <Constraint
             android:id="@+id/operator_info_class_icon"
             android:layout_width="35dp"
@@ -101,87 +101,87 @@
             android:elevation="10dp"
             android:visibility="visible"
             motion:layout_constraintBottom_toBottomOf="parent"
-            motion:layout_constraintRight_toRightOf="@id/placeholder_portrait_expanded"
-            motion:layout_constraintTop_toBottomOf="@id/placeholder_portrait_expanded" />
+            motion:layout_constraintRight_toRightOf="@id/portrait_placeholder"
+            motion:layout_constraintTop_toBottomOf="@id/portrait_placeholder" />
         <Constraint
             android:id="@+id/operator_portrait"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:elevation="10dp"
-            motion:layout_constraintEnd_toEndOf="@+id/placeholder_portrait_expanded"
-            motion:layout_constraintLeft_toLeftOf="@id/placeholder_portrait_expanded"
-            motion:layout_constraintStart_toStartOf="@+id/placeholder_portrait_expanded"
-            motion:layout_constraintTop_toTopOf="@id/placeholder_portrait_expanded" />
+            motion:layout_constraintEnd_toEndOf="@+id/portrait_placeholder"
+            motion:layout_constraintLeft_toLeftOf="@id/portrait_placeholder"
+            motion:layout_constraintStart_toStartOf="@+id/portrait_placeholder"
+            motion:layout_constraintTop_toTopOf="@id/portrait_placeholder" />
         <Constraint
             android:id="@+id/operator_portrait"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:elevation="10dp"
-            motion:layout_constraintEnd_toEndOf="@+id/placeholder_portrait_expanded"
-            motion:layout_constraintLeft_toLeftOf="@id/placeholder_portrait_expanded"
-            motion:layout_constraintStart_toStartOf="@+id/placeholder_portrait_expanded"
-            motion:layout_constraintTop_toTopOf="@id/placeholder_portrait_expanded" />
+            motion:layout_constraintEnd_toEndOf="@+id/portrait_placeholder"
+            motion:layout_constraintLeft_toLeftOf="@id/portrait_placeholder"
+            motion:layout_constraintStart_toStartOf="@+id/portrait_placeholder"
+            motion:layout_constraintTop_toTopOf="@id/portrait_placeholder" />
         <Constraint
             android:id="@+id/operator_portrait"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:elevation="10dp"
-            motion:layout_constraintEnd_toEndOf="@+id/placeholder_portrait_expanded"
-            motion:layout_constraintLeft_toLeftOf="@id/placeholder_portrait_expanded"
-            motion:layout_constraintStart_toStartOf="@+id/placeholder_portrait_expanded"
-            motion:layout_constraintTop_toTopOf="@id/placeholder_portrait_expanded" />
+            motion:layout_constraintEnd_toEndOf="@+id/portrait_placeholder"
+            motion:layout_constraintLeft_toLeftOf="@id/portrait_placeholder"
+            motion:layout_constraintStart_toStartOf="@+id/portrait_placeholder"
+            motion:layout_constraintTop_toTopOf="@id/portrait_placeholder" />
         <Constraint
             android:id="@+id/operator_portrait"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:elevation="10dp"
-            motion:layout_constraintEnd_toEndOf="@+id/placeholder_portrait_expanded"
-            motion:layout_constraintLeft_toLeftOf="@id/placeholder_portrait_expanded"
-            motion:layout_constraintStart_toStartOf="@+id/placeholder_portrait_expanded"
-            motion:layout_constraintTop_toTopOf="@id/placeholder_portrait_expanded" />
+            motion:layout_constraintEnd_toEndOf="@+id/portrait_placeholder"
+            motion:layout_constraintLeft_toLeftOf="@id/portrait_placeholder"
+            motion:layout_constraintStart_toStartOf="@+id/portrait_placeholder"
+            motion:layout_constraintTop_toTopOf="@id/portrait_placeholder" />
         <Constraint
             android:id="@+id/operator_portrait"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:elevation="10dp"
-            motion:layout_constraintEnd_toEndOf="@+id/placeholder_portrait_expanded"
-            motion:layout_constraintLeft_toLeftOf="@id/placeholder_portrait_expanded"
-            motion:layout_constraintStart_toStartOf="@+id/placeholder_portrait_expanded"
-            motion:layout_constraintTop_toTopOf="@id/placeholder_portrait_expanded" />
+            motion:layout_constraintEnd_toEndOf="@+id/portrait_placeholder"
+            motion:layout_constraintLeft_toLeftOf="@id/portrait_placeholder"
+            motion:layout_constraintStart_toStartOf="@+id/portrait_placeholder"
+            motion:layout_constraintTop_toTopOf="@id/portrait_placeholder" />
         <Constraint
             android:id="@+id/operator_portrait"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:elevation="10dp"
-            motion:layout_constraintEnd_toEndOf="@+id/placeholder_portrait_expanded"
-            motion:layout_constraintLeft_toLeftOf="@id/placeholder_portrait_expanded"
-            motion:layout_constraintStart_toStartOf="@+id/placeholder_portrait_expanded"
-            motion:layout_constraintTop_toTopOf="@id/placeholder_portrait_expanded" />
+            motion:layout_constraintEnd_toEndOf="@+id/portrait_placeholder"
+            motion:layout_constraintLeft_toLeftOf="@id/portrait_placeholder"
+            motion:layout_constraintStart_toStartOf="@+id/portrait_placeholder"
+            motion:layout_constraintTop_toTopOf="@id/portrait_placeholder" />
         <Constraint
             android:id="@+id/operator_portrait"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:elevation="10dp"
-            motion:layout_constraintEnd_toEndOf="@+id/placeholder_portrait_expanded"
-            motion:layout_constraintLeft_toLeftOf="@id/placeholder_portrait_expanded"
-            motion:layout_constraintStart_toStartOf="@+id/placeholder_portrait_expanded"
-            motion:layout_constraintTop_toTopOf="@id/placeholder_portrait_expanded" />
+            motion:layout_constraintEnd_toEndOf="@+id/portrait_placeholder"
+            motion:layout_constraintLeft_toLeftOf="@id/portrait_placeholder"
+            motion:layout_constraintStart_toStartOf="@+id/portrait_placeholder"
+            motion:layout_constraintTop_toTopOf="@id/portrait_placeholder" />
         <Constraint
             android:id="@+id/operator_portrait"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:elevation="10dp"
-            motion:layout_constraintEnd_toEndOf="@+id/placeholder_portrait_expanded"
-            motion:layout_constraintLeft_toLeftOf="@id/placeholder_portrait_expanded"
-            motion:layout_constraintStart_toStartOf="@+id/placeholder_portrait_expanded"
-            motion:layout_constraintTop_toTopOf="@id/placeholder_portrait_expanded" />
+            motion:layout_constraintEnd_toEndOf="@+id/portrait_placeholder"
+            motion:layout_constraintLeft_toLeftOf="@id/portrait_placeholder"
+            motion:layout_constraintStart_toStartOf="@+id/portrait_placeholder"
+            motion:layout_constraintTop_toTopOf="@id/portrait_placeholder" />
         <Constraint
             android:id="@+id/operator_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             motion:layout_constraintBottom_toTopOf="@id/info_divider"
-            motion:layout_constraintLeft_toRightOf="@id/margin_guide"
+            motion:layout_constraintLeft_toRightOf="@id/guide_left_margin"
             motion:layout_constraintTop_toTopOf="parent" />
         <Constraint
             android:id="@+id/expand_button"
@@ -196,11 +196,11 @@
             motion:layout_constraintTop_toTopOf="parent" />
         <Constraint
             android:id="@+id/text_views_group"
-            motion:layout_constraintLeft_toRightOf="@id/placeholder_portrait_expanded"
+            motion:layout_constraintLeft_toRightOf="@id/portrait_placeholder"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:visibility="visible"
             motion:layout_constraintRight_toRightOf="parent"
-            motion:layout_constraintTop_toTopOf="@id/divider_barrier" />
+            motion:layout_constraintTop_toTopOf="@id/info_divider" />
     </ConstraintSet>
 </MotionScene>

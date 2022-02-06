@@ -1,42 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/recycler_item_view_group"
+    android:id="@+id/recycler_item"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="3dp"
+    tools:backgroundTint="@color/six_star_card_bg"
+    tools:layout_marginStart="115dp">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/recycler_item"
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/operator_info_expandable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="3dp"
-        tools:backgroundTint="@color/six_star_card_bg"
-        tools:layout_marginStart="115dp">
+        android:foreground="?selectableItemBackground"
+        android:maxHeight="170dp"
+        android:minHeight="40dp"
+        app:layoutDescription="@xml/recycler_item_xml_operator_info_expandable_scene">
 
-        <androidx.constraintlayout.motion.widget.MotionLayout
-            android:id="@+id/operator_info_expandable"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:foreground="?selectableItemBackground"
-            app:layoutDescription="@xml/recycler_item_motion_scene">
-
-            <View
-                android:id="@+id/height_preserver"
-                android:layout_width="5dp"
-                android:layout_height="40dp"
-                android:background="#FFFFFF"
-                android:visibility="invisible"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="40dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/margin_guide"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:id="@+id/guide_collapsed_height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="40dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide_expanded_icons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="170dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide_left_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_begin="0dp" />
 
@@ -50,7 +59,7 @@
                 android:contentDescription="@string/operator_class_icon"
                 android:elevation="10dp"
                 android:outlineProvider="background"
-                app:layout_constraintLeft_toLeftOf="@id/margin_guide"
+                app:layout_constraintLeft_toLeftOf="@id/guide_left_margin"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:background="@drawable/image_round_outline"
                 tools:src="@drawable/six_star_magallan" />
@@ -62,7 +71,7 @@
                 android:layout_marginStart="5dp"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@id/info_divider"
+                app:layout_constraintBottom_toTopOf="@id/guide_collapsed_height"
                 app:layout_constraintLeft_toRightOf="@id/operator_portrait"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Magallan" />
@@ -71,135 +80,101 @@
                 android:id="@+id/expand_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="5dp"
-                android:layout_marginBottom="8dp"
                 android:contentDescription="@string/expand_operator_details"
                 android:src="@drawable/outline_expand_circle_down_black_24"
-                app:layout_constraintBottom_toTopOf="@id/info_divider"
+                app:layout_constraintBottom_toTopOf="@id/guide_collapsed_height"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/black" />
-
-            <androidx.constraintlayout.widget.Barrier
-                android:id="@+id/divider_barrier"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:constraint_referenced_ids="operator_portrait, operator_name, expand_button,
-                margin_guide, height_preserver"
-                app:layout_constraintBottom_toBottomOf="@id/info_divider"
-                app:layout_constraintTop_toTopOf="@id/info_divider" />
 
             <View
                 android:id="@+id/info_divider"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/black"
-                android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/height_preserver" />
+                app:layout_constraintTop_toTopOf="@id/guide_collapsed_height" />
 
             <View
-                android:id="@+id/placeholder_portrait_expanded"
+                android:id="@+id/portrait_placeholder"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
-                android:visibility="gone"
-                app:layout_constraintLeft_toRightOf="@id/margin_guide"
-                app:layout_constraintTop_toBottomOf="@id/info_divider"
-                tools:visibility="gone" />
+                app:layout_constraintLeft_toRightOf="@id/guide_left_margin"
+                app:layout_constraintTop_toBottomOf="@id/guide_collapsed_height" />
 
             <ImageView
                 android:id="@+id/operator_info_archetype_icon"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
                 android:background="@drawable/image_round_outline"
                 android:backgroundTint="@color/black"
                 android:contentDescription="@string/operator_archetype_icon"
                 android:elevation="10dp"
                 android:outlineProvider="background"
                 android:padding="3dp"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="@id/placeholder_portrait_expanded"
-                app:layout_constraintTop_toBottomOf="@id/placeholder_portrait_expanded"
-                tools:src="@drawable/type_supporter_summoner"
-                tools:visibility="gone" />
+                app:layout_constraintLeft_toLeftOf="@id/portrait_placeholder"
+                app:layout_constraintTop_toBottomOf="@id/portrait_placeholder"
+                tools:src="@drawable/type_supporter_summoner" />
 
             <ImageView
                 android:id="@+id/operator_info_class_icon"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
                 android:background="@drawable/image_round_outline"
                 android:backgroundTint="@color/black"
                 android:contentDescription="@string/operator_archetype_icon"
                 android:elevation="10dp"
                 android:outlineProvider="background"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toRightOf="@id/placeholder_portrait_expanded"
-                app:layout_constraintTop_toBottomOf="@id/placeholder_portrait_expanded"
-                tools:src="@drawable/class_supporter"
-                tools:visibility="gone" />
+                app:layout_constraintRight_toRightOf="@id/portrait_placeholder"
+                app:layout_constraintTop_toBottomOf="@id/portrait_placeholder"
+                tools:src="@drawable/class_supporter" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/text_views_group"
+            <TextView
+                android:id="@+id/operator_info_rarity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toRightOf="@id/portrait_placeholder"
+                app:layout_constraintRight_toLeftOf="@id/operator_info_type_class"
+                app:layout_constraintTop_toBottomOf="@id/guide_collapsed_height"
+                tools:text="6*" />
+
+            <TextView
+                android:id="@+id/operator_info_type_class"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:layout_constraintLeft_toRightOf="@id/placeholder_portrait_expanded"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:maxLines="2"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toRightOf="@id/operator_info_rarity"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/divider_barrier"
-                tools:visibility="gone">
+                app:layout_constraintTop_toTopOf="@id/operator_info_rarity"
+                tools:text="Decel Binder Supporter" />
 
-                <TextView
-                    android:id="@+id/operator_info_rarity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toLeftOf="@id/operator_info_type_class"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="6*" />
-
-                <TextView
-                    android:id="@+id/operator_info_type_class"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:maxLines="2"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    app:layout_constraintLeft_toRightOf="@id/operator_info_rarity"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/operator_info_rarity"
-                    tools:text="Decel Binder Supporter" />
-
-                <TextView
-                    android:id="@+id/operator_info_tags"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:ellipsize="end"
-                    android:maxLines="6"
-                    android:textColor="@color/black"
-                    app:layout_constraintLeft_toLeftOf="@id/operator_info_rarity"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/operator_info_type_class"
-                    tools:text="Tags:\nRanged\nSenior Operator\nCrowd-Control\nFast-Redeploy\nDefense" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.constraintlayout.motion.widget.MotionLayout>
-    </androidx.cardview.widget.CardView>
-</FrameLayout>
+            <TextView
+                android:id="@+id/operator_info_tags"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:ellipsize="end"
+                android:maxLines="6"
+                android:textColor="@color/black"
+                app:layout_constraintLeft_toLeftOf="@id/operator_info_rarity"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/operator_info_type_class"
+                tools:text="Tags:\nRanged\nSenior Operator\nCrowd-Control\nFast-Redeploy\nDefense" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</androidx.cardview.widget.CardView>
