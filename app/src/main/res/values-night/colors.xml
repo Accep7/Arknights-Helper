@@ -7,12 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="btn_background">#6C757D</color>
-    <color name="btn_reset">@android:color/holo_red_dark</color>
-    <color name="btn_checked_blue">#0098DC</color>
+    <color name="button_bg">#6C757D</color>
+    <color name="button_reset">@android:color/holo_red_dark</color>
+    <color name="button_selected">#0098DC</color>
     <color name="button_text_color">#FFFFFF</color>
     <color name="status_bar">#191919</color>
     <color name="toolbar">#272727</color>
-    <color name="main_background">#363636</color>
-    <color name="divider_background">#FFFFFF</color>
+    <color name="main_bg">#363636</color>
+    <color name="divider_bg">#FFFFFF</color>
 </resources>

@@ -9,10 +9,10 @@ android {
         applicationId "com.accep7.arknightshelper"
         minSdk 24
         targetSdk 30
-        versionCode 1
+        versionCode 21
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.operator_portrait_bg.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -28,18 +28,26 @@ android {
     buildFeatures {
         viewBinding true
     }
+    compileSdkVersion 30
 }
 
 dependencies {
 
+    //noinspection GradleDependency
     implementation 'androidx.appcompat:appcompat:1.3.1'
+    //noinspection GradleDependency
     implementation 'com.google.android.material:material:1.4.0'
+    //noinspection GradleDependency
     implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    //noinspection GradleDependency
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+    //noinspection GradleDependency
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+    //noinspection GradleDependency
     implementation 'androidx.navigation:navigation-fragment:2.3.5'
+    //noinspection GradleDependency
     implementation 'androidx.navigation:navigation-ui:2.3.5'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    testImplementation 'junit:junit:'
+    androidTestImplementation 'androidx.operator_portrait_bg.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.operator_portrait_bg.espresso:espresso-core:3.4.0'
 }

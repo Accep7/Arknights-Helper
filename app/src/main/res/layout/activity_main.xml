@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:splitMotionEvents="false"
     tools:context=".MainActivity">
 
     <androidx.core.widget.NestedScrollView
@@ -16,463 +17,454 @@
             android:nestedScrollingEnabled="false">
 
             <TextView
-                android:id="@+id/text_view_heading"
+                android:id="@+id/rec_calc_activity_heading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/select_the_tags"
+                android:text="@string/tv_select_tags"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/topline"
+                app:layout_constraintBottom_toTopOf="@id/divider_heading"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- region Qualification -->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/rec_calc_activity_left_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.01" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/rec_calc_activity_right_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.99" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/rec_calc_activity_button_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.24" />
+
             <View
-                android:id="@+id/topline"
+                android:id="@+id/divider_heading"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/divider_background"
-                app:layout_constraintBottom_toBottomOf="@id/text_view_heading"
-                app:layout_constraintTop_toBottomOf="@id/text_view_heading" />
+                android:background="@color/divider_bg"
+                app:layout_constraintTop_toBottomOf="@id/rec_calc_activity_heading" />
+
+            <!-- region Qualification -->
+            <TextView
+                android:id="@+id/section_qualification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_operator_qualification"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/divider_qualification"
+                app:layout_constraintLeft_toLeftOf="@id/rec_calc_activity_left_guideline"
+                app:layout_constraintRight_toLeftOf="@id/rec_calc_activity_button_guideline"
+                app:layout_constraintTop_toBottomOf="@id/divider_heading" />
+
+            <ToggleButton
+                android:id="@+id/button_qualification_starter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/rec_calc_activity_button_guideline"
+                app:layout_constraintTop_toBottomOf="@id/divider_heading"
+                tools:textOff="Starter" />
+
+            <ToggleButton
+                android:id="@+id/button_qualification_senior"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                app:layout_constraintLeft_toRightOf="@id/button_qualification_starter"
+                app:layout_constraintRight_toLeftOf="@id/button_qualification_top"
+                app:layout_constraintTop_toBottomOf="@id/divider_heading"
+                tools:textOff="Senior Operator" />
+
+            <ToggleButton
+                android:id="@+id/button_qualification_top"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                app:layout_constraintRight_toLeftOf="@id/rec_calc_activity_right_guideline"
+                app:layout_constraintTop_toBottomOf="@id/divider_heading"
+                tools:textOff="Top Operator" />
 
             <View
-                android:id="@+id/line_1"
+                android:id="@+id/divider_qualification"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/divider_background"
-                app:layout_constraintBottom_toBottomOf="@id/qualification_starter"
-                app:layout_constraintTop_toBottomOf="@id/text_view_quali" />
-
-            <TextView
-                android:id="@+id/text_view_quali"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/qualification"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/line_1"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/qualification_starter"
-                app:layout_constraintTop_toTopOf="@id/topline" />
-
-            <ToggleButton
-                android:id="@+id/qualification_starter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/starter"
-                android:textOn="@string/starter"
-                app:layout_constraintBottom_toTopOf="@id/line_1"
-                app:layout_constraintLeft_toRightOf="@id/text_view_quali"
-                app:layout_constraintRight_toLeftOf="@id/qualification_seniorOp"
-                app:layout_constraintTop_toBottomOf="@id/topline" />
-
-            <ToggleButton
-                android:id="@+id/qualification_seniorOp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/senior_op"
-                android:textOn="@string/senior_op"
-                app:layout_constraintBottom_toTopOf="@id/line_1"
-                app:layout_constraintLeft_toRightOf="@id/qualification_starter"
-                app:layout_constraintRight_toLeftOf="@id/qualification_topOp"
-                app:layout_constraintTop_toBottomOf="@id/topline" />
-
-            <ToggleButton
-                android:id="@+id/qualification_topOp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/top_op"
-                android:textOn="@string/top_op"
-                app:layout_constraintBottom_toTopOf="@id/line_1"
-                app:layout_constraintLeft_toRightOf="@id/qualification_seniorOp"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/topline" />
+                android:background="@color/divider_bg"
+                app:layout_constraintTop_toBottomOf="@id/button_qualification_starter" />
             <!-- endregion -->
 
             <!-- region Attack type -->
+            <TextView
+                android:id="@+id/section_attack_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_attack_type"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/divider_attack_type"
+                app:layout_constraintLeft_toLeftOf="@id/rec_calc_activity_left_guideline"
+                app:layout_constraintRight_toLeftOf="@id/rec_calc_activity_button_guideline"
+                app:layout_constraintTop_toBottomOf="@id/divider_qualification" />
+
+            <ToggleButton
+                android:id="@+id/button_attack_type_melee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/rec_calc_activity_button_guideline"
+                app:layout_constraintTop_toBottomOf="@id/divider_qualification"
+                tools:textOff="Melee" />
+
+            <ToggleButton
+                android:id="@+id/button_attack_type_ranged"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/button_qualification_senior"
+                app:layout_constraintLeft_toRightOf="@id/button_attack_type_melee"
+                app:layout_constraintTop_toBottomOf="@id/divider_qualification"
+                tools:textOff="Ranged" />
+
             <View
-                android:id="@+id/line_2"
+                android:id="@+id/divider_attack_type"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/divider_background"
-                app:layout_constraintTop_toBottomOf="@id/atk_type_melee" />
-
-            <TextView
-                android:id="@+id/text_view_atktype"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/attack_type"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/line_2"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/qualification_starter"
-                app:layout_constraintTop_toBottomOf="@id/line_1" />
-
-            <ToggleButton
-                android:id="@+id/atk_type_melee"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/melee"
-                android:textOn="@string/melee"
-                app:layout_constraintBottom_toTopOf="@id/line_2"
-                app:layout_constraintLeft_toLeftOf="@id/qualification_starter"
-                app:layout_constraintTop_toBottomOf="@id/line_1" />
-
-            <ToggleButton
-                android:id="@+id/atk_type_ranged"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/ranged"
-                android:textOn="@string/ranged"
-                app:layout_constraintBottom_toTopOf="@id/line_2"
-                app:layout_constraintLeft_toLeftOf="@id/qualification_seniorOp"
-                app:layout_constraintTop_toBottomOf="@id/line_1" />
+                android:background="@color/divider_bg"
+                app:layout_constraintTop_toBottomOf="@id/button_attack_type_melee" />
             <!-- endregion -->
 
             <!-- region Class -->
+            <TextView
+                android:id="@+id/section_class"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_operator_class"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/divider_class"
+                app:layout_constraintLeft_toRightOf="@id/rec_calc_activity_left_guideline"
+                app:layout_constraintRight_toLeftOf="@id/rec_calc_activity_button_guideline"
+                app:layout_constraintTop_toBottomOf="@id/divider_attack_type" />
+
+            <ToggleButton
+                android:id="@+id/button_class_guard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/rec_calc_activity_button_guideline"
+                app:layout_constraintTop_toBottomOf="@id/divider_attack_type"
+                tools:textOff="Guard" />
+
+            <ToggleButton
+                android:id="@+id/button_class_specialist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/button_class_guard"
+                app:layout_constraintRight_toLeftOf="@id/button_class_sniper"
+                app:layout_constraintTop_toBottomOf="@id/divider_attack_type"
+                tools:textOff="Specialist" />
+
+            <ToggleButton
+                android:id="@+id/button_class_sniper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toLeftOf="@id/rec_calc_activity_right_guideline"
+                app:layout_constraintTop_toBottomOf="@id/divider_attack_type"
+                tools:textOff="Sniper" />
+
+            <ToggleButton
+                android:id="@+id/button_class_caster"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/rec_calc_activity_button_guideline"
+                app:layout_constraintTop_toBottomOf="@id/button_class_guard"
+                tools:textOff="Caster" />
+
+            <ToggleButton
+                android:id="@+id/button_class_defender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/button_class_caster"
+                app:layout_constraintRight_toLeftOf="@id/button_class_medic"
+                app:layout_constraintTop_toBottomOf="@id/button_class_specialist"
+                tools:textOff="Defender" />
+
+            <ToggleButton
+                android:id="@+id/button_class_medic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toLeftOf="@id/rec_calc_activity_right_guideline"
+                app:layout_constraintTop_toBottomOf="@id/button_class_sniper"
+                tools:textOff="Medic" />
+
+            <ToggleButton
+                android:id="@+id/button_class_vanguard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/rec_calc_activity_button_guideline"
+                app:layout_constraintTop_toBottomOf="@id/button_class_caster"
+                tools:textOff="Vanguard" />
+
+            <ToggleButton
+                android:id="@+id/button_class_supporter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/button_class_defender"
+                app:layout_constraintTop_toTopOf="@id/button_class_vanguard"
+                tools:textOff="Supporter" />
+
             <View
-                android:id="@+id/line_3"
+                android:id="@+id/divider_class"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/divider_background"
-                app:layout_constraintTop_toBottomOf="@id/class_vanguard" />
-
-            <TextView
-                android:id="@+id/text_view_class"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/inGameClass"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/line_3"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/qualification_starter"
-                app:layout_constraintTop_toBottomOf="@id/line_2" />
-
-            <ToggleButton
-                android:id="@+id/class_guard"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/guard"
-                android:textOn="@string/guard"
-                app:layout_constraintLeft_toLeftOf="@id/atk_type_melee"
-                app:layout_constraintTop_toBottomOf="@id/atk_type_melee" />
-
-            <ToggleButton
-                android:id="@+id/class_specialist"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/specialist"
-                android:textOn="@string/specialist"
-                app:layout_constraintLeft_toRightOf="@id/class_guard"
-                app:layout_constraintRight_toLeftOf="@id/class_sniper"
-                app:layout_constraintTop_toTopOf="@id/class_guard" />
-
-            <ToggleButton
-                android:id="@+id/class_sniper"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/sniper"
-                android:textOn="@string/sniper"
-                app:layout_constraintRight_toRightOf="@id/qualification_topOp"
-                app:layout_constraintTop_toTopOf="@id/class_guard" />
-
-            <ToggleButton
-                android:id="@+id/class_caster"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/caster"
-                android:textOn="@string/caster"
-                app:layout_constraintBottom_toTopOf="@id/class_vanguard"
-                app:layout_constraintLeft_toLeftOf="@id/class_guard"
-                app:layout_constraintTop_toBottomOf="@id/class_guard" />
-
-            <ToggleButton
-                android:id="@+id/class_defender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/defender"
-                android:textOn="@string/defender"
-                app:layout_constraintLeft_toRightOf="@id/class_caster"
-                app:layout_constraintRight_toLeftOf="@id/class_medic"
-                app:layout_constraintTop_toTopOf="@id/class_caster" />
-
-            <ToggleButton
-                android:id="@+id/class_medic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/medic"
-                android:textOn="@string/medic"
-                app:layout_constraintBottom_toTopOf="@id/class_vanguard"
-                app:layout_constraintRight_toRightOf="@id/class_sniper"
-                app:layout_constraintTop_toTopOf="@id/class_caster" />
-
-            <ToggleButton
-                android:id="@+id/class_vanguard"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/vanguard"
-                android:textOn="@string/vanguard"
-                app:layout_constraintBottom_toTopOf="@id/line_3"
-                app:layout_constraintLeft_toLeftOf="@id/class_caster"
-                app:layout_constraintTop_toBottomOf="@id/class_caster" />
-
-            <ToggleButton
-                android:id="@+id/class_supporter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/supporter"
-                android:textOn="@string/supporter"
-                app:layout_constraintBottom_toTopOf="@id/line_3"
-                app:layout_constraintLeft_toLeftOf="@id/class_defender"
-                app:layout_constraintTop_toTopOf="@id/class_vanguard" />
+                android:background="@color/divider_bg"
+                app:layout_constraintTop_toBottomOf="@id/button_class_vanguard" />
             <!-- endregion -->
 
             <!-- region Affix -->
+            <TextView
+                android:id="@+id/section_affix"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tv_affix"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/divider_affix"
+                app:layout_constraintLeft_toRightOf="@id/rec_calc_activity_left_guideline"
+                app:layout_constraintRight_toLeftOf="@id/rec_calc_activity_button_guideline"
+                app:layout_constraintTop_toBottomOf="@id/divider_class" />
+
+            <ToggleButton
+                android:id="@+id/button_affix_healing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/rec_calc_activity_button_guideline"
+                app:layout_constraintTop_toBottomOf="@id/divider_class"
+                tools:textOff="Healing" />
+
+            <ToggleButton
+                android:id="@+id/button_affix_defense"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/button_affix_healing"
+                app:layout_constraintRight_toLeftOf="@id/button_affix_slow"
+                app:layout_constraintTop_toBottomOf="@id/divider_class"
+                tools:textOff="Defense" />
+
+            <ToggleButton
+                android:id="@+id/button_affix_slow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toLeftOf="@id/rec_calc_activity_right_guideline"
+                app:layout_constraintTop_toBottomOf="@id/divider_class"
+                tools:textOff="Slow" />
+
+            <ToggleButton
+                android:id="@+id/button_affix_dp_recovery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/rec_calc_activity_button_guideline"
+                app:layout_constraintTop_toBottomOf="@id/button_affix_healing"
+                tools:textOff="DP-Recovery" />
+
+            <ToggleButton
+                android:id="@+id/button_affix_aoe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/button_affix_defense"
+                app:layout_constraintRight_toRightOf="@id/button_affix_defense"
+                app:layout_constraintTop_toBottomOf="@id/button_affix_defense"
+                tools:textOff="AoE" />
+
+            <ToggleButton
+                android:id="@+id/button_affix_dps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toLeftOf="@id/rec_calc_activity_right_guideline"
+                app:layout_constraintTop_toBottomOf="@id/button_affix_slow"
+                tools:textOff="DPS" />
+
+            <ToggleButton
+                android:id="@+id/button_affix_survival"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/rec_calc_activity_button_guideline"
+                app:layout_constraintTop_toBottomOf="@id/button_affix_dp_recovery"
+                tools:textOff="Survival" />
+
+            <ToggleButton
+                android:id="@+id/button_affix_shift"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/button_affix_survival"
+                app:layout_constraintRight_toLeftOf="@id/button_affix_support"
+                app:layout_constraintTop_toBottomOf="@id/button_affix_aoe"
+                tools:textOff="Shift" />
+
+            <ToggleButton
+                android:id="@+id/button_affix_support"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toLeftOf="@id/rec_calc_activity_right_guideline"
+                app:layout_constraintTop_toBottomOf="@id/button_affix_dps"
+                tools:textOff="Support" />
+
+            <ToggleButton
+                android:id="@+id/button_affix_debuff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/rec_calc_activity_button_guideline"
+                app:layout_constraintTop_toBottomOf="@id/button_affix_survival"
+                tools:textOff="Debuff" />
+
+            <ToggleButton
+                android:id="@+id/button_affix_fast_redeploy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/button_affix_debuff"
+                app:layout_constraintRight_toLeftOf="@id/button_affix_robot"
+                app:layout_constraintTop_toBottomOf="@id/button_affix_shift"
+                tools:textOff="Fast-Redeploy" />
+
+            <ToggleButton
+                android:id="@+id/button_affix_robot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toLeftOf="@id/rec_calc_activity_right_guideline"
+                app:layout_constraintTop_toBottomOf="@id/button_affix_support"
+                tools:textOff="Robot" />
+
+            <ToggleButton
+                android:id="@+id/button_affix_summon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/rec_calc_activity_button_guideline"
+                app:layout_constraintTop_toBottomOf="@id/button_affix_debuff"
+                tools:textOff="Summon" />
+
+            <ToggleButton
+                android:id="@+id/button_affix_cc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/button_affix_summon"
+                app:layout_constraintRight_toLeftOf="@id/button_affix_nuker"
+                app:layout_constraintTop_toBottomOf="@id/button_affix_fast_redeploy"
+                tools:textOff="Crowd-Control" />
+
+            <ToggleButton
+                android:id="@+id/button_affix_nuker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toLeftOf="@id/rec_calc_activity_right_guideline"
+                app:layout_constraintTop_toBottomOf="@id/button_affix_robot"
+                tools:textOff="Nuker" />
+
             <View
-                android:id="@+id/line_4"
+                android:id="@+id/divider_affix"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/divider_background"
-                app:layout_constraintTop_toBottomOf="@id/affix_cc" />
-
-            <TextView
-                android:id="@+id/text_view_affix"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/affix"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/line_4"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/qualification_starter"
-                app:layout_constraintTop_toBottomOf="@id/line_3" />
-
-            <ToggleButton
-                android:id="@+id/affix_healing"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/healing"
-                android:textOn="@string/healing"
-                app:layout_constraintLeft_toLeftOf="@id/class_vanguard"
-                app:layout_constraintTop_toBottomOf="@id/class_vanguard" />
-
-            <ToggleButton
-                android:id="@+id/affix_defense"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/defense"
-                android:textOn="@string/defense"
-                app:layout_constraintLeft_toRightOf="@id/affix_healing"
-                app:layout_constraintRight_toLeftOf="@id/affix_slow"
-                app:layout_constraintTop_toTopOf="@id/affix_healing" />
-
-            <ToggleButton
-                android:id="@+id/affix_slow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/slow"
-                android:textOn="@string/slow"
-                app:layout_constraintRight_toRightOf="@id/class_medic"
-                app:layout_constraintTop_toTopOf="@id/affix_healing" />
-
-            <ToggleButton
-                android:id="@+id/affix_dprec"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/dp_recovery"
-                android:textOn="@string/dp_recovery"
-                app:layout_constraintLeft_toLeftOf="@id/affix_healing"
-                app:layout_constraintTop_toBottomOf="@id/affix_healing" />
-
-            <ToggleButton
-                android:id="@+id/affix_aoe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/aoe"
-                android:textOn="@string/aoe"
-                app:layout_constraintLeft_toLeftOf="@id/affix_defense"
-                app:layout_constraintRight_toRightOf="@id/affix_defense"
-                app:layout_constraintTop_toTopOf="@id/affix_dprec" />
-
-            <ToggleButton
-                android:id="@+id/affix_dps"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/dps"
-                android:textOn="@string/dps"
-                app:layout_constraintRight_toRightOf="@id/affix_slow"
-                app:layout_constraintTop_toTopOf="@id/affix_dprec" />
-
-            <ToggleButton
-                android:id="@+id/affix_survival"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/survival"
-                android:textOn="@string/survival"
-                app:layout_constraintLeft_toLeftOf="@id/affix_dprec"
-                app:layout_constraintTop_toBottomOf="@id/affix_dprec" />
-
-            <ToggleButton
-                android:id="@+id/affix_shift"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/shift"
-                android:textOn="@string/shift"
-                app:layout_constraintLeft_toRightOf="@id/affix_survival"
-                app:layout_constraintRight_toLeftOf="@id/affix_support"
-                app:layout_constraintTop_toTopOf="@id/affix_survival" />
-
-            <ToggleButton
-                android:id="@+id/affix_support"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/support"
-                android:textOn="@string/support"
-                app:layout_constraintRight_toRightOf="@id/affix_dps"
-                app:layout_constraintTop_toTopOf="@id/affix_survival" />
-
-            <ToggleButton
-                android:id="@+id/affix_debuff"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/debuff"
-                android:textOn="@string/debuff"
-                app:layout_constraintLeft_toLeftOf="@id/affix_survival"
-                app:layout_constraintTop_toBottomOf="@id/affix_survival" />
-
-            <ToggleButton
-                android:id="@+id/affix_fastred"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/fast_redeploy"
-                android:textOn="@string/fast_redeploy"
-                app:layout_constraintLeft_toRightOf="@id/affix_debuff"
-                app:layout_constraintRight_toLeftOf="@id/affix_robot"
-                app:layout_constraintTop_toTopOf="@id/affix_debuff" />
-
-            <ToggleButton
-                android:id="@+id/affix_robot"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/robot"
-                android:textOn="@string/robot"
-                app:layout_constraintRight_toRightOf="@id/affix_support"
-                app:layout_constraintTop_toTopOf="@id/affix_debuff" />
-
-            <ToggleButton
-                android:id="@+id/affix_summon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/summon"
-                android:textOn="@string/summon"
-                app:layout_constraintLeft_toLeftOf="@id/affix_debuff"
-                app:layout_constraintTop_toBottomOf="@id/affix_debuff" />
-
-            <ToggleButton
-                android:id="@+id/affix_cc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/crowd_control"
-                android:textOn="@string/crowd_control"
-                app:layout_constraintLeft_toRightOf="@id/affix_summon"
-                app:layout_constraintRight_toLeftOf="@id/affix_nuker"
-                app:layout_constraintTop_toTopOf="@id/affix_summon" />
-
-            <ToggleButton
-                android:id="@+id/affix_nuker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOff="@string/nuker"
-                android:textOn="@string/nuker"
-                app:layout_constraintRight_toRightOf="@id/affix_robot"
-                app:layout_constraintTop_toTopOf="@id/affix_summon" />
+                android:background="@color/divider_bg"
+                app:layout_constraintTop_toBottomOf="@id/button_affix_cc" />
             <!-- endregion -->
 
             <!--region Results-->
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/resultsLayout"
+                android:id="@+id/results_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/line_4">
+                app:layout_constraintTop_toBottomOf="@id/divider_affix"
+                tools:visibility="visible">
 
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/results_layout_left_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.01" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/results_layout_right_guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.99" />
 
                 <Button
-                    android:id="@+id/resetButton"
-                    android:layout_width="match_parent"
+                    android:id="@+id/reset_button"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintLeft_toRightOf="@id/results_layout_left_guideline"
+                    app:layout_constraintRight_toLeftOf="@id/results_layout_right_guideline"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Reset 5 tags" />
 
                 <View
-                    android:id="@+id/line_5"
+                    android:id="@+id/divider_reset"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/divider_background"
-                    app:layout_constraintTop_toBottomOf="@id/resetButton" />
+                    android:background="@color/divider_bg"
+                    app:layout_constraintTop_toBottomOf="@id/reset_button" />
 
                 <TextView
-                    android:id="@+id/text_view_results"
+                    android:id="@+id/heading_results"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/results"
+                    android:text="@string/tv_results"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/line_5" />
+                    app:layout_constraintLeft_toRightOf="@id/results_layout_left_guideline"
+                    app:layout_constraintRight_toLeftOf="@id/results_layout_right_guideline"
+                    app:layout_constraintTop_toBottomOf="@id/divider_reset" />
 
                 <View
-                    android:id="@+id/line_6"
+                    android:id="@+id/divider_results"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/divider_background"
-                    app:layout_constraintTop_toBottomOf="@id/text_view_results" />
+                    android:background="@color/divider_bg"
+                    app:layout_constraintTop_toBottomOf="@id/heading_results" />
 
                 <TextView
-                    android:id="@+id/text_view_tag"
+                    android:id="@+id/heading_selected_tag"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tag"
+                    android:text="@string/tv_tags"
                     android:textSize="14sp"
-                    android:layout_marginStart="5dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/line_6" />
+                    app:layout_constraintLeft_toRightOf="@id/results_layout_left_guideline"
+                    app:layout_constraintTop_toBottomOf="@id/divider_results" />
 
                 <TextView
-                    android:id="@+id/text_view_characterPossibility"
+                    android:id="@+id/heading_character_possibility"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/possible_character"
+                    android:text="@string/tv_possible_character"
                     android:textSize="14sp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/line_6" />
+                    app:layout_constraintLeft_toRightOf="@id/results_layout_left_guideline"
+                    app:layout_constraintRight_toLeftOf="@id/results_layout_right_guideline"
+                    app:layout_constraintTop_toBottomOf="@id/divider_results" />
 
                 <View
-                    android:id="@+id/line_7"
+                    android:id="@+id/divider_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:background="@color/divider_background"
-                    app:layout_constraintTop_toBottomOf="@id/text_view_tag" />
+                    android:background="@color/divider_bg"
+                    app:layout_constraintTop_toBottomOf="@id/heading_selected_tag" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerview_results"
+                    android:id="@+id/parent_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:nestedScrollingEnabled="true"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/line_7" />
+                    app:layout_constraintTop_toBottomOf="@id/divider_recycler" />
             </androidx.constraintlayout.widget.ConstraintLayout>
             <!-- endregion -->
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.core.widget.NestedScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
