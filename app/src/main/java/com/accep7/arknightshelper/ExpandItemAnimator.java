@@ -16,6 +16,10 @@ import java.util.Map;
 /**
  * @author JustBucket on 31.01.2022
  */
+
+/* Work in progress. When finished, will replace animateLayoutChanges in recycler XMLs, fixing
+ * crash when tapping too fast */
+
 public class ExpandItemAnimator extends DefaultItemAnimator {
 
     private final Map<RecyclerView.ViewHolder, AnimatorSet> animationMap = new HashMap<>();

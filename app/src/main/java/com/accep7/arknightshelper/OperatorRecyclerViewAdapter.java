@@ -29,7 +29,17 @@ public class OperatorRecyclerViewAdapter extends RecyclerView.Adapter<OperatorRe
     public OperatorHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item,
                 parent, false);
-        return new OperatorHolder(view);
+
+        OperatorHolder operatorHolder = new OperatorHolder(view);
+        view.setOnClickListener(new OperatorRecyclerClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                OperatorWrapper item = operators.get(operatorHolder.getAdapterPosition());
+                item.setExpanded(!item.isExpanded());
+                notifyItemChanged(operatorHolder.getAdapterPosition());
+            }
+        });
+        return operatorHolder;
     }
 
     @Override
@@ -46,9 +56,10 @@ public class OperatorRecyclerViewAdapter extends RecyclerView.Adapter<OperatorRe
         CardView operatorInfo;
         TextView operatorName;
 
-        MotionLayout expandableOperatorInfo;
+        Group expandableOperatorInfo;
 
-        ImageView expandInfoButton, operatorPortrait, operatorArchetypeIcon, operatorClassIcon;
+        ImageView expandInfoButton, operatorPortrait, operatorPortraitExpanded,
+                operatorArchetypeIcon, operatorClassIcon;
         TextView operatorInfoRarity, operatorInfoArchetypeAndClass, operatorInfoTags;
 
         public OperatorHolder(@NonNull View itemView) {
@@ -56,9 +67,10 @@ public class OperatorRecyclerViewAdapter extends RecyclerView.Adapter<OperatorRe
             operatorInfo = itemView.findViewById(R.id.recycler_item);
             operatorName = itemView.findViewById(R.id.operator_name);
             expandInfoButton = itemView.findViewById(R.id.expand_button);
-            expandableOperatorInfo = itemView.findViewById(R.id.operator_info_expandable);
+            expandableOperatorInfo = itemView.findViewById(R.id.operator_info_expanded);
 
             operatorPortrait = itemView.findViewById(R.id.operator_portrait);
+            operatorPortraitExpanded = itemView.findViewById(R.id.operator_portrait_expanded);
             operatorArchetypeIcon = itemView.findViewById(R.id.operator_info_archetype_icon);
             operatorClassIcon = itemView.findViewById(R.id.operator_info_class_icon);
 
@@ -71,6 +83,10 @@ public class OperatorRecyclerViewAdapter extends RecyclerView.Adapter<OperatorRe
             operatorPortrait.setImageResource(
                     operatorWrapper.getOperator().getPortraitDrawableID());
             operatorPortrait.setClipToOutline(true);
+
+            operatorPortraitExpanded.setImageResource(
+                    operatorWrapper.getOperator().getPortraitDrawableID());
+            operatorPortraitExpanded.setClipToOutline(true);
 
             operatorName.setText(operatorWrapper.getOperator().getOperatorName());
             operatorInfoRarity.setText(operatorInfoRarity.getContext()
@@ -123,6 +139,10 @@ public class OperatorRecyclerViewAdapter extends RecyclerView.Adapter<OperatorRe
                             .getColor(R.color.one_star_card_bg, null));
                     break;
             }
+
+            expandableOperatorInfo.setVisibility(operatorWrapper.isExpanded() ? View.VISIBLE : View.GONE);
+            operatorPortrait.setVisibility(operatorWrapper.isExpanded() ? View.GONE : View.VISIBLE);
+            expandInfoButton.animate().setDuration(200).rotation(operatorWrapper.isExpanded() ? 180 : 0);
         }
     }
 }

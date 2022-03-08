@@ -12,169 +12,180 @@
     tools:backgroundTint="@color/six_star_card_bg"
     tools:layout_marginStart="115dp">
 
-    <androidx.constraintlayout.motion.widget.MotionLayout
-        android:id="@+id/operator_info_expandable"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/operator_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:foreground="?selectableItemBackground"
-        android:maxHeight="170dp"
-        android:minHeight="40dp"
         app:layoutDescription="@xml/recycler_item_xml_operator_info_expandable_scene">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraint_layout"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
+        <ImageView
+            android:id="@+id/operator_portrait"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/image_round_outline"
+            android:contentDescription="@string/operator_class_icon"
+            android:elevation="10dp"
+            android:outlineProvider="background"
+            app:layout_constraintBottom_toTopOf="@id/info_guide"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@drawable/image_round_outline"
+            tools:src="@drawable/six_star_magallan"
+            tools:visibility="visible" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guide_collapsed_height"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_begin="40dp" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/info_guide"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="40dp" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guide_expanded_icons"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_begin="170dp" />
+        <TextView
+            android:id="@+id/operator_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@id/info_guide"
+            app:layout_constraintLeft_toRightOf="@id/operator_portrait"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Magallan" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guide_left_margin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_begin="0dp" />
+        <ImageView
+            android:id="@+id/expand_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:contentDescription="@string/expand_operator_details"
+            android:src="@drawable/outline_expand_circle_down_black_24"
+            app:layout_constraintBottom_toTopOf="@id/info_guide"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black" />
 
-            <ImageView
-                android:id="@+id/operator_portrait"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/image_round_outline"
-                android:contentDescription="@string/operator_class_icon"
-                android:elevation="10dp"
-                android:outlineProvider="background"
-                app:layout_constraintLeft_toLeftOf="@id/guide_left_margin"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:background="@drawable/image_round_outline"
-                tools:src="@drawable/six_star_magallan" />
+        <View
+            android:id="@+id/info_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/info_guide" />
 
-            <TextView
-                android:id="@+id/operator_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@id/guide_collapsed_height"
-                app:layout_constraintLeft_toRightOf="@id/operator_portrait"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Magallan" />
+        <View
+            android:id="@+id/portrait_placeholder"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/info_divider" />
 
-            <ImageView
-                android:id="@+id/expand_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:contentDescription="@string/expand_operator_details"
-                android:src="@drawable/outline_expand_circle_down_black_24"
-                app:layout_constraintBottom_toTopOf="@id/guide_collapsed_height"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/black" />
+        <ImageView
+            android:id="@+id/operator_portrait_expanded"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/image_round_outline"
+            android:contentDescription="@string/operator_class_icon"
+            android:elevation="10dp"
+            android:outlineProvider="background"
+            app:layout_constraintBottom_toBottomOf="@id/portrait_placeholder"
+            app:layout_constraintLeft_toLeftOf="@id/portrait_placeholder"
+            app:layout_constraintRight_toRightOf="@id/portrait_placeholder"
+            app:layout_constraintTop_toTopOf="@id/portrait_placeholder"
+            tools:background="@drawable/image_round_outline"
+            tools:src="@drawable/six_star_magallan"
+            tools:visibility="visible" />
 
-            <View
-                android:id="@+id/info_divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/guide_collapsed_height" />
+        <ImageView
+            android:id="@+id/operator_info_archetype_icon"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/image_round_outline"
+            android:backgroundTint="@color/black"
+            android:contentDescription="@string/operator_archetype_icon"
+            android:elevation="10dp"
+            android:outlineProvider="background"
+            android:padding="3dp"
+            app:layout_constraintLeft_toLeftOf="@id/portrait_placeholder"
+            app:layout_constraintTop_toBottomOf="@id/portrait_placeholder"
+            tools:src="@drawable/type_supporter_summoner" />
 
-            <View
-                android:id="@+id/portrait_placeholder"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                app:layout_constraintLeft_toRightOf="@id/guide_left_margin"
-                app:layout_constraintTop_toBottomOf="@id/guide_collapsed_height" />
+        <ImageView
+            android:id="@+id/operator_info_class_icon"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/image_round_outline"
+            android:backgroundTint="@color/black"
+            android:contentDescription="@string/operator_archetype_icon"
+            android:elevation="10dp"
+            android:outlineProvider="background"
+            app:layout_constraintRight_toRightOf="@id/portrait_placeholder"
+            app:layout_constraintTop_toBottomOf="@id/portrait_placeholder"
+            tools:src="@drawable/class_supporter" />
 
-            <ImageView
-                android:id="@+id/operator_info_archetype_icon"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/image_round_outline"
-                android:backgroundTint="@color/black"
-                android:contentDescription="@string/operator_archetype_icon"
-                android:elevation="10dp"
-                android:outlineProvider="background"
-                android:padding="3dp"
-                app:layout_constraintLeft_toLeftOf="@id/portrait_placeholder"
-                app:layout_constraintTop_toBottomOf="@id/portrait_placeholder"
-                tools:src="@drawable/type_supporter_summoner" />
+        <TextView
+            android:id="@+id/operator_info_rarity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toRightOf="@id/portrait_placeholder"
+            app:layout_constraintTop_toBottomOf="@id/info_guide"
+            tools:text="6*" />
 
-            <ImageView
-                android:id="@+id/operator_info_class_icon"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/image_round_outline"
-                android:backgroundTint="@color/black"
-                android:contentDescription="@string/operator_archetype_icon"
-                android:elevation="10dp"
-                android:outlineProvider="background"
-                app:layout_constraintRight_toRightOf="@id/portrait_placeholder"
-                app:layout_constraintTop_toBottomOf="@id/portrait_placeholder"
-                tools:src="@drawable/class_supporter" />
+        <TextView
+            android:id="@+id/operator_info_type_class"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:maxLines="2"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toRightOf="@id/operator_info_rarity"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/operator_info_rarity"
+            tools:text="Decel Binder Supporter" />
 
-            <TextView
-                android:id="@+id/operator_info_rarity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintLeft_toRightOf="@id/portrait_placeholder"
-                app:layout_constraintRight_toLeftOf="@id/operator_info_type_class"
-                app:layout_constraintTop_toBottomOf="@id/guide_collapsed_height"
-                tools:text="6*" />
+        <TextView
+            android:id="@+id/operator_info_tags"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:ellipsize="end"
+            android:maxLines="6"
+            android:textColor="@color/black"
+            app:layout_constraintLeft_toLeftOf="@id/operator_info_rarity"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/operator_info_type_class"
+            tools:text="Tags:\nRanged\nSenior Operator\nCrowd-Control\nFast-Redeploy\nDefense" />
 
-            <TextView
-                android:id="@+id/operator_info_type_class"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:maxLines="2"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintLeft_toRightOf="@id/operator_info_rarity"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/operator_info_rarity"
-                tools:text="Decel Binder Supporter" />
+        <View
+            android:id="@+id/bottom_margin"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:visibility="invisible"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/operator_info_archetype_icon" />
 
-            <TextView
-                android:id="@+id/operator_info_tags"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="5dp"
-                android:ellipsize="end"
-                android:maxLines="6"
-                android:textColor="@color/black"
-                app:layout_constraintLeft_toLeftOf="@id/operator_info_rarity"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/operator_info_type_class"
-                tools:text="Tags:\nRanged\nSenior Operator\nCrowd-Control\nFast-Redeploy\nDefense" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.motion.widget.MotionLayout>
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/operator_info_expanded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="bottom_margin,info_divider,portrait_placeholder,operator_portrait_expanded,operator_info_tags,operator_info_type_class,operator_info_rarity,operator_info_class_icon,operator_info_archetype_icon"
+            tools:visibility="visible" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
