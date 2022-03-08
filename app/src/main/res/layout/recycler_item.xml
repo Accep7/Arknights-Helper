@@ -16,8 +16,7 @@
         android:id="@+id/operator_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:foreground="?selectableItemBackground"
-        app:layoutDescription="@xml/recycler_item_xml_operator_info_expandable_scene">
+        android:foreground="?selectableItemBackground">
 
         <ImageView
             android:id="@+id/operator_portrait"
