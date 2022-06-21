@@ -62,10 +62,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         groupAdapter.addAll(GroupRecycler.createResults(selectedTags));
-        new Thread(() -> {
-            List<OperatorRecycler> results = GroupRecycler.createResults(selectedTags);
-            new Handler(Looper.getMainLooper()).post(() -> groupAdapter.addAll(results));
-        }).start();
+//        new Thread(() -> {
+//            List<OperatorRecycler> results = GroupRecycler.createResults(selectedTags);
+//            new Handler(Looper.getMainLooper()).post(() -> groupAdapter.addAll(results));
+//        }).start();
     }
 
     /* UX feature - When 5th button is checked, this method iterates over a list of buttons and locks

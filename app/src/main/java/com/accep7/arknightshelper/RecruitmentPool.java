@@ -37,7 +37,7 @@ class RecruitmentPool {
     protected final static String TYPE_SPECIALIST_HOOKMASTER = "Hookmaster";
     protected final static String TYPE_SPECIALIST_PUSH_STROKER = "Push Stroker";
     protected final static String TYPE_SPECIALIST_EXECUTOR = "Executor";
-    //protected final static String TYPE_SPECIALIST_GEEK = "Geek";
+    protected final static String TYPE_SPECIALIST_GEEK = "Geek";
     //protected final static String TYPE_SPECIALIST_DOLLKEEPER = "Dollkeeper";
     //protected final static String TYPE_SPECIALIST_TRAPMASTER = "Trapmaster";
     //protected final static String TYPE_SPECIALIST_MERCHANT = "Merchant";
@@ -62,7 +62,7 @@ class RecruitmentPool {
     protected final static String TYPE_DEFENDER_GUARDIAN = "Guardian";
     protected final static String TYPE_DEFENDER_PROTECTOR = "Protector";
     //protected final static String TYPE_DEFENDER_DUELIST = "Duelist";
-    //protected final static String TYPE_DEFENDER_ARTS = "Arts";
+    //protected final static String TYPE_DEFENDER_ARTS = "Arts Protector";
     //protected final static String TYPE_DEFENDER_FORTRESS = "Fortress";
 
     protected final static String TYPE_MEDIC_ST = "Single-target";
@@ -108,6 +108,7 @@ class RecruitmentPool {
         recruitableOperators.add(new RecruitableOperator("Lancet-2", ATTACK_TYPE_RANGED, null, 1, TYPE_MEDIC_ST, CLASS_MEDIC, AFFIX_HEALING, AFFIX_ROBOT, null, R.drawable.type_medic_st, R.drawable.class_medic, R.drawable.one_star_castle));
         recruitableOperators.add(new RecruitableOperator("Castle-3", ATTACK_TYPE_MELEE, null, 1, TYPE_GUARD_DREADNOUGHT, CLASS_GUARD, AFFIX_SUPPORT, AFFIX_ROBOT, null, R.drawable.type_guard_dreadnought, R.drawable.class_guard, R.drawable.one_star_castle));
         recruitableOperators.add(new RecruitableOperator("THRM-EX", ATTACK_TYPE_MELEE, null, 1, TYPE_SPECIALIST_EXECUTOR, CLASS_SPECIALIST, AFFIX_NUKER, AFFIX_ROBOT, null, R.drawable.type_specialist_executor, R.drawable.class_specialist, R.drawable.one_star_thermal_ex));
+        recruitableOperators.add(new RecruitableOperator("'Justice Knight'", ATTACK_TYPE_RANGED, null, 1, TYPE_SNIPER_MARKSMAN, CLASS_SNIPER, AFFIX_SUPPORT, AFFIX_ROBOT, null, R.drawable.type_sniper_marksman, R.drawable.class_sniper, R.drawable.one_star_jk));
 
         // 2-star rarity
         recruitableOperators.add(new RecruitableOperator("12F", ATTACK_TYPE_RANGED, QUALIFICATION_STARTER, 2, TYPE_CASTER_SPLASH, CLASS_CASTER, null, null, null, R.drawable.type_caster_splash, R.drawable.class_caster, R.drawable.two_star_twelvef));
@@ -197,6 +198,7 @@ class RecruitmentPool {
         recruitableOperators.add(new RecruitableOperator("GreyThroat", ATTACK_TYPE_RANGED, QUALIFICATION_SENIOR, 5, TYPE_SNIPER_MARKSMAN, CLASS_SNIPER, AFFIX_DPS, null, null, R.drawable.type_sniper_marksman, R.drawable.class_sniper, R.drawable.five_star_greythroat));
         recruitableOperators.add(new RecruitableOperator("Reed", ATTACK_TYPE_MELEE, QUALIFICATION_SENIOR, 5, TYPE_VANGUARD_CHARGER, CLASS_VANGUARD, AFFIX_DPS, AFFIX_DP_RECOVERY, null, R.drawable.type_vanguard_charger, R.drawable.class_vanguard, R.drawable.five_star_reed));
         recruitableOperators.add(new RecruitableOperator("Broca", ATTACK_TYPE_MELEE, QUALIFICATION_SENIOR, 5, TYPE_GUARD_CENTURION, CLASS_GUARD, AFFIX_AOE, AFFIX_SURVIVAL, null, R.drawable.type_guard_centurion, R.drawable.class_guard, R.drawable.five_star_broca));
+        recruitableOperators.add(new RecruitableOperator("Hung", ATTACK_TYPE_MELEE, QUALIFICATION_SENIOR, 5, TYPE_DEFENDER_GUARDIAN, CLASS_DEFENDER, AFFIX_HEALING, AFFIX_DEFENSE, null, R.drawable.type_defender_guardian, R.drawable.class_defender, R.drawable.five_star_hung));
 
         // 6-star rarity
         recruitableOperators.add(new RecruitableOperator("Mostima", ATTACK_TYPE_RANGED, QUALIFICATION_TOP, 6, TYPE_CASTER_SPLASH, CLASS_CASTER, AFFIX_AOE, AFFIX_SUPPORT, AFFIX_CROWD_CONTROL, R.drawable.type_caster_splash, R.drawable.class_caster, R.drawable.six_star_mostima));
@@ -214,6 +216,7 @@ class RecruitmentPool {
         recruitableOperators.add(new RecruitableOperator("Siege", ATTACK_TYPE_MELEE, QUALIFICATION_TOP, 6, TYPE_VANGUARD_PIONEER, CLASS_VANGUARD, AFFIX_DPS, AFFIX_DP_RECOVERY, null, R.drawable.type_vanguard_pioneer, R.drawable.class_vanguard, R.drawable.six_star_siege));
         recruitableOperators.add(new RecruitableOperator("Exusiai", ATTACK_TYPE_RANGED, QUALIFICATION_TOP, 6, TYPE_SNIPER_MARKSMAN, CLASS_SNIPER, AFFIX_DPS, null, null, R.drawable.type_sniper_marksman, R.drawable.class_sniper, R.drawable.six_star_exusiai));
         recruitableOperators.add(new RecruitableOperator("Blaze", ATTACK_TYPE_MELEE, QUALIFICATION_TOP, 6, TYPE_GUARD_CENTURION, CLASS_GUARD, AFFIX_DPS, AFFIX_SURVIVAL, null, R.drawable.type_guard_centurion, R.drawable.class_guard, R.drawable.six_star_blaze));
+        recruitableOperators.add(new RecruitableOperator("Aak", ATTACK_TYPE_RANGED, QUALIFICATION_TOP, 6, TYPE_SPECIALIST_GEEK, CLASS_SPECIALIST, AFFIX_DPS, AFFIX_SUPPORT, null, R.drawable.type_specialist_geek, R.drawable.class_specialist, R.drawable.six_star_aak));
     }
 }
 
